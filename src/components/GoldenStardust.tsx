@@ -3,6 +3,7 @@ import { interpolate, useCurrentFrame } from "remotion";
 
 export interface GoldenStardustProps {
   starCount?: number;
+  count?: number; // Alias tiện dụng cho starCount
   grainCount?: number;
   speed?: number;
   opacity?: number;
@@ -64,6 +65,7 @@ const GRAINS: GrainSpec[] = Array.from({ length: 30 }, (_, i) => {
 
 export const GoldenStardust: React.FC<GoldenStardustProps> = ({
   starCount = 20,
+  count,
   grainCount = 26,
   speed = 1.0,
   opacity = 1.0,
@@ -75,7 +77,8 @@ export const GoldenStardust: React.FC<GoldenStardustProps> = ({
   // Nhịp thở vạt nắng xiên qua tán thông (Sunbeam Breathing)
   const beamPulse = Math.sin(frame * 0.04) * 0.25 + 0.75;
 
-  const activeStars = STARS.slice(0, Math.min(starCount, STARS.length));
+  const finalStarCount = count ?? starCount;
+  const activeStars = STARS.slice(0, Math.min(finalStarCount, STARS.length));
   const activeGrains = GRAINS.slice(0, Math.min(grainCount, GRAINS.length));
 
   return (
