@@ -184,7 +184,7 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
         <div style={{ position: "relative", display: "inline-block" }}>
           <h1
             style={{
-              fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
+              fontFamily: "'EB Garamond', 'Playfair Display', serif",
               fontSize: 78,
               fontWeight: 700,
               letterSpacing: "0.14em",
@@ -203,7 +203,7 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
               style={{
                 position: "absolute",
                 inset: 0,
-                fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
+                fontFamily: "'EB Garamond', 'Playfair Display', serif",
                 fontSize: 78,
                 fontWeight: 700,
                 letterSpacing: "0.14em",
@@ -253,7 +253,7 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
             {/* Dòng chữ ngày tháng cơ bản - Tone vàng ánh kim sang trọng */}
             <div
               style={{
-                fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
+                fontFamily: "'EB Garamond', 'Playfair Display', serif",
                 fontSize: 32,
                 fontWeight: 600,
                 letterSpacing: "0.26em",
@@ -270,7 +270,7 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
                 style={{
                   position: "absolute",
                   inset: 0,
-                  fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
+                  fontFamily: "'EB Garamond', 'Playfair Display', serif",
                   fontSize: 32,
                   fontWeight: 600,
                   letterSpacing: "0.26em",

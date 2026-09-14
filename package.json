@@ -9,6 +9,7 @@
     "render:2k": "remotion render WeddingVideo out/video-dam-cuoi-2k.mp4 --concurrency=100% --crf=18 --gl=angle"
   },
   "dependencies": {
+    "@remotion/google-fonts": "4.0.524",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remotion": "^4.0.218"
