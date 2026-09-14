@@ -68,13 +68,34 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
   const photoScale = interpolate(photoSpring, [0, 1], [0.96, 1]);
   const photoOpacity = interpolate(photoSpring, [0, 1], [0, 1]);
 
-  // 5. Chuyển động xuất hiện của các họa tiết hoa lá
-  const decorSpring = spring({
-    frame: frame - 18,
+  // 5. Chuyển động sinh trưởng mọc từ gốc đến ngọn của các họa tiết cành lá
+  // 5.1 Cành dọc chân trục (decor-vertical-stem): mọc từ đáy màn hình vươn lên ngọn
+  const stemSpring = spring({
+    frame: frame - 12,
     fps,
-    config: { damping: 20, mass: 1 },
+    config: { damping: 18, mass: 1.1, stiffness: 60 },
   });
-  const decorOpacity = interpolate(decorSpring, [0, 1], [0, 0.9]);
+  const stemGrow = interpolate(stemSpring, [0, 1], [0, 100], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+  const stemOpacity = interpolate(stemSpring, [0, 0.15, 1], [0, 0.95, 0.95]);
+  const stemScaleY = interpolate(stemSpring, [0, 1], [0.85, 1]);
+  const stemTranslateY = interpolate(stemSpring, [0, 1], [35, 0]);
+
+  // 5.2 Cành hoa lụa mép phải (decor-silk-leaves): mọc từ gốc trên-phải vươn rủ dần sang trái và xuống dưới
+  const leavesSpring = spring({
+    frame: frame - 20,
+    fps,
+    config: { damping: 18, mass: 1.2, stiffness: 55 },
+  });
+  const leavesGrow = interpolate(leavesSpring, [0, 1], [0, 100], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+  const leavesOpacity = interpolate(leavesSpring, [0, 0.15, 1], [0, 0.95, 0.95]);
+  const leavesScale = interpolate(leavesSpring, [0, 1], [0.82, 1]);
+  const leavesRotate = interpolate(leavesSpring, [0, 1], [5, 0]);
 
   // Tọa độ trục phân chia x (710px trên canvas 2560px)
   const LINE_X = 710;
@@ -204,15 +225,26 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
         </div>
       </div>
 
-      {/* 4. Họa tiết cành lá thanh nhã chân đường kẻ dọc (decor-vertical-stem) - vị trí chuẩn như ảnh 1 */}
+      {/* 4. Họa tiết cành lá thanh nhã chân đường kẻ dọc (decor-vertical-stem) - mọc từ gốc dưới lên ngọn */}
       <div
         style={{
           position: "absolute",
           left: LINE_X - 60,
           bottom: 0,
-          opacity: decorOpacity * 0.95,
+          opacity: stemOpacity,
+          transform: `scaleY(${stemScaleY}) translateY(${stemTranslateY}px)`,
+          transformOrigin: "bottom center",
+          WebkitMaskImage:
+            stemGrow < 100
+              ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${stemGrow}%, rgba(0,0,0,0) ${Math.min(100, stemGrow + 12)}%)`
+              : undefined,
+          maskImage:
+            stemGrow < 100
+              ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${stemGrow}%, rgba(0,0,0,0) ${Math.min(100, stemGrow + 12)}%)`
+              : undefined,
           zIndex: 8,
           pointerEvents: "none",
+          willChange: "transform, opacity",
         }}
       >
         <Img
@@ -263,15 +295,26 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
         />
       </div>
 
-      {/* 7. Họa tiết cành lá lụa thanh mảnh vươn từ mép phải màn hình (decor-silk-leaves) */}
+      {/* 7. Họa tiết cành lá lụa thanh mảnh vươn từ mép phải màn hình (decor-silk-leaves) - mọc từ gốc ra ngọn */}
       <div
         style={{
           position: "absolute",
           right: -65,
           top: "18%",
-          opacity: decorOpacity * 0.95,
+          opacity: leavesOpacity,
+          transform: `scale(${leavesScale}) rotate(${leavesRotate}deg)`,
+          transformOrigin: "top right",
+          WebkitMaskImage:
+            leavesGrow < 100
+              ? `linear-gradient(225deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${leavesGrow}%, rgba(0,0,0,0) ${Math.min(100, leavesGrow + 16)}%)`
+              : undefined,
+          maskImage:
+            leavesGrow < 100
+              ? `linear-gradient(225deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${leavesGrow}%, rgba(0,0,0,0) ${Math.min(100, leavesGrow + 16)}%)`
+              : undefined,
           zIndex: 7,
           pointerEvents: "none",
+          willChange: "transform, opacity",
         }}
       >
         <Img
