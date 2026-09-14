@@ -7,7 +7,6 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { GoldenStardust } from "../components/GoldenStardust";
 import { PhotoFrame } from "../components/PhotoFrame";
 import { weddingConfig } from "../config/weddingConfig";
 
@@ -90,10 +89,7 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
         overflow: "hidden",
       }}
     >
-      {/* 1. Hiệu ứng bụi sao vàng lung linh trên toàn cảnh */}
-      <GoldenStardust starCount={26} opacity={0.45} />
-
-      {/* 2. Đường kẻ trục dọc thanh lịch (Editorial Vertical Divider) */}
+      {/* 1. Đường kẻ trục dọc thanh lịch (Editorial Vertical Divider) */}
       {/* 2.1 Đoạn trục trên: từ đỉnh màn hình xuống mép trên cụm chữ (y = 590px) */}
       <div
         style={{

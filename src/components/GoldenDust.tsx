@@ -12,7 +12,10 @@ interface Particle {
   opacityBase: number;
 }
 
-export const GoldenDust: React.FC<{ count?: number }> = ({ count = 40 }) => {
+export const GoldenDust: React.FC<{ count?: number; zIndex?: number }> = ({
+  count = 40,
+  zIndex = 4,
+}) => {
   const frame = useCurrentFrame();
 
   const particles: Particle[] = useMemo(() => {
@@ -44,7 +47,7 @@ export const GoldenDust: React.FC<{ count?: number }> = ({ count = 40 }) => {
         inset: 0,
         pointerEvents: "none",
         overflow: "hidden",
-        zIndex: 50,
+        zIndex,
       }}
     >
       {particles.map((p) => {

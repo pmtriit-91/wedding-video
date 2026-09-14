@@ -4,6 +4,7 @@ node_modules/
 # Output videos & render artifacts (files > 100MB)
 out/
 *.mp4
+!public/background/*.mp4
 public/photos_original/
 
 # OS generated files

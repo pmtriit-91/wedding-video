@@ -1,24 +1,9 @@
 import React from "react";
-import { Img, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { Loop, OffthreadVideo, staticFile } from "remotion";
 
 export const Background: React.FC<{ overlayColor?: string }> = ({
   overlayColor = "rgba(253, 251, 247, 0.45)",
 }) => {
-  const frame = useCurrentFrame();
-
-  // Chuyển động lướt chậm của nền lụa dùng translate3d
-  const scale = interpolate(frame, [0, 3500, 7000], [1.02, 1.08, 1.03], {
-    extrapolateRight: "clamp",
-  });
-
-  const translateX = interpolate(frame, [0, 7000], [0, -35], {
-    extrapolateRight: "clamp",
-  });
-
-  const translateY = interpolate(frame, [0, 7000], [0, -20], {
-    extrapolateRight: "clamp",
-  });
-
   return (
     <div
       style={{
@@ -29,18 +14,18 @@ export const Background: React.FC<{ overlayColor?: string }> = ({
         backgroundColor: "#F7F3EB",
       }}
     >
-      {/* Nền lụa satin chất lượng cao (bỏ filter nặng để tăng tốc GPU) */}
-      <Img
-        src={staticFile("background/satin-backdrop.jpg")}
-        style={{
-          position: "absolute",
-          width: "105%",
-          height: "105%",
-          objectFit: "cover",
-          transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
-          willChange: "transform",
-        }}
-      />
+      {/* Nền lụa satin chuyển động sóng nếp gấp dào dạt (seamless 8s loop, 60fps) */}
+      <Loop durationInFrames={480}>
+        <OffthreadVideo
+          src={staticFile("background/satin-waving.mp4")}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </Loop>
 
       {/* Lớp phủ màu kem ấm & ánh sáng mềm mại (ĐÃ BỎ backdropFilter để hết vệt sọc/khối trắng giật lag) */}
       <div
