@@ -6,6 +6,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { FallingPetals } from "../components/FallingPetals";
 import { FloralDecor } from "../components/FloralDecor";
 import { PhotoFrame } from "../components/PhotoFrame";
 import { SparkleTrailArc } from "../components/SparkleTrailArc";
@@ -97,6 +98,9 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
 
       {/* Hiệu ứng sao băng kim tuyến lướt qua từ frame 110 (~1.8s) rất thơ mộng */}
       <SparkleTrailArc startFrame={110} duration={100} />
+
+      {/* Hiệu ứng cánh hoa mẫu đơn nhung đỏ chao lượn điện ảnh (Depth of Field) */}
+      <FallingPetals count={6} speed={0.9} zIndex={25} />
 
       {/* 3 Khung ảnh Studio chính giữa - Xuất hiện lần lượt từ trái sang phải rất chậm rãi, quý phái */}
       <div
