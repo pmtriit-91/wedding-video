@@ -52,6 +52,32 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
       ? interpolate(shimmerProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
       : 0;
 
+  // Hiệu ứng loáng sáng cho ngày tháng (quét lan tỏa nối tiếp ngay sau tên dâu rể)
+  // Quét lần 1: frame 142 -> 192
+  // Quét lần 2: frame 252 -> 302
+  let dateShimmerProgress = -1;
+  if (frame >= 142 && frame <= 192) {
+    dateShimmerProgress = interpolate(frame, [142, 192], [0, 1]);
+  } else if (frame >= 252 && frame <= 302) {
+    dateShimmerProgress = interpolate(frame, [252, 302], [0, 1]);
+  }
+
+  const dateShineX = interpolate(dateShimmerProgress, [0, 1], [130, -30]);
+  const dateShineOpacity =
+    dateShimmerProgress >= 0
+      ? interpolate(dateShimmerProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+      : 0;
+
+  // Điểm lóe sáng kim cương (Diamond Glint) khi luồng sáng quét qua giữa dãy số ngày cưới
+  const dateGlintOpacity =
+    dateShimmerProgress >= 0.35 && dateShimmerProgress <= 0.65
+      ? interpolate(dateShimmerProgress, [0.35, 0.5, 0.65], [0, 1, 0])
+      : 0;
+  const dateGlintScale = interpolate(dateGlintOpacity, [0, 1], [0.3, 1.2]);
+
+  // Ngôi sao 2 bên nhấp nháy êm ái
+  const starPulse = Math.sin(frame * 0.08) * 0.25 + 0.75;
+
   return (
     <div
       style={{
@@ -62,7 +88,7 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "60px 100px",
+        padding: "50px 80px",
         zIndex: 20,
       }}
     >
@@ -78,8 +104,8 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: 48,
-          marginTop: 15,
+          gap: 46,
+          marginTop: 10,
           flex: 1,
         }}
       >
@@ -129,8 +155,8 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
                 src={photoSrc}
                 durationInFrames={durationInFrames}
                 direction={idx === 0 ? "pan-right" : idx === 1 ? "zoom-in" : "pan-left"}
-                width={isCenter ? 620 : 520}
-                height={isCenter ? 860 : 760}
+                width={isCenter ? 720 : 600}
+                height={isCenter ? 980 : 865}
                 variant="studio"
               />
             </div>
@@ -195,17 +221,108 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
           )}
         </div>
 
+        {/* Khối Ngày cưới Hoàng gia với hiệu ứng loáng sáng vàng kim & ánh sao kim cương */}
         <div
           style={{
-            fontFamily: "'Plus Jakarta Sans', sans-serif",
-            fontSize: 26,
-            fontWeight: 500,
-            letterSpacing: "0.3em",
-            color: weddingConfig.colors.goldPrimary,
-            margin: "12px 0 16px 0",
+            position: "relative",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 16,
+            margin: "10px 0 16px 0",
           }}
         >
-          {weddingConfig.weddingDate}
+          {/* Ngôi sao lấp lánh bên trái */}
+          <span
+            style={{
+              fontSize: 16,
+              color: "#D4AF37",
+              opacity: starPulse * 0.85,
+              filter: "drop-shadow(0 0 6px rgba(212, 175, 55, 0.7))",
+              userSelect: "none",
+            }}
+          >
+            ✦
+          </span>
+
+          <div style={{ position: "relative", display: "inline-block" }}>
+            {/* Dòng chữ ngày tháng cơ bản - Tone vàng ánh kim sang trọng */}
+            <div
+              style={{
+                fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
+                fontSize: 32,
+                fontWeight: 600,
+                letterSpacing: "0.26em",
+                color: "#B48C50",
+                textShadow: "0 1px 8px rgba(180, 140, 80, 0.25)",
+              }}
+            >
+              {weddingConfig.weddingDate}
+            </div>
+
+            {/* Lớp loáng sáng vàng rực quét qua chữ số */}
+            {dateShimmerProgress >= 0 && (
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
+                  fontSize: 32,
+                  fontWeight: 600,
+                  letterSpacing: "0.26em",
+                  background:
+                    "linear-gradient(110deg, transparent 20%, rgba(245, 215, 145, 0.75) 42%, rgba(255, 255, 255, 1) 50%, rgba(245, 215, 145, 0.75) 58%, transparent 80%)",
+                  backgroundSize: "220% 100%",
+                  backgroundPosition: `${dateShineX}% 0`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  pointerEvents: "none",
+                  opacity: dateShineOpacity,
+                  willChange: "background-position, opacity",
+                }}
+              >
+                {weddingConfig.weddingDate}
+              </div>
+            )}
+
+            {/* Điểm chớp sáng kim cương (Diamond Sparkle Flare) lóe lên ở tâm khi ánh sáng quét qua */}
+            {dateGlintOpacity > 0 && (
+              <div
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: `translate(-50%, -50%) scale(${dateGlintScale})`,
+                  opacity: dateGlintOpacity,
+                  pointerEvents: "none",
+                }}
+              >
+                <div
+                  style={{
+                    width: 22,
+                    height: 22,
+                    background:
+                      "radial-gradient(circle, #FFFFFF 20%, rgba(255, 225, 140, 0.8) 50%, transparent 80%)",
+                    filter: "drop-shadow(0 0 8px rgba(255, 240, 180, 0.9))",
+                    borderRadius: "50%",
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Ngôi sao lấp lánh bên phải */}
+          <span
+            style={{
+              fontSize: 16,
+              color: "#D4AF37",
+              opacity: starPulse * 0.85,
+              filter: "drop-shadow(0 0 6px rgba(212, 175, 55, 0.7))",
+              userSelect: "none",
+            }}
+          >
+            ✦
+          </span>
         </div>
 
         {/* Thanh trang trí gạch ngang tinh tế */}
