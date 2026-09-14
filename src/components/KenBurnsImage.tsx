@@ -47,7 +47,6 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
     });
   }
 
-  // Resolve path: if starts with "photos/", resolve with staticFile
   const resolvedSrc = src.startsWith("http")
     ? src
     : staticFile(src.startsWith("/") ? src.slice(1) : src);
@@ -59,6 +58,7 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
         overflow: "hidden",
         width: "100%",
         height: "100%",
+        transform: "translateZ(0)",
         ...style,
       }}
     >
@@ -68,9 +68,9 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          transform: `scale(${scale}) translate(${translateX}px, ${translateY}px)`,
-          transition: "transform 0.1s linear",
-          filter: "contrast(1.02) saturate(1.03)",
+          transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
+          willChange: "transform",
+          backfaceVisibility: "hidden",
           ...imgStyle,
         }}
       />

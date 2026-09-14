@@ -40,6 +40,9 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           padding: 8,
           background: "linear-gradient(145deg, #E6CA92 0%, #C69B56 50%, #8A6832 100%)",
           boxShadow: "0 30px 70px rgba(80, 55, 20, 0.22), 0 10px 25px rgba(0,0,0,0.08)",
+          transform: "translateZ(0)",
+          willChange: "transform",
+          backfaceVisibility: "hidden",
           ...style,
         }}
       >
@@ -78,6 +81,9 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           flexDirection: "column",
           alignItems: "center",
           border: "1px solid rgba(220, 205, 185, 0.5)",
+          transform: "translateZ(0)",
+          willChange: "transform",
+          backfaceVisibility: "hidden",
           ...style,
         }}
       >
@@ -152,6 +158,9 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           border: "4px solid rgba(255, 255, 255, 0.85)",
           boxShadow: "0 30px 70px rgba(50, 35, 15, 0.25), 0 8px 20px rgba(0,0,0,0.1)",
           backgroundColor: "#1C1917",
+          transform: "translateZ(0)",
+          willChange: "transform",
+          backfaceVisibility: "hidden",
           ...style,
         }}
       >
@@ -288,8 +297,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
               height: 38,
               borderRadius: 20,
               border: "1.5px solid rgba(255,255,255,0.6)",
-              backgroundColor: "rgba(0,0,0,0.25)",
-              backdropFilter: "blur(4px)",
+              backgroundColor: "rgba(0,0,0,0.5)",
               display: "flex",
               alignItems: "center",
               paddingLeft: 14,
@@ -319,6 +327,9 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
         padding: 6,
         background: "linear-gradient(135deg, rgba(235, 205, 150, 0.8) 0%, rgba(198, 155, 86, 0.4) 50%, rgba(255, 255, 255, 0.9) 100%)",
         boxShadow: "0 25px 60px rgba(60, 45, 20, 0.2), 0 6px 18px rgba(0,0,0,0.06)",
+        transform: "translateZ(0)",
+        willChange: "transform",
+        backfaceVisibility: "hidden",
         ...style,
       }}
     >

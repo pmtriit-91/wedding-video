@@ -65,16 +65,17 @@ export const GoldenDust: React.FC<{ count?: number }> = ({ count = 40 }) => {
             key={p.id}
             style={{
               position: "absolute",
-              left: currentX,
-              top: currentY,
+              left: 0,
+              top: 0,
               width: p.size,
               height: p.size,
               borderRadius: "50%",
               background:
-                "radial-gradient(circle, rgba(255, 235, 175, 0.95) 0%, rgba(220, 175, 95, 0.4) 60%, rgba(200, 150, 70, 0) 100%)",
-              boxShadow: `0 0 ${p.size * 2.5}px rgba(235, 195, 115, 0.65)`,
+                "radial-gradient(circle, rgba(255, 242, 195, 0.95) 0%, rgba(230, 185, 105, 0.45) 50%, rgba(200, 150, 70, 0) 100%)",
               opacity,
-              transform: "translate(-50%, -50%)",
+              transform: `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`,
+              willChange: "transform, opacity",
+              backfaceVisibility: "hidden",
             }}
           />
         );
