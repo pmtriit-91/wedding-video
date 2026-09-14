@@ -1,0 +1,22 @@
+{
+  "name": "wedding-slide-2k",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Video Slide Dam Cuoi 2K - Minh Tri & Cam Huong",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render WeddingVideo out/video-dam-cuoi-2k.mp4 --concurrency=100% --gl=angle",
+    "render:2k": "remotion render WeddingVideo out/video-dam-cuoi-2k.mp4 --concurrency=100% --crf=18 --gl=angle"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.218"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.218",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.6.3"
+  }
+}
