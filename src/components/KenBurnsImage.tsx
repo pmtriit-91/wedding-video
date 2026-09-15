@@ -18,6 +18,7 @@ export interface KenBurnsImageProps {
   finalScale?: number;
   transformOrigin?: string;
   zoomDuration?: number;
+  holdDuration?: number;
   style?: React.CSSProperties;
   imgStyle?: React.CSSProperties;
 }
@@ -31,6 +32,7 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
   finalScale,
   transformOrigin,
   zoomDuration,
+  holdDuration = 28,
   style,
   imgStyle,
 }) => {
@@ -42,21 +44,30 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
 
   if (direction === "zoom-out-reveal") {
     const sFrame = startFrame;
-    const zDuration = zoomDuration ?? Math.max(60, durationInFrames - sFrame - 30);
-    const progress = interpolate(
-      frame,
-      [sFrame, sFrame + zDuration],
-      [0, 1],
-      {
-        extrapolateLeft: "clamp",
-        extrapolateRight: "clamp",
-        easing: Easing.out(Easing.cubic),
-      }
-    );
+    const hold = holdDuration;
+    const zStart = sFrame + hold;
+    const zDuration = zoomDuration ?? Math.max(60, durationInFrames - zStart - 25);
+    
+    let progress = 0;
+    if (frame < zStart) {
+      progress = 0;
+    } else {
+      progress = interpolate(
+        frame,
+        [zStart, zStart + zDuration],
+        [0, 1],
+        {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+          easing: Easing.inOut(Easing.quad),
+        }
+      );
+    }
+
     scale = interpolate(
       progress,
       [0, 1],
-      [initialScale ?? 1.42, finalScale ?? 1.0]
+      [initialScale ?? 1.55, finalScale ?? 1.3]
     );
   } else if (direction === "zoom-in") {
     scale = interpolate(frame, [0, durationInFrames], [1.0, 1.06], {

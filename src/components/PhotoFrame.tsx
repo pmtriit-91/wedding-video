@@ -18,6 +18,7 @@ interface PhotoFrameProps {
   finalScale?: number;
   transformOrigin?: string;
   zoomDuration?: number;
+  holdDuration?: number;
 }
 
 export const PhotoFrame: React.FC<PhotoFrameProps> = ({
@@ -37,6 +38,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
   finalScale,
   transformOrigin,
   zoomDuration,
+  holdDuration,
 }) => {
   // 1. Dạng Khung Vòm (Arch Frame) cho Chân dung Cô dâu / Chú rể
   if (variant === "arch") {
@@ -75,6 +77,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
             finalScale={finalScale}
             transformOrigin={transformOrigin}
             zoomDuration={zoomDuration}
+            holdDuration={holdDuration}
           />
         </div>
       </div>
@@ -120,6 +123,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
             finalScale={finalScale}
             transformOrigin={transformOrigin}
             zoomDuration={zoomDuration}
+            holdDuration={holdDuration}
           />
         </div>
 
@@ -193,6 +197,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           finalScale={finalScale}
           transformOrigin={transformOrigin}
           zoomDuration={zoomDuration}
+          holdDuration={holdDuration}
         />
 
         {/* Lớp gradient trên & dưới của Story */}
@@ -376,6 +381,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           finalScale={finalScale}
           transformOrigin={transformOrigin}
           zoomDuration={zoomDuration}
+          holdDuration={holdDuration}
         />
       </div>
     </div>
