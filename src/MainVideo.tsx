@@ -48,7 +48,7 @@ export const MainVideo: React.FC = () => {
   }
 
   const frame = useCurrentFrame();
-  const isScene05 = frame >= starts[4] && frame < starts[5];
+  const hideGlobalFloral = frame >= starts[4] && frame < starts[6];
 
   return (
     <div
@@ -71,8 +71,8 @@ export const MainVideo: React.FC = () => {
       {/* Hạt bụi sáng vàng lơ lửng lung linh */}
       <GoldenDust count={45} />
 
-      {/* Cành hoa trang trí góc cố định (ẩn ở Scene05 để Scene05 tự chủ hoa văn độc quyền ở vùng trống nội dung) */}
-      {!isScene05 && (
+      {/* Cành hoa trang trí góc cố định (ẩn ở Scene05 & Scene06 để tự chủ hoa văn độc quyền) */}
+      {!hideGlobalFloral && (
         <>
           <FloralDecor position="top-right" opacity={0.25} scale={1.3} />
           <FloralDecor position="bottom-left" opacity={0.25} scale={1.3} />
