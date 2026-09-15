@@ -1,6 +1,5 @@
 import React from 'react';
 import { Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import { GoldenStardust } from '../components/GoldenStardust';
 import { KenBurnsImage } from '../components/KenBurnsImage';
 import { weddingConfig } from '../config/weddingConfig';
 
@@ -51,9 +50,6 @@ export const Scene02_SaveTheDate: React.FC<{ durationInFrames: number }> = ({ du
                 zIndex: 20,
             }}
         >
-            {/* Hiệu ứng sao rơi & bụi vàng tiên cảnh trôi chéo qua khung hình */}
-            <GoldenStardust starCount={24} grainCount={32} speed={0.85} showSunbeam={true} zIndex={30} />
-
             {/* Thẻ Card Trắng Bo Góc Thanh Lịch Chuẩn Clip Gốc (White Luxury Card) */}
             <div
                 style={{

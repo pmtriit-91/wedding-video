@@ -1,10 +1,23 @@
 import React from "react";
-import { Img, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { Easing, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 
-interface KenBurnsImageProps {
+export type KenBurnsDirection =
+  | "zoom-in"
+  | "zoom-out"
+  | "pan-right"
+  | "pan-left"
+  | "pan-up"
+  | "zoom-out-reveal";
+
+export interface KenBurnsImageProps {
   src: string;
   durationInFrames: number;
-  direction?: "zoom-in" | "zoom-out" | "pan-right" | "pan-left" | "pan-up";
+  direction?: KenBurnsDirection;
+  startFrame?: number;
+  initialScale?: number;
+  finalScale?: number;
+  transformOrigin?: string;
+  zoomDuration?: number;
   style?: React.CSSProperties;
   imgStyle?: React.CSSProperties;
 }
@@ -13,6 +26,11 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
   src,
   durationInFrames,
   direction = "zoom-in",
+  startFrame = 0,
+  initialScale,
+  finalScale,
+  transformOrigin,
+  zoomDuration,
   style,
   imgStyle,
 }) => {
@@ -22,7 +40,25 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
   let translateX = 0;
   let translateY = 0;
 
-  if (direction === "zoom-in") {
+  if (direction === "zoom-out-reveal") {
+    const sFrame = startFrame;
+    const zDuration = zoomDuration ?? Math.max(60, durationInFrames - sFrame - 30);
+    const progress = interpolate(
+      frame,
+      [sFrame, sFrame + zDuration],
+      [0, 1],
+      {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+        easing: Easing.out(Easing.cubic),
+      }
+    );
+    scale = interpolate(
+      progress,
+      [0, 1],
+      [initialScale ?? 1.42, finalScale ?? 1.0]
+    );
+  } else if (direction === "zoom-in") {
     scale = interpolate(frame, [0, durationInFrames], [1.0, 1.06], {
       extrapolateRight: "clamp",
     });
@@ -68,6 +104,9 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
           width: "100%",
           height: "100%",
           objectFit: "cover",
+          transformOrigin:
+            transformOrigin ||
+            (direction === "zoom-out-reveal" ? "center 30%" : "center center"),
           transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
           willChange: "transform",
           backfaceVisibility: "hidden",

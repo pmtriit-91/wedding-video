@@ -1,10 +1,10 @@
 import React from "react";
-import { KenBurnsImage } from "./KenBurnsImage";
+import { KenBurnsDirection, KenBurnsImage } from "./KenBurnsImage";
 
 interface PhotoFrameProps {
   src: string;
   durationInFrames: number;
-  direction?: "zoom-in" | "zoom-out" | "pan-right" | "pan-left" | "pan-up";
+  direction?: KenBurnsDirection;
   variant?: "studio" | "arch" | "polaroid" | "story";
   width: number;
   height: number;
@@ -13,6 +13,11 @@ interface PhotoFrameProps {
   storyUsername?: string;
   storyProgress?: number; // 0 to 1
   style?: React.CSSProperties;
+  startFrame?: number;
+  initialScale?: number;
+  finalScale?: number;
+  transformOrigin?: string;
+  zoomDuration?: number;
 }
 
 export const PhotoFrame: React.FC<PhotoFrameProps> = ({
@@ -27,6 +32,11 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
   storyUsername = "camhuong_minhtri",
   storyProgress = 0.5,
   style,
+  startFrame,
+  initialScale,
+  finalScale,
+  transformOrigin,
+  zoomDuration,
 }) => {
   // 1. Dạng Khung Vòm (Arch Frame) cho Chân dung Cô dâu / Chú rể
   if (variant === "arch") {
@@ -60,6 +70,11 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
             src={src}
             durationInFrames={durationInFrames}
             direction={direction}
+            startFrame={startFrame}
+            initialScale={initialScale}
+            finalScale={finalScale}
+            transformOrigin={transformOrigin}
+            zoomDuration={zoomDuration}
           />
         </div>
       </div>
@@ -100,6 +115,11 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
             src={src}
             durationInFrames={durationInFrames}
             direction={direction}
+            startFrame={startFrame}
+            initialScale={initialScale}
+            finalScale={finalScale}
+            transformOrigin={transformOrigin}
+            zoomDuration={zoomDuration}
           />
         </div>
 
@@ -168,6 +188,11 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           src={src}
           durationInFrames={durationInFrames}
           direction={direction}
+          startFrame={startFrame}
+          initialScale={initialScale}
+          finalScale={finalScale}
+          transformOrigin={transformOrigin}
+          zoomDuration={zoomDuration}
         />
 
         {/* Lớp gradient trên & dưới của Story */}
@@ -346,6 +371,11 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           src={src}
           durationInFrames={durationInFrames}
           direction={direction}
+          startFrame={startFrame}
+          initialScale={initialScale}
+          finalScale={finalScale}
+          transformOrigin={transformOrigin}
+          zoomDuration={zoomDuration}
         />
       </div>
     </div>

@@ -158,7 +158,12 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({
               <PhotoFrame
                 src={photoSrc}
                 durationInFrames={durationInFrames}
-                direction={idx === 0 ? "pan-right" : idx === 1 ? "zoom-in" : "pan-left"}
+                direction="zoom-out-reveal"
+                startFrame={photoStart}
+                initialScale={isCenter ? 1.45 : 1.38}
+                finalScale={1.0}
+                transformOrigin={isCenter ? "center 28%" : "center 30%"}
+                zoomDuration={210}
                 width={isCenter ? 720 : 600}
                 height={isCenter ? 980 : 865}
                 variant="studio"
