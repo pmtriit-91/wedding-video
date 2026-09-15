@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Easing,
   Img,
   interpolate,
   spring,
@@ -60,14 +61,12 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
       ? interpolate(shimmerProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
       : 0;
 
-  // 4. Chuyển động xuất hiện của khung ảnh vòm cô dâu
-  const photoSpring = spring({
-    frame: frame - 8,
-    fps,
-    config: { damping: 17, mass: 0.95 },
+  // 4. Độ mờ xuất hiện của khung ảnh vòm cô dâu và phông đệm (mượt mà, không giật/bùng ảnh)
+  const photoOpacity = interpolate(frame, [0, 28], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.quad),
   });
-  const photoScale = interpolate(photoSpring, [0, 1], [0.96, 1]);
-  const photoOpacity = interpolate(photoSpring, [0, 1], [0, 1]);
 
   // 5. Chuyển động sinh trưởng mọc từ gốc đến ngọn của các họa tiết cành lá
   // 5.1 Cành dọc chân trục (decor-vertical-stem): mọc từ đáy màn hình vươn lên ngọn
@@ -282,7 +281,6 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
           left: 1330,
           top: 110,
           opacity: photoOpacity,
-          transform: `scale(${photoScale})`,
           zIndex: 12,
         }}
       >
@@ -293,6 +291,10 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
           width={920}
           height={1220}
           variant="arch"
+          initialScale={1.0}
+          finalScale={1.15}
+          transformOrigin="52% 38%"
+          imgStyle={{ objectPosition: "50% 10%" }}
         />
 
         {/* 6.1 Hiệu ứng 2 điểm sáng loáng viền cửa sổ vòm tỏa từ đỉnh xuống đáy */}

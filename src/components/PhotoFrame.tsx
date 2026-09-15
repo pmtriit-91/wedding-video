@@ -19,6 +19,7 @@ interface PhotoFrameProps {
   transformOrigin?: string;
   zoomDuration?: number;
   holdDuration?: number;
+  imgStyle?: React.CSSProperties;
 }
 
 export const PhotoFrame: React.FC<PhotoFrameProps> = ({
@@ -39,6 +40,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
   transformOrigin,
   zoomDuration,
   holdDuration,
+  imgStyle,
 }) => {
   // 1. Dạng Khung Vòm (Arch Frame) cho Chân dung Cô dâu / Chú rể
   if (variant === "arch") {
@@ -78,6 +80,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
             transformOrigin={transformOrigin}
             zoomDuration={zoomDuration}
             holdDuration={holdDuration}
+            imgStyle={imgStyle}
           />
         </div>
       </div>
@@ -124,6 +127,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
             transformOrigin={transformOrigin}
             zoomDuration={zoomDuration}
             holdDuration={holdDuration}
+            imgStyle={imgStyle}
           />
         </div>
 
@@ -198,6 +202,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           transformOrigin={transformOrigin}
           zoomDuration={zoomDuration}
           holdDuration={holdDuration}
+          imgStyle={imgStyle}
         />
 
         {/* Lớp gradient trên & dưới của Story */}
@@ -382,6 +387,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           transformOrigin={transformOrigin}
           zoomDuration={zoomDuration}
           holdDuration={holdDuration}
+          imgStyle={imgStyle}
         />
       </div>
     </div>
