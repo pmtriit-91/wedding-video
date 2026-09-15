@@ -21,6 +21,8 @@ export interface KenBurnsImageProps {
   holdDuration?: number;
   style?: React.CSSProperties;
   imgStyle?: React.CSSProperties;
+  imageOffsetX?: number;
+  imageOffsetY?: number;
 }
 
 export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
@@ -35,6 +37,8 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
   holdDuration = 28,
   style,
   imgStyle,
+  imageOffsetX = 0,
+  imageOffsetY = 0,
 }) => {
   const frame = useCurrentFrame();
 
@@ -136,7 +140,7 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
           transformOrigin:
             transformOrigin ||
             (direction === "zoom-out-reveal" ? "center 30%" : "center center"),
-          transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
+          transform: `translate3d(${translateX + imageOffsetX}px, ${translateY + imageOffsetY}px, 0) scale(${scale})`,
           willChange: "transform",
           backfaceVisibility: "hidden",
           ...imgStyle,

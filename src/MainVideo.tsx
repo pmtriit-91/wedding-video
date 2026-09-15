@@ -48,7 +48,7 @@ export const MainVideo: React.FC = () => {
   }
 
   const frame = useCurrentFrame();
-  const hideGlobalFloral = frame >= starts[4] && frame < starts[6];
+  const hideGlobalFloral = frame >= starts[4] && frame < starts[7];
 
   return (
     <div
