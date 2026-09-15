@@ -1,5 +1,5 @@
 import React from "react";
-import { Audio, Sequence, staticFile } from "remotion";
+import { Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { Background } from "./components/Background";
 import { FloralDecor } from "./components/FloralDecor";
 import { FontLoader } from "./components/FontLoader";
@@ -47,6 +47,9 @@ export const MainVideo: React.FC = () => {
     currentStart += d;
   }
 
+  const frame = useCurrentFrame();
+  const isScene05 = frame >= starts[4] && frame < starts[5];
+
   return (
     <div
       style={{
@@ -68,9 +71,13 @@ export const MainVideo: React.FC = () => {
       {/* Hạt bụi sáng vàng lơ lửng lung linh */}
       <GoldenDust count={45} />
 
-      {/* Cành hoa trang trí góc cố định */}
-      <FloralDecor position="top-right" opacity={0.25} scale={1.3} />
-      <FloralDecor position="bottom-left" opacity={0.25} scale={1.3} />
+      {/* Cành hoa trang trí góc cố định (ẩn ở Scene05 để Scene05 tự chủ hoa văn độc quyền ở vùng trống nội dung) */}
+      {!isScene05 && (
+        <>
+          <FloralDecor position="top-right" opacity={0.25} scale={1.3} />
+          <FloralDecor position="bottom-left" opacity={0.25} scale={1.3} />
+        </>
+      )}
 
       {/* 12 Phân cảnh trình chiếu */}
       <Sequence from={starts[0]} durationInFrames={SCENE_DURATIONS.scene01}>
