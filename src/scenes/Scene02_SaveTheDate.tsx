@@ -31,10 +31,10 @@ export const Scene02_SaveTheDate: React.FC<{ durationInFrames: number }> = ({ du
     const titleY = interpolate(titleSpring, [0, 1], [20, 0]);
     const titleOpacity = interpolate(titleSpring, [0, 1], [0, 1]);
 
-    // Hiệu ứng ánh sáng loáng nhẹ qua các con số 27 - 09 - 26 (từ frame 130 -> 190)
+    // Hiệu ứng ánh sáng loáng nhẹ qua các con số 27 - 09 - 26 (từ frame 215 -> 285 khi cả 3 ảnh đã hiện rõ trọn vẹn)
     let shimmerProgress = -1;
-    if (frame >= 130 && frame <= 190) {
-        shimmerProgress = interpolate(frame, [130, 190], [0, 1]);
+    if (frame >= 215 && frame <= 285) {
+        shimmerProgress = interpolate(frame, [215, 285], [0, 1]);
     }
     const shineX = interpolate(shimmerProgress, [0, 1], [140, -40]);
 
@@ -129,22 +129,23 @@ export const Scene02_SaveTheDate: React.FC<{ durationInFrames: number }> = ({ du
                     }}
                 >
                     {cfg.photos.map((photoSrc, idx) => {
-                        // Hiệu ứng xuất hiện tuần tự thong thả, chậm rãi từ trái sang phải
-                        const photoStart = 16 + idx * 36;
-                        const photoProgress = interpolate(frame, [photoStart, photoStart + 52], [0, 1], {
+                        // Tăng thời gian chuyển động mờ -> rõ ảnh lên 96 frames (~1.6 giây) để ảnh hiện ra sâu lắng, êm đềm
+                        const fadeDuration = 96;
+                        const photoStart = 16 + idx * 52;
+                        const photoProgress = interpolate(frame, [photoStart, photoStart + fadeDuration], [0, 1], {
                             extrapolateLeft: 'clamp',
                             extrapolateRight: 'clamp',
                             easing: Easing.out(Easing.cubic),
                         });
 
-                        const photoOpacity = interpolate(frame, [photoStart, photoStart + 52], [0, 1], {
+                        const photoOpacity = interpolate(frame, [photoStart, photoStart + fadeDuration], [0, 1], {
                             extrapolateLeft: 'clamp',
                             extrapolateRight: 'clamp',
                             easing: Easing.out(Easing.quad),
                         });
 
                         const photoY = interpolate(photoProgress, [0, 1], [30, 0]);
-                        const photoScale = interpolate(photoProgress, [0, 1], [0.98, 1]);
+                        const photoScale = interpolate(photoProgress, [0, 1], [0.97, 1]);
 
                         // Dữ liệu số ngày cưới to bản ở đáy ảnh
                         const numText = idx === 0 ? '27' : idx === 1 ? '09' : '26';
