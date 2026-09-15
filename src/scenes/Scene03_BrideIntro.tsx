@@ -157,14 +157,14 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
           zIndex: 10,
         }}
       >
-        {/* Dòng 1: CON LÀ CÔ DÂU */}
+        {/* Dòng 1: CON LÀ CÔ DÂU (đồng bộ phong cách với CON LÀ CHÚ RỂ) */}
         <span
           style={{
-            fontFamily: "'EB Garamond', 'Playfair Display', serif",
-            fontSize: 34,
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            fontSize: 30,
             fontWeight: 600,
-            letterSpacing: "0.26em",
-            color: "#2C2825",
+            letterSpacing: "0.28em",
+            color: "#C69B56",
             marginBottom: 14,
             textTransform: "uppercase",
             whiteSpace: "nowrap",
