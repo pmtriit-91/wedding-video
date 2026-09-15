@@ -81,7 +81,12 @@ export const MainVideo: React.FC = () => {
         <Scene02_SaveTheDate durationInFrames={SCENE_DURATIONS.scene02} />
       </Sequence>
 
-      <Sequence from={starts[2]} durationInFrames={SCENE_DURATIONS.scene03}>
+      <Sequence
+  from={starts[2]}
+  durationInFrames={SCENE_DURATIONS.scene03}
+  style={{
+    scale: 1.042
+  }}>
         <Scene03_BrideIntro durationInFrames={SCENE_DURATIONS.scene03} />
       </Sequence>
 

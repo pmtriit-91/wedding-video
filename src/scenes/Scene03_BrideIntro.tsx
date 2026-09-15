@@ -7,6 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { ArchFrameShimmer } from "../components/ArchFrameShimmer";
 import { PhotoFrame } from "../components/PhotoFrame";
 import { weddingConfig } from "../config/weddingConfig";
 
@@ -292,6 +293,14 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
           width={920}
           height={1220}
           variant="arch"
+        />
+
+        {/* 6.1 Hiệu ứng 2 điểm sáng loáng viền cửa sổ vòm tỏa từ đỉnh xuống đáy */}
+        <ArchFrameShimmer
+          width={920}
+          height={1220}
+          triggerFrames={[48, 220]}
+          sweepDuration={65}
         />
       </div>
 
