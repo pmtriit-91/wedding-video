@@ -13,26 +13,13 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
         extrapolateRight: 'clamp',
     });
 
-    // Hiệu ứng cành lá vươn mọc từ trái sang phải ở khoảng trống top - chậm rãi, thanh lịch
-    const vineProgress = interpolate(frame, [4, 90], [0, 1], {
-        easing: Easing.bezier(0.25, 0.1, 0.25, 1.0),
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-    const vineGrow = interpolate(vineProgress, [0, 1], [0, 100]);
-    const vineOpacity = interpolate(frame, [4, 22], [0, 0.92], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-    const vineTranslateX = interpolate(vineProgress, [0, 1], [-25, 0]);
-
-    // Hiệu ứng dòng chữ trích dẫn xuất hiện
+    // Hiệu ứng dòng chữ trích dẫn xuất hiện từ bên phải
     const textSpring = spring({
-        frame: frame - 12,
+        frame: frame - 10,
         fps,
         config: { damping: 15, mass: 0.85 },
     });
-    const textY = interpolate(textSpring, [0, 1], [25, 0]);
+    const textX = interpolate(textSpring, [0, 1], [35, 0]);
     const textOpacity = interpolate(textSpring, [0, 1], [0, 1]);
 
     // Hiệu ứng loáng sáng ánh kim vàng nhẹ nhàng quét qua dòng trích dẫn
@@ -60,99 +47,117 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'flex-end',
-                paddingBottom: 115,
+                justifyContent: 'space-between',
+                padding: '50px 100px 90px 100px',
                 zIndex: 20,
             }}
         >
-            {/* Cành hoa văn lá cành xoay ngang mọc từ trái sang phải ở khoảng trống phía trên top */}
-            {vineOpacity > 0 && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: 35,
-                        left: '50%',
-                        width: 1220,
-                        height: 'auto',
-                        opacity: vineOpacity,
-                        transform: `translateX(calc(-50% + ${vineTranslateX}px))`,
-                        WebkitMaskImage:
-                            vineGrow < 100
-                                ? `linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${vineGrow}%, rgba(0,0,0,0) ${Math.min(100, vineGrow + 15)}%)`
-                                : undefined,
-                        maskImage:
-                            vineGrow < 100
-                                ? `linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${vineGrow}%, rgba(0,0,0,0) ${Math.min(100, vineGrow + 15)}%)`
-                                : undefined,
-                        pointerEvents: 'none',
-                        willChange: 'transform, opacity',
-                        zIndex: 15,
-                    }}
-                >
-                    <Img
-                        src={staticFile('decor/decor-vine-dots-garland.png')}
-                        style={{
-                            width: '100%',
-                            height: 'auto',
-                            filter: 'drop-shadow(0 2px 10px rgba(140, 110, 70, 0.15))',
-                        }}
-                    />
-                </div>
-            )}
-
-            {/* Dòng trích dẫn kỷ niệm ở trên cụm ảnh */}
+            {/* Vùng góc trên bên trái: Ảnh nền nghệ thuật chuyển mờ (Soft Feathered Vignette) */}
             <div
                 style={{
-                    position: 'relative',
-                    textAlign: 'center',
-                    maxWidth: 1800,
-                    marginBottom: 36,
-                    transform: `translateY(${textY}px)`,
-                    opacity: textOpacity,
-                    zIndex: 16,
+                    position: 'absolute',
+                    top: -20,
+                    left: -20,
+                    width: 920,
+                    height: 1220,
+                    pointerEvents: 'none',
+                    zIndex: 5,
+                    overflow: 'hidden',
+                    WebkitMaskImage:
+                        'radial-gradient(ellipse 90% 85% at 10% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 100%)',
+                    maskImage:
+                        'radial-gradient(ellipse 90% 85% at 10% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 100%)',
                 }}
             >
-                <p
+                <Img
+                    src={staticFile('decor/scene06-bg-flowers.jpg')}
                     style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: 50,
-                        fontWeight: 600,
-                        fontStyle: 'italic',
-                        lineHeight: 1.4,
-                        color: weddingConfig.colors.textDark,
-                        letterSpacing: '0.025em',
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        mixBlendMode: 'multiply',
+                        opacity: 0.88,
+                        transform: `scale(${interpolate(frame, [0, durationInFrames], [1, 1.04], { extrapolateRight: 'clamp' })})`,
+                        filter: 'contrast(1.03) saturate(1.05) brightness(1.02)',
                     }}
-                >
-                    “{cfg.quote}”
-                </p>
+                />
+            </div>
 
-                {/* Lớp ánh kim loáng sáng quét qua dòng trích dẫn */}
-                {shimmerProgress >= 0 && (
-                    <div
+            {/* Cụm thông điệp Kỷ niệm ở góc trên bên phải (đối xứng với Cảnh 7, căn thẳng mép phải với dải ảnh) */}
+            <div
+                style={{
+                    width: 1992,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-end',
+                    textAlign: 'right',
+                    transform: `translateX(${textX}px)`,
+                    opacity: textOpacity,
+                    zIndex: 16,
+                    marginTop: 10,
+                }}
+            >
+                {/* Dòng 1: Dẫn dắt bay bổng (Cormorant Garamond nghiêng 68px) */}
+                <div style={{ position: 'relative' }}>
+                    <span
                         style={{
-                            position: 'absolute',
-                            inset: 0,
                             fontFamily: "'Cormorant Garamond', serif",
-                            fontSize: 50,
-                            fontWeight: 600,
+                            fontSize: 68,
+                            fontWeight: 700,
                             fontStyle: 'italic',
-                            lineHeight: 1.4,
-                            letterSpacing: '0.025em',
-                            whiteSpace: 'nowrap',
-                            background:
-                                'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
-                            backgroundSize: '220% 100%',
-                            backgroundPosition: `${shineX}% 0`,
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            pointerEvents: 'none',
-                            opacity: shineOpacity,
-                            willChange: 'background-position, opacity',
+                            color: weddingConfig.colors.textDark,
+                            letterSpacing: '0.03em',
+                            lineHeight: 1.2,
                         }}
                     >
-                        “{cfg.quote}”
-                    </div>
-                )}
+                        {cfg.intro || 'Những ngày đầu tìm hiểu,'}
+                    </span>
+
+                    {/* Lớp ánh kim loáng sáng quét qua dòng tiêu đề chính */}
+                    {shimmerProgress >= 0 && (
+                        <div
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontSize: 68,
+                                fontWeight: 700,
+                                fontStyle: 'italic',
+                                letterSpacing: '0.03em',
+                                lineHeight: 1.2,
+                                whiteSpace: 'nowrap',
+                                background:
+                                    'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
+                                backgroundSize: '220% 100%',
+                                backgroundPosition: `${shineX}% 0`,
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                pointerEvents: 'none',
+                                opacity: shineOpacity,
+                                willChange: 'background-position, opacity',
+                            }}
+                        >
+                            {cfg.intro || 'Những ngày đầu tìm hiểu,'}
+                        </div>
+                    )}
+                </div>
+
+                {/* Dòng 2: Lời bộc bạch tâm sự (Plus Jakarta Sans 38px) */}
+                <p
+                    style={{
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        fontSize: 38,
+                        fontWeight: 600,
+                        lineHeight: 1.5,
+                        color: '#221E1C',
+                        marginTop: 12,
+                        letterSpacing: '0.015em',
+                        textShadow:
+                            '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
+                    }}
+                >
+                    {cfg.quote}
+                </p>
             </div>
 
             {/* 3 Khung ảnh kỷ niệm hẹn hò khổ lớn (kéo sát khung bottom) */}

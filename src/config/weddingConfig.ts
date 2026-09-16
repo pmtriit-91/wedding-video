@@ -70,6 +70,7 @@ export interface WeddingConfig {
 
         // 6. Quãng thời gian tìm hiểu (00:38 - 00:46)
         scene06_datingMemories: {
+            intro?: string;
             quote: string;
             photos: string[];
         };
@@ -182,6 +183,7 @@ export const weddingConfig: WeddingConfig = {
 
         // SCENE 6: Kỷ niệm tìm hiểu
         scene06_datingMemories: {
+            intro: 'Những ngày đầu tìm hiểu,',
             quote: 'Bọn con đã có quãng thời gian tìm hiểu và được sự đón nhận của Ba Mẹ hai bên.',
             photos: ['photos/5/1.JPG', 'photos/5/2.JPG', 'photos/5/3.JPG'],
         },
