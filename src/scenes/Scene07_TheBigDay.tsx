@@ -162,12 +162,13 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                 <span
                     style={{
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        fontSize: 48,
-                        fontWeight: 400,
-                        color: weddingConfig.colors.textMuted,
-                        letterSpacing: '0.035em',
-                        marginTop: 14,
-                        lineHeight: 1.35,
+                        fontSize: 38,
+                        fontWeight: 600,
+                        color: '#221E1C',
+                        marginTop: 12,
+                        lineHeight: 1.5,
+                        letterSpacing: '0.015em',
+                        textShadow: '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
                     }}
                 >
                     {cfg.line2}
@@ -183,6 +184,7 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                     gap: 26,
                     width: '100%',
                     zIndex: 16,
+                    marginBottom: 30,
                 }}
             >
                 {cfg.photos.map((photoSrc, idx) => {
