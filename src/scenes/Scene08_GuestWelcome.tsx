@@ -155,86 +155,115 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                 <div
                     style={{
                         width: 4,
-                        height: 140,
-                        backgroundColor: weddingConfig.colors.goldPrimary,
+                        height: 165,
+                        backgroundColor: '#A87932',
                         borderRadius: 2,
                         marginRight: 28,
-                        boxShadow: '0 0 14px rgba(198, 155, 86, 0.45)',
+                        boxShadow: '0 0 14px rgba(168, 121, 50, 0.45)',
                     }}
                 />
 
                 {/* Hộp nội dung trích dẫn ấm áp, thanh lịch */}
                 <div
                     style={{
-                        background: 'rgba(255, 250, 243, 0.88)',
+                        background: 'rgba(255, 250, 243, 0.92)',
                         backdropFilter: 'blur(12px)',
-                        padding: '24px 38px',
+                        padding: '26px 40px',
                         borderRadius: 14,
-                        border: '1px solid rgba(220, 185, 140, 0.45)',
-                        boxShadow: '0 12px 35px rgba(140, 100, 60, 0.08)',
+                        border: '1px solid rgba(220, 185, 140, 0.5)',
+                        boxShadow: '0 12px 35px rgba(140, 100, 60, 0.12)',
                         maxWidth: 1100,
                         position: 'relative',
                     }}
                 >
-                    <div
-                        style={{
-                            fontFamily: "'Great Vibes', cursive",
-                            fontSize: 34,
-                            color: weddingConfig.colors.goldPrimary,
-                            marginBottom: 6,
-                            letterSpacing: '0.04em',
-                        }}
-                    >
-                        Welcome to Our Guests
-                    </div>
-
-                    <p
-                        style={{
-                            fontFamily: "'Cormorant Garamond', serif",
-                            fontSize: 42,
-                            fontWeight: 600,
-                            fontStyle: 'italic',
-                            lineHeight: 1.35,
-                            color: weddingConfig.colors.textDark,
-                            letterSpacing: '0.02em',
-                            margin: 0,
-                        }}
-                    >
-                        Chúng con thật vui và hạnh phúc
-                        <br />
-                        khi được thấy mọi người ở đây.
-                    </p>
-
-                    {/* Ánh kim quét qua dòng chữ trích dẫn */}
-                    {shimmerProgress >= 0 && (
+                    <div style={{ position: 'relative', marginBottom: 8 }}>
                         <div
                             style={{
-                                position: 'absolute',
-                                left: 38,
-                                bottom: 24,
-                                right: 38,
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontSize: 42,
+                                fontFamily: "'Great Vibes', cursive",
+                                fontSize: 48,
                                 fontWeight: 600,
+                                color: '#A87932',
+                                letterSpacing: '0.04em',
+                                textShadow: '0 1px 12px rgba(255, 255, 255, 0.95), 0 0 16px rgba(255, 255, 255, 0.9)',
+                            }}
+                        >
+                            Welcome to Our Guests
+                        </div>
+
+                        {shimmerProgress >= 0 && (
+                            <div
+                                style={{
+                                    position: 'absolute',
+                                    inset: 0,
+                                    fontFamily: "'Great Vibes', cursive",
+                                    fontSize: 48,
+                                    fontWeight: 600,
+                                    letterSpacing: '0.04em',
+                                    background:
+                                        'linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)',
+                                    backgroundSize: '220% 100%',
+                                    backgroundPosition: `${shineX}% 0`,
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    pointerEvents: 'none',
+                                    opacity: shineOpacity,
+                                    willChange: 'background-position, opacity',
+                                }}
+                            >
+                                Welcome to Our Guests
+                            </div>
+                        )}
+                    </div>
+
+                    <div style={{ position: 'relative' }}>
+                        <p
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontSize: 48,
+                                fontWeight: 700,
                                 fontStyle: 'italic',
-                                lineHeight: 1.35,
-                                letterSpacing: '0.02em',
-                                background:
-                                    'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
-                                backgroundSize: '220% 100%',
-                                backgroundPosition: `${shineX}% 0`,
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                pointerEvents: 'none',
-                                opacity: shineOpacity,
-                                willChange: 'background-position, opacity',
+                                lineHeight: 1.4,
+                                color: '#161311',
+                                letterSpacing: '0.015em',
+                                margin: 0,
+                                textShadow: '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
                             }}
                         >
                             Chúng con thật vui và hạnh phúc
                             <br />
                             khi được thấy mọi người ở đây.
-                        </div>
-                    )}
+                        </p>
+
+                        {/* Ánh kim quét qua dòng chữ trích dẫn */}
+                        {shimmerProgress >= 0 && (
+                            <div
+                                style={{
+                                    position: 'absolute',
+                                    inset: 0,
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontSize: 48,
+                                    fontWeight: 700,
+                                    fontStyle: 'italic',
+                                    lineHeight: 1.4,
+                                    letterSpacing: '0.015em',
+                                    margin: 0,
+                                    background:
+                                        'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.85) 60%, transparent 80%)',
+                                    backgroundSize: '220% 100%',
+                                    backgroundPosition: `${shineX}% 0`,
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    pointerEvents: 'none',
+                                    opacity: shineOpacity,
+                                    willChange: 'background-position, opacity',
+                                }}
+                            >
+                                Chúng con thật vui và hạnh phúc
+                                <br />
+                                khi được thấy mọi người ở đây.
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
