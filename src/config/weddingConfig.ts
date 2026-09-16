@@ -234,12 +234,12 @@ export const weddingConfig: WeddingConfig = {
       fallInLoveQuote: "Hơn bao giờ hết chúng con muốn nói lời cảm ơn thật nhiều.",
       polaroidPhotos: {
         groom: {
-          photo: "photos/8/Untitled Session36756.jpg",
+          photo: "photos/8/Untitled Session36657.jpg",
           name: "MINH TRÍ",
           title: "Chú rể",
         },
         bride: {
-          photo: "photos/9/Untitled Session36551.jpg",
+          photo: "photos/8/Untitled Session36491.jpg",
           name: "CẨM HƯƠNG",
           title: "Cô dâu",
         },

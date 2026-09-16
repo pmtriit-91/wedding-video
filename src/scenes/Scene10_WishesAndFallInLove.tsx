@@ -1,7 +1,9 @@
 import React from "react";
 import {
+  Img,
   interpolate,
   spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -29,6 +31,33 @@ export const Scene10_WishesAndFallInLove: React.FC<{
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
+
+  const textSpring = spring({
+    frame: frame - 10,
+    fps,
+    config: { damping: 14, mass: 0.8 },
+  });
+
+  const photoSpring = spring({
+    frame: frame - 14,
+    fps,
+    config: { damping: 15, mass: 0.9 },
+  });
+
+  // Hiệu ứng loáng sáng ánh kim vàng nhẹ nhàng quét qua chữ nội dung
+  let shimmerProgress = -1;
+  if (frame >= 60 && frame <= 120) {
+    shimmerProgress = interpolate(frame, [60, 120], [0, 1]);
+  } else if (frame >= 220 && frame <= 280) {
+    shimmerProgress = interpolate(frame, [220, 280], [0, 1]);
+  } else if (frame >= 380 && frame <= 440) {
+    shimmerProgress = interpolate(frame, [380, 440], [0, 1]);
+  }
+  const shineX = interpolate(shimmerProgress, [0, 1], [130, -30]);
+  const shineOpacity =
+    shimmerProgress >= 0
+      ? interpolate(shimmerProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+      : 0;
 
   // Giai đoạn 2 (Frames 510 -> 1020): Tri ân khách phương xa & Ảnh chạm trán tình cảm
   const phase2Opacity = interpolate(
@@ -67,72 +96,181 @@ export const Scene10_WishesAndFallInLove: React.FC<{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "0 180px",
+            padding: "0 130px 0 85px",
           }}
         >
+          {/* Lớp nền phong cảnh hoa hồng leo phủ full màn hình bên trái với mép chuyển nhòe mượt mà */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: 1400,
+              overflow: "hidden",
+              pointerEvents: "none",
+              zIndex: 1,
+              WebkitMaskImage:
+                "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)",
+              maskImage:
+                "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)",
+            }}
+          >
+            <Img
+              src={staticFile("decor/pink-ukulele-wallpaper.jpeg")}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "-180px center",
+                opacity: 0.72,
+                filter: "brightness(103%) contrast(102%)",
+              }}
+            />
+
+            {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to right, rgba(247, 243, 235, 0.35) 0%, rgba(247, 243, 235, 0.55) 40%, rgba(247, 243, 235, 0.88) 75%, #F7F3EB 100%)",
+              }}
+            />
+          </div>
+
           <FloralDecor position="top-left" opacity={0.35} />
 
           {/* Lời chúc phúc bên trái */}
           <div
             style={{
+              position: "relative",
               display: "flex",
               flexDirection: "column",
-              maxWidth: 720,
+              maxWidth: 620,
+              transform: `translateX(${interpolate(textSpring, [0, 1], [-40, 0])}px)`,
+              opacity: interpolate(textSpring, [0, 1], [0, 1]),
+              zIndex: 5,
             }}
           >
-            <div
-              style={{
-                fontFamily: "'Great Vibes', cursive",
-                fontSize: 54,
-                color: weddingConfig.colors.goldPrimary,
-                marginBottom: 16,
-              }}
-            >
-              Blessings & Love
+            {/* Tiêu đề Blessings & Love có lớp loáng sáng */}
+            <div style={{ position: "relative", marginBottom: 18 }}>
+              <div
+                style={{
+                  fontFamily: "'Great Vibes', cursive",
+                  fontSize: 66,
+                  fontWeight: 600,
+                  color: "#A87932",
+                  textShadow:
+                    "0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)",
+                }}
+              >
+                Blessings & Love
+              </div>
+
+              {shimmerProgress >= 0 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    fontFamily: "'Great Vibes', cursive",
+                    fontSize: 66,
+                    fontWeight: 600,
+                    background:
+                      "linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)",
+                    backgroundSize: "220% 100%",
+                    backgroundPosition: `${shineX}% 0`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    pointerEvents: "none",
+                    opacity: shineOpacity,
+                    willChange: "background-position, opacity",
+                  }}
+                >
+                  Blessings & Love
+                </div>
+              )}
             </div>
-            <p
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 50,
-                fontWeight: 600,
-                lineHeight: 1.45,
-                color: weddingConfig.colors.textDark,
-                letterSpacing: "0.02em",
-              }}
-            >
-              {cfg.wishesQuote}
-            </p>
+
+            {/* Trích dẫn nội dung có lớp loáng sáng quét qua */}
+            <div style={{ position: "relative" }}>
+              <p
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 52,
+                  fontWeight: 700,
+                  lineHeight: 1.48,
+                  color: "#161311",
+                  letterSpacing: "0.015em",
+                  margin: 0,
+                  textShadow:
+                    "0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)",
+                }}
+              >
+                {cfg.wishesQuote}
+              </p>
+
+              {shimmerProgress >= 0 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: 52,
+                    fontWeight: 700,
+                    lineHeight: 1.48,
+                    letterSpacing: "0.015em",
+                    margin: 0,
+                    background:
+                      "linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)",
+                    backgroundSize: "220% 100%",
+                    backgroundPosition: `${shineX}% 0`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    pointerEvents: "none",
+                    opacity: shineOpacity,
+                    willChange: "background-position, opacity",
+                  }}
+                >
+                  {cfg.wishesQuote}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* 2 Khung ảnh Polaroid Chú rể & Cô dâu */}
           <div
             style={{
               display: "flex",
-              gap: 50,
+              gap: 36,
               alignItems: "center",
+              position: "relative",
+              transform: `translateX(${interpolate(photoSpring, [0, 1], [40, 0])}px)`,
+              opacity: interpolate(photoSpring, [0, 1], [0, 1]),
+              zIndex: 5,
             }}
           >
             <PhotoFrame
               src={cfg.polaroidPhotos.groom.photo}
               durationInFrames={520}
               direction="zoom-in"
-              width={460}
-              height={580}
+              width={585}
+              height={755}
               variant="polaroid"
               captionName={cfg.polaroidPhotos.groom.name}
               captionTitle={cfg.polaroidPhotos.groom.title}
-              style={{ transform: "rotate(-2.5deg)" }}
+              style={{ transform: "rotate(-1.8deg)" }}
             />
             <PhotoFrame
               src={cfg.polaroidPhotos.bride.photo}
               durationInFrames={520}
               direction="zoom-in"
-              width={460}
-              height={580}
+              width={585}
+              height={755}
               variant="polaroid"
               captionName={cfg.polaroidPhotos.bride.name}
               captionTitle={cfg.polaroidPhotos.bride.title}
-              style={{ transform: "rotate(2.5deg)" }}
+              style={{ transform: "rotate(1.8deg)" }}
             />
           </div>
         </div>
