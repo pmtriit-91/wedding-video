@@ -213,7 +213,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                     const photoOpacity = interpolate(photoSpring, [0, 1], [0, 1]);
 
                     // Độ dịch vị trí ảnh lên phía trên (top) trong khung chứa của từng ảnh
-                    const photoOffsetsY = [-60, -85, -60];
+                    const photoOffsetsY = [-60, -105, -60];
 
                     return (
                         <div
@@ -226,7 +226,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                             <PhotoFrame
                                 src={photoSrc}
                                 durationInFrames={durationInFrames}
-                                direction={idx === 0 ? 'pan-right' : idx === 1 ? 'zoom-in' : 'pan-left'}
+                                direction={idx === 0 ? 'pan-right' : idx === 1 ? 'zoom-out' : 'pan-left'}
                                 imageOffsetY={photoOffsetsY[idx]}
                                 width={640}
                                 height={870}
