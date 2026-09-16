@@ -13,18 +13,11 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
         extrapolateRight: 'clamp',
     });
 
-    // Hiệu ứng cành mai góc phải vươn mọc chậm rãi, thanh thoát (từ frame 4 đến frame 85)
-    const branchProgress = interpolate(frame, [4, 85], [0, 1], {
-        easing: Easing.bezier(0.25, 0.1, 0.25, 1.0),
+    // Hiệu ứng ảnh nền phụ hoa văn nghệ thuật xuất hiện êm ái
+    const bgArtOpacity = interpolate(frame, [4, 25], [0, 0.88], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
-    const branchGrow = interpolate(branchProgress, [0, 1], [0, 100]);
-    const branchOpacity = interpolate(frame, [4, 20], [0, 0.95], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-    const branchTranslateX = interpolate(branchProgress, [0, 1], [25, 0]);
 
     // Hiệu ứng dòng chữ thông điệp xuất hiện từ bên trái
     const textSpring = spring({
@@ -65,37 +58,35 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                 zIndex: 20,
             }}
         >
-            {/* Cành hoa mai nằm ngang ở góc trên bên phải, lật hình để gốc quay đầu từ trái sang phải */}
-            {branchOpacity > 0 && (
+            {/* Ảnh hoa văn nền phụ nghệ thuật ở góc trên bên phải (thay thế cành lá cũ) */}
+            {bgArtOpacity > 0 && (
                 <div
                     style={{
                         position: 'absolute',
-                        top: 15,
-                        right: -15,
-                        width: 890,
-                        height: 'auto',
-                        opacity: branchOpacity,
-                        transform: `translateX(${branchTranslateX}px)`,
-                        WebkitMaskImage:
-                            branchGrow < 100
-                                ? `linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${branchGrow}%, rgba(0,0,0,0) ${Math.min(100, branchGrow + 15)}%)`
-                                : undefined,
-                        maskImage:
-                            branchGrow < 100
-                                ? `linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${branchGrow}%, rgba(0,0,0,0) ${Math.min(100, branchGrow + 15)}%)`
-                                : undefined,
+                        top: -30,
+                        right: -40,
+                        width: 820,
+                        height: 1150,
                         pointerEvents: 'none',
-                        willChange: 'transform, opacity',
-                        zIndex: 15,
+                        zIndex: 5,
+                        overflow: 'hidden',
+                        opacity: bgArtOpacity,
+                        WebkitMaskImage:
+                            'radial-gradient(ellipse 95% 85% at 85% 15%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.75) 65%, rgba(0,0,0,0) 100%)',
+                        maskImage:
+                            'radial-gradient(ellipse 95% 85% at 85% 15%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.75) 65%, rgba(0,0,0,0) 100%)',
                     }}
                 >
                     <Img
-                        src={staticFile('decor/decor-top-horizontal-branch.png')}
+                        src={staticFile('decor/scene07-bg-sub.jpeg')}
                         style={{
                             width: '100%',
-                            height: 'auto',
-                            transform: 'scaleX(-1)',
-                            filter: 'drop-shadow(0 2px 12px rgba(140, 110, 70, 0.16))',
+                            height: '100%',
+                            objectFit: 'cover',
+                            mixBlendMode: 'multiply',
+                            transform: `scale(${interpolate(frame, [0, durationInFrames], [1, 1.04], { extrapolateRight: 'clamp' })})`,
+                            transformOrigin: 'top right',
+                            filter: 'contrast(1.03) saturate(1.05) brightness(1.02)',
                         }}
                     />
                 </div>
