@@ -224,7 +224,7 @@ export const weddingConfig: WeddingConfig = {
     // SCENE 9: Cùng chung vui
     scene09_ceremonyJoy: {
       quote: "Cùng chung vui và chứng kiến giây phút hạnh phúc này.",
-      photo: "photos/8/Untitled Session36657.jpg",
+      photo: "photos/8/Untitled Session36756.jpg",
     },
 
     // SCENE 10: Lời chúc phúc & Fall in Love
