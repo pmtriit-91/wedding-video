@@ -82,40 +82,8 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
         easing: Easing.out(Easing.quad),
     });
 
-    // =========================================================================
-    // HIỆU ỨNG 2 HỌA TIẾT HOA VĂN TINH TẾ (KÍCH HOẠT TẠI FRAME 315)
-    // =========================================================================
-
-    // 1. Cành hoa xoay ngang ở khoảng trống phía trên nội dung (decor-top-horizontal-branch)
-    const topBranchSpring = spring({
-        frame: Math.max(0, frame - 315),
-        fps,
-        config: { damping: 18, mass: 1.15, stiffness: 50 },
-    });
-    const topBranchGrow = interpolate(topBranchSpring, [0, 1], [0, 100], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-    const topBranchOpacity = frame >= 315 ? interpolate(topBranchSpring, [0, 0.08, 1], [0, 0.95, 0.95]) : 0;
-    const topBranchScale = interpolate(topBranchSpring, [0, 1], [0.92, 1]);
-    const topBranchTranslateX = interpolate(topBranchSpring, [0, 1], [-18, 0]);
-
-    // 2. Cành hoa xiên góc 45 độ ở khoảng trống phía dưới nội dung (decor-bottom-diagonal-branch)
-    const bottomBranchSpring = spring({
-        frame: Math.max(0, frame - 318),
-        fps,
-        config: { damping: 18, mass: 1.15, stiffness: 48 },
-    });
-    const bottomBranchGrow = interpolate(bottomBranchSpring, [0, 1], [0, 100], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-    const bottomBranchOpacity = frame >= 318 ? interpolate(bottomBranchSpring, [0, 0.08, 1], [0, 0.95, 0.95]) : 0;
-    const bottomBranchScale = interpolate(bottomBranchSpring, [0, 1], [0.88, 1]);
-    const bottomBranchTranslateY = interpolate(bottomBranchSpring, [0, 1], [25, 0]);
-
-    // Bụi sao vàng óng ánh tỏa ra khi hoa bắt đầu bung nở
-    const stardustOpacity = interpolate(frame, [315, 345, 575, 600], [0, 0.35, 0.35, 0], {
+    // Bụi sao vàng óng ánh tỏa sáng nhẹ nhàng
+    const stardustOpacity = interpolate(frame, [25, 60, durationInFrames - 30, durationInFrames], [0, 0.3, 0.3, 0], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
@@ -133,50 +101,56 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                 zIndex: 20,
             }}
         >
-            {/* Họa tiết 1: Cành hoa xoay ngang ở khoảng trống phía trên nội dung (từ 657877458110160694.jpeg) */}
-            {topBranchOpacity > 0 && (
+            {/* Lớp nền ảnh thiệp cảm ơn Bố Mẹ phủ full màn hình bên trái với mép chuyển nhòe mượt mà */}
+            <div
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    width: 1450,
+                    overflow: 'hidden',
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                    WebkitMaskImage:
+                        'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
+                    maskImage:
+                        'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
+                }}
+            >
+                <Img
+                    src={staticFile('decor/camonbame.png')}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'left center',
+                        opacity: 0.78,
+                        filter: 'brightness(102%) contrast(102%)',
+                    }}
+                />
+
+                {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung */}
                 <div
                     style={{
                         position: 'absolute',
-                        left: 110,
-                        top: 25,
-                        width: 860,
-                        height: 'auto',
-                        opacity: topBranchOpacity,
-                        transform: `scale(${topBranchScale}) translateX(${topBranchTranslateX}px)`,
-                        transformOrigin: 'top left',
-                        WebkitMaskImage:
-                            topBranchGrow < 100
-                                ? `linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${topBranchGrow}%, rgba(0,0,0,0) ${Math.min(100, topBranchGrow + 15)}%)`
-                                : undefined,
-                        maskImage:
-                            topBranchGrow < 100
-                                ? `linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${topBranchGrow}%, rgba(0,0,0,0) ${Math.min(100, topBranchGrow + 15)}%)`
-                                : undefined,
-                        zIndex: 16,
-                        pointerEvents: 'none',
-                        willChange: 'transform, opacity',
+                        inset: 0,
+                        background:
+                            'linear-gradient(to right, rgba(247, 243, 235, 0.35) 0%, rgba(247, 243, 235, 0.55) 40%, rgba(247, 243, 235, 0.88) 75%, #F7F3EB 100%)',
                     }}
-                >
-                    <Img
-                        src={staticFile('decor/decor-top-horizontal-branch.png')}
-                        style={{
-                            width: 860,
-                            height: 'auto',
-                            filter: 'drop-shadow(0 2px 10px rgba(140, 110, 70, 0.15))',
-                        }}
-                    />
-                </div>
-            )}
+                />
+            </div>
 
             {/* Cụm lời tri ân Bố Mẹ bên trái */}
             <div
                 style={{
+                    position: 'relative',
                     display: 'flex',
                     flexDirection: 'column',
                     maxWidth: 1040,
                     transform: `translateX(${textX}px)`,
                     opacity: textOpacity,
+                    zIndex: 5,
                 }}
             >
                 <div
@@ -191,9 +165,10 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                         style={{
                             fontFamily: "'Great Vibes', cursive",
                             fontSize: 72,
-                            color: weddingConfig.colors.goldPrimary,
+                            fontWeight: 600,
+                            color: '#A87932',
                             letterSpacing: '0.02em',
-                            textShadow: '0 2px 8px rgba(198, 155, 86, 0.15)',
+                            textShadow: '0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)',
                         }}
                     >
                         Thank you Parents
@@ -207,6 +182,7 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                                 inset: 0,
                                 fontFamily: "'Great Vibes', cursive",
                                 fontSize: 72,
+                                fontWeight: 600,
                                 letterSpacing: '0.02em',
                                 whiteSpace: 'nowrap',
                                 background:
@@ -230,11 +206,13 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     style={{
                         fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
                         fontSize: 64,
-                        fontWeight: 600,
+                        fontWeight: 700,
                         lineHeight: 1.35,
-                        color: weddingConfig.colors.textDark,
+                        color: '#161311',
                         marginBottom: 28,
                         letterSpacing: '0.01em',
+                        textShadow:
+                            '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)',
                     }}
                 >
                     {frame < 20 ? (
@@ -262,7 +240,7 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                                                 top: '12%',
                                                 width: 3,
                                                 height: '76%',
-                                                backgroundColor: weddingConfig.colors.goldPrimary,
+                                                backgroundColor: '#A87932',
                                                 marginLeft: titleChars === 0 && index === 0 ? 0 : 3,
                                                 borderRadius: 1,
                                                 pointerEvents: 'none',
@@ -280,10 +258,12 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     style={{
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
                         fontSize: 38,
-                        fontWeight: 400,
+                        fontWeight: 600,
                         lineHeight: 1.65,
-                        color: '#4A433D',
+                        color: '#1E1A17',
                         letterSpacing: '0.015em',
+                        textShadow:
+                            '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
                     }}
                 >
                     {frame < 155 ? (
@@ -312,7 +292,7 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                                                 top: '14%',
                                                 width: 2.5,
                                                 height: '74%',
-                                                backgroundColor: weddingConfig.colors.goldPrimary,
+                                                backgroundColor: '#A87932',
                                                 marginLeft: messageChars === 0 && index === 0 ? 0 : 2.5,
                                                 borderRadius: 1,
                                                 opacity: cursorOpacity,
@@ -337,54 +317,19 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                             borderRadius: 2,
                         }}
                     />
-
                 </div>
             </div>
-
-            {/* Họa tiết 2: Cành hoa xiên góc 45 độ ở khoảng trống phía dưới nội dung (từ 827043919117674755.jpeg) */}
-            {bottomBranchOpacity > 0 && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        left: 140,
-                        bottom: -15,
-                        height: 520,
-                        width: 'auto',
-                        opacity: bottomBranchOpacity,
-                        transform: `scale(${bottomBranchScale}) translateY(${bottomBranchTranslateY}px) rotate(16deg)`,
-                        transformOrigin: '75px bottom',
-                        WebkitMaskImage:
-                            bottomBranchGrow < 100
-                                ? `linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${bottomBranchGrow}%, rgba(0,0,0,0) ${Math.min(100, bottomBranchGrow + 16)}%)`
-                                : undefined,
-                        maskImage:
-                            bottomBranchGrow < 100
-                                ? `linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${bottomBranchGrow}%, rgba(0,0,0,0) ${Math.min(100, bottomBranchGrow + 16)}%)`
-                                : undefined,
-                        zIndex: 16,
-                        pointerEvents: 'none',
-                        willChange: 'transform, opacity',
-                    }}
-                >
-                    <Img
-                        src={staticFile('decor/decor-bottom-diagonal-branch.png')}
-                        style={{
-                            height: 520,
-                            width: 'auto',
-                            filter: 'drop-shadow(0 3px 12px rgba(140, 110, 70, 0.16))',
-                        }}
-                    />
-                </div>
-            )}
 
             {/* Cụm ảnh bên phải: Bố cục 2 cột chuẩn tỉ lệ ảnh gốc 2:3 (giữ trọn vẹn 100% hình ảnh không bị cắt) */}
             <div
                 style={{
+                    position: 'relative',
                     display: 'flex',
                     gap: 24,
                     alignItems: 'center',
                     transform: `translateX(${photosX}px)`,
                     opacity: photosOpacity,
+                    zIndex: 5,
                 }}
             >
                 {/* Cột 1: 2 ảnh chi tiết xếp dọc (Chuẩn tỉ lệ ảnh dọc 2:3: 364 x 545) */}
