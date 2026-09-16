@@ -110,8 +110,8 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
       extrapolateRight: "clamp",
     });
   } else if (direction === "pan-up") {
-    scale = 1.05;
-    translateY = interpolate(frame, [0, durationInFrames], [20, -20], {
+    scale = initialScale ?? 1.08;
+    translateY = interpolate(frame, [0, durationInFrames], [15, -15], {
       extrapolateRight: "clamp",
     });
   }

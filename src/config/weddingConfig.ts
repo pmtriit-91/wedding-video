@@ -212,9 +212,9 @@ export const weddingConfig: WeddingConfig = {
     scene08_guestWelcome: {
       quote: "Chúng con thật vui và hạnh phúc khi được thấy mọi người ở đây.",
       photos: [
-        "photos/7/DSC_9953.jpg",
-        "photos/7/MAY_0355.jpg",
         "photos/7/MAY_0805.jpg",
+        "photos/7/MAY_0355.jpg",
+        "photos/7/DSC_9953.jpg",
       ],
     },
 
