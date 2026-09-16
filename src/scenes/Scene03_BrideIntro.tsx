@@ -157,17 +157,19 @@ export const Scene03_BrideIntro: React.FC<{ durationInFrames: number }> = ({
           zIndex: 10,
         }}
       >
-        {/* Dòng 1: CON LÀ CÔ DÂU (đồng bộ phong cách với CON LÀ CHÚ RỂ) */}
+        {/* Dòng 1: CON LÀ CÔ DÂU (đồng bộ phong cách với CON LÀ CHÚ RỂ, màu vàng #A87932 như Thank you Parents) */}
         <span
           style={{
             fontFamily: "'Plus Jakarta Sans', sans-serif",
-            fontSize: 30,
-            fontWeight: 600,
-            letterSpacing: "0.28em",
-            color: "#C69B56",
+            fontSize: 32,
+            fontWeight: 700,
+            letterSpacing: "0.26em",
+            color: "#A87932",
             marginBottom: 14,
             textTransform: "uppercase",
             whiteSpace: "nowrap",
+            textShadow:
+              "0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)",
           }}
         >
           {cfg.roleText}

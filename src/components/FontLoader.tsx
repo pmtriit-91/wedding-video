@@ -39,7 +39,7 @@ const greatVibesFont = loadGreatVibes("normal", {
 });
 
 const jakartaFont = loadJakarta("normal", {
-  weights: ["300", "400", "500", "600", "700"],
+  weights: ["300", "400", "500", "600", "700", "800"],
   subsets: ["vietnamese", "latin"],
 });
 
