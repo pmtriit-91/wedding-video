@@ -85,6 +85,7 @@ export interface WeddingConfig {
     scene08_guestWelcome: {
       quote: string;
       photos: string[];
+      decorLayout?: 'fence-and-grass' | 'grass-only' | 'fence-only';
     };
 
     // 9. Cùng chung vui & Giây phút hạnh phúc (01:03 - 01:11)
@@ -216,6 +217,8 @@ export const weddingConfig: WeddingConfig = {
         "photos/7/MAY_0355.jpg",
         "photos/7/DSC_9953.jpg",
       ],
+      // Tuỳ chọn bố cục hoa văn thực vật màu nước: 'fence-and-grass' | 'grass-only' | 'fence-only'
+      decorLayout: 'fence-and-grass' as 'fence-and-grass' | 'grass-only' | 'fence-only',
     },
 
     // SCENE 9: Cùng chung vui

@@ -9,72 +9,48 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
     const { fps } = useVideoConfig();
     const cfg = weddingConfig.scenes.scene08_guestWelcome;
 
-    // Lựa chọn hoa văn bottom-right:
-    // "bloom": Hoa thảo mộc lãng mạn (decor-botanical-bloom.png)
-    // "berries": Cành lá quả mọng sumi-e minimalist (decor-berries-branch.png)
-    // "fern": Bụi dương xỉ cỏ dại thảo mộc (decor-fern-fronds.png)
-    // "tropical": Tán lá nhiệt đới góc phải (decor-tropical-leaves.png)
-    const decorOption: 'bloom' | 'berries' | 'fern' | 'tropical' = 'tropical';
-
-    const decorConfigs = {
-        bloom: {
-            src: 'decor/decor-botanical-bloom.png',
-            bottom: -20,
-            right: 70,
-            width: 285,
-            filter: 'drop-shadow(0 6px 20px rgba(140, 105, 65, 0.28)) contrast(1.06) saturate(1.05)',
-        },
-        berries: {
-            src: 'decor/decor-berries-branch.png',
-            bottom: -15,
-            right: 70,
-            width: 290,
-            filter: 'drop-shadow(0 6px 18px rgba(60, 45, 30, 0.22))',
-        },
-        fern: {
-            src: 'decor/decor-fern-fronds-gold.png',
-            bottom: -40,
-            right: 50,
-            width: 325,
-            filter: 'drop-shadow(0 6px 18px rgba(140, 105, 65, 0.28))',
-        },
-        tropical: {
-            src: 'decor/decor-tropical-leaves.png',
-            bottom: 0,
-            right: 0,
-            width: 390,
-            filter: 'drop-shadow(0 6px 18px rgba(40, 30, 20, 0.22)) contrast(1.06)',
-        },
-    };
-    const currentDecor = decorConfigs[decorOption];
+    // Lựa chọn bố cục hoa văn màu nước thống nhất (trích xuất từ tranh màu nước mới do người dùng cung cấp):
+    // "fence-and-grass": Hàng rào gỗ mộc mạc góc phải + khóm cỏ lau màu nước mềm mại ở giữa (tone mộc Dalat ấm cúng)
+    // "grass-only": Chỉ dùng các bụi cỏ lau màu nước (thanh nhã, bay bổng, lãng mạn)
+    // "fence-only": Chỉ hàng rào gỗ mộc mạc ở góc phải
+    const decorLayout = cfg.decorLayout ?? 'fence-and-grass';
 
     const opacity = interpolate(frame, [0, 25, durationInFrames - 25, durationInFrames], [0, 1, 1, 0], {
         extrapolateRight: 'clamp',
     });
 
-    // Hiệu ứng cành hoa thảo mộc mọc từ đáy lên (bottom-right) - chậm rãi, thanh nhã (~2.8s)
-    const bloomProgress = interpolate(frame, [8, 95], [0, 1], {
+    // Hiệu ứng hoa văn màu nước mọc vươn lên từ đáy màn hình (~1.5s)
+    const entryProgress = interpolate(frame, [8, 95], [0, 1], {
         easing: Easing.bezier(0.25, 0.1, 0.25, 1.0),
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
-    const bloomGrow = interpolate(bloomProgress, [0, 1], [0, 100]);
-    const bloomOpacity = interpolate(frame, [8, 26], [0, 0.95], {
+    const entryGrow = interpolate(entryProgress, [0, 1], [0, 100]);
+    const entryOpacity = interpolate(frame, [8, 28], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
-    const bloomTranslateY = interpolate(bloomProgress, [0, 1], [35, 0]);
+    const entryTranslateY = interpolate(entryProgress, [0, 1], [45, 0]);
 
-    // Hiệu ứng gió thoảng đung đưa nhè nhẹ cho cành lá (organic gentle breeze)
+    // Hiệu ứng gió thoảng đung đưa nhè nhẹ tự nhiên (organic gentle breeze)
     const swayActive = interpolate(frame, [60, 110], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
-    const swayAngle =
-        swayActive *
-        (1.35 * Math.sin((frame - 60) * 0.025) + 0.45 * Math.sin((frame - 60) * 0.039 + 0.8));
-    const swaySkew = swayActive * (0.45 * Math.sin((frame - 60) * 0.025 + 0.3));
-    const swayScaleY = 1 + swayActive * (0.008 * Math.cos((frame - 60) * 0.025));
+    // Hoạt cảnh đung đưa cho khóm cỏ lau mềm mại
+    const grassSwayAngle =
+        swayActive * (1.5 * Math.sin((frame - 55) * 0.027 + 1.2) + 0.4 * Math.sin((frame - 55) * 0.042 + 2.0));
+    const grassSwaySkew = swayActive * (0.5 * Math.sin((frame - 55) * 0.027 + 1.4));
+    const grassSwayScaleY = 1 + swayActive * (0.007 * Math.cos((frame - 55) * 0.027));
+
+    // Hoạt cảnh đung đưa nhẹ riêng biệt cho khóm cỏ lau phụ (nhịp so le tự nhiên, không bị trùng lặp)
+    const grassSwayAngle2 =
+        swayActive * (1.25 * Math.sin((frame - 50) * 0.025 + 2.4) + 0.35 * Math.sin((frame - 50) * 0.038 + 1.1));
+    const grassSwaySkew2 = swayActive * (0.4 * Math.sin((frame - 50) * 0.025 + 2.6));
+
+    // Hoạt cảnh đung đưa nhẹ hơn cho hàng rào gỗ mộc (gỗ cắm đất vững chãi hơn)
+    const fenceSwayAngle = swayActive * (0.65 * Math.sin((frame - 60) * 0.022 + 0.5));
+    const fenceSwaySkew = swayActive * (0.25 * Math.sin((frame - 60) * 0.022 + 0.8));
 
     // Hiệu ứng cụm trích dẫn chào mừng bên dưới
     const textSpring = spring({
@@ -149,7 +125,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                 width={660}
                                 height={900}
                                 variant="studio"
-                                initialScale={idx === 2 ? 1.10 : 1.08}
+                                initialScale={idx === 2 ? 1.1 : 1.08}
                                 finalScale={idx === 2 ? 1.0 : undefined}
                                 transformOrigin={idx === 2 ? 'center 30%' : 'center 80%'}
                                 imgStyle={{
@@ -262,40 +238,175 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                 </div>
             </div>
 
-            {/* Hoa văn cành hoa thảo mộc mọc vươn lên từ bottom góc phải */}
-            {bloomOpacity > 0 && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        bottom: currentDecor.bottom,
-                        right: currentDecor.right,
-                        width: currentDecor.width,
-                        height: 'auto',
-                        opacity: bloomOpacity,
-                        transformOrigin: '80% 100%',
-                        transform: `translateY(${bloomTranslateY}px) rotate(${swayAngle}deg) skewX(${swaySkew}deg) scaleY(${swayScaleY})`,
-                        WebkitMaskImage:
-                            bloomGrow < 100
-                                ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${bloomGrow}%, rgba(0,0,0,0) ${Math.min(100, bloomGrow + 15)}%)`
-                                : 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 5%, rgba(0,0,0,1) 14%, rgba(0,0,0,1) 100%)',
-                        maskImage:
-                            bloomGrow < 100
-                                ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${bloomGrow}%, rgba(0,0,0,0) ${Math.min(100, bloomGrow + 15)}%)`
-                                : 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 5%, rgba(0,0,0,1) 14%, rgba(0,0,0,1) 100%)',
-                        pointerEvents: 'none',
-                        willChange: 'transform, opacity',
-                        zIndex: 30,
-                    }}
-                >
-                    <Img
-                        src={staticFile(currentDecor.src)}
-                        style={{
-                            width: '100%',
-                            height: 'auto',
-                            filter: currentDecor.filter,
-                        }}
-                    />
-                </div>
+            {/* Hoa văn thực vật màu nước đồng bộ (trích xuất từ ảnh hoa văn mới 892064638682012006.jpeg) */}
+            {entryOpacity > 0 && (
+                <>
+                    {/* 1. Dải các khóm cỏ lau màu nước mềm mại nối dài tự nhiên đến sát chân hàng rào gỗ */}
+                    {(decorLayout === 'fence-and-grass' || decorLayout === 'grass-only') && (
+                        <>
+                            {[
+                                {
+                                    id: 'cluster-left',
+                                    bottom: -35,
+                                    left: 1100,
+                                    width: 340,
+                                    opacityMultiplier: 0.78,
+                                    flipX: true,
+                                    swayAngle: -grassSwayAngle2,
+                                    swaySkew: -grassSwaySkew2,
+                                    zIndex: 21,
+                                    shadow: 'drop-shadow(0 8px 18px rgba(60, 45, 25, 0.18))',
+                                },
+                                {
+                                    id: 'cluster-mid',
+                                    bottom: -15,
+                                    left: 1330,
+                                    width: 440,
+                                    opacityMultiplier: 0.92,
+                                    flipX: false,
+                                    swayAngle: grassSwayAngle,
+                                    swaySkew: grassSwaySkew,
+                                    zIndex: 22,
+                                    shadow: 'drop-shadow(0 10px 24px rgba(60, 45, 25, 0.22))',
+                                },
+                                {
+                                    id: 'cluster-bridge',
+                                    bottom: -25,
+                                    left: 1580,
+                                    width: 390,
+                                    opacityMultiplier: 0.88,
+                                    flipX: true,
+                                    swayAngle: -grassSwayAngle2,
+                                    swaySkew: -grassSwaySkew2,
+                                    zIndex: 21,
+                                    shadow: 'drop-shadow(0 9px 20px rgba(60, 45, 25, 0.20))',
+                                },
+                                {
+                                    id: 'cluster-fence-foot',
+                                    bottom: -35,
+                                    left: 1775,
+                                    width: 310,
+                                    opacityMultiplier: 0.82,
+                                    flipX: false,
+                                    swayAngle: grassSwayAngle,
+                                    swaySkew: grassSwaySkew,
+                                    zIndex: 23,
+                                    shadow: 'drop-shadow(0 8px 18px rgba(60, 45, 25, 0.18))',
+                                },
+                            ].map((cluster) => {
+                                const flipTransform = cluster.flipX ? 'scaleX(-1)' : 'scaleX(1)';
+                                return (
+                                    <div
+                                        key={cluster.id}
+                                        style={{
+                                            position: 'absolute',
+                                            bottom: cluster.bottom,
+                                            left: cluster.left,
+                                            width: cluster.width,
+                                            height: 'auto',
+                                            opacity: entryOpacity * cluster.opacityMultiplier,
+                                            transformOrigin: '50% 100%',
+                                            transform: `translateY(${entryTranslateY}px) ${flipTransform} rotate(${cluster.swayAngle}deg) skewX(${cluster.swaySkew}deg) scaleY(${grassSwayScaleY})`,
+                                            WebkitMaskImage:
+                                                entryGrow < 100
+                                                    ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${entryGrow}%, rgba(0,0,0,0) ${Math.min(100, entryGrow + 16)}%)`
+                                                    : undefined,
+                                            maskImage:
+                                                entryGrow < 100
+                                                    ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${entryGrow}%, rgba(0,0,0,0) ${Math.min(100, entryGrow + 16)}%)`
+                                                    : undefined,
+                                            pointerEvents: 'none',
+                                            willChange: 'transform, opacity',
+                                            zIndex: cluster.zIndex,
+                                        }}
+                                    >
+                                        <Img
+                                            src={staticFile('decor/decor-rustic-pampas-grass.png')}
+                                            style={{
+                                                width: '100%',
+                                                height: 'auto',
+                                                filter: `${cluster.shadow} contrast(102%) brightness(101%)`,
+                                            }}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </>
+                    )}
+
+                    {/* 2. Hoa văn góc phải dưới đáy */}
+                    {decorLayout === 'grass-only' ? (
+                        /* Bụi cỏ lau màu nước mềm mại góc phải (lãng mạn, nhẹ nhàng) */
+                        <div
+                            style={{
+                                position: 'absolute',
+                                bottom: -10,
+                                right: 10,
+                                width: 600,
+                                height: 'auto',
+                                opacity: entryOpacity,
+                                transformOrigin: '50% 100%',
+                                transform: `translateY(${entryTranslateY}px) scaleX(-1) rotate(${-grassSwayAngle}deg) skewX(${-grassSwaySkew}deg) scaleY(${grassSwayScaleY})`,
+                                WebkitMaskImage:
+                                    entryGrow < 100
+                                        ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${entryGrow}%, rgba(0,0,0,0) ${Math.min(100, entryGrow + 16)}%)`
+                                        : undefined,
+                                maskImage:
+                                    entryGrow < 100
+                                        ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${entryGrow}%, rgba(0,0,0,0) ${Math.min(100, entryGrow + 16)}%)`
+                                        : undefined,
+                                pointerEvents: 'none',
+                                willChange: 'transform, opacity',
+                                zIndex: 24,
+                            }}
+                        >
+                            <Img
+                                src={staticFile('decor/decor-rustic-pampas-grass.png')}
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    filter: 'drop-shadow(0 12px 28px rgba(60, 45, 25, 0.25)) contrast(102%) brightness(101%)',
+                                }}
+                            />
+                        </div>
+                    ) : (
+                        /* Hàng rào gỗ mộc mạc kèm cỏ lau ở góc phải (tone đồi thông rustic Đà Lạt) */
+                        <div
+                            style={{
+                                position: 'absolute',
+                                bottom: decorLayout === 'fence-only' ? -25 : -20,
+                                right: decorLayout === 'fence-only' ? -40 : -45,
+                                width: decorLayout === 'fence-only' ? 820 : 780,
+                                height: 'auto',
+                                opacity: entryOpacity,
+                                transformOrigin: '75% 100%',
+                                transform: `translateY(${entryTranslateY}px) scaleX(-1) rotate(${-fenceSwayAngle}deg) skewX(${-fenceSwaySkew}deg)`,
+                                WebkitMaskImage:
+                                    entryGrow < 100
+                                        ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${entryGrow}%, rgba(0,0,0,0) ${Math.min(100, entryGrow + 16)}%)`
+                                        : undefined,
+                                maskImage:
+                                    entryGrow < 100
+                                        ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${entryGrow}%, rgba(0,0,0,0) ${Math.min(100, entryGrow + 16)}%)`
+                                        : undefined,
+                                pointerEvents: 'none',
+                                willChange: 'transform, opacity',
+                                zIndex: 24,
+                            }}
+                        >
+                            <Img
+                                src={staticFile('decor/decor-rustic-pampas-fence.png')}
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    filter: 'drop-shadow(0 14px 32px rgba(50, 35, 20, 0.28)) contrast(102%) brightness(101%)',
+                                    scale: 1.18,
+                                    translate: '137.6px -19.9px',
+                                }}
+                            />
+                        </div>
+                    )}
+                </>
             )}
 
             {/* Bụi sao vàng óng ánh lơ lửng */}
