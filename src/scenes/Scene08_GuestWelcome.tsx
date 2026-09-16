@@ -65,6 +65,17 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
     });
     const bloomTranslateY = interpolate(bloomProgress, [0, 1], [35, 0]);
 
+    // Hiệu ứng gió thoảng đung đưa nhè nhẹ cho cành lá (organic gentle breeze)
+    const swayActive = interpolate(frame, [60, 110], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+    });
+    const swayAngle =
+        swayActive *
+        (1.35 * Math.sin((frame - 60) * 0.025) + 0.45 * Math.sin((frame - 60) * 0.039 + 0.8));
+    const swaySkew = swayActive * (0.45 * Math.sin((frame - 60) * 0.025 + 0.3));
+    const swayScaleY = 1 + swayActive * (0.008 * Math.cos((frame - 60) * 0.025));
+
     // Hiệu ứng cụm trích dẫn chào mừng bên dưới
     const textSpring = spring({
         frame: frame - 12,
@@ -261,7 +272,8 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                         width: currentDecor.width,
                         height: 'auto',
                         opacity: bloomOpacity,
-                        transform: `translateY(${bloomTranslateY}px)`,
+                        transformOrigin: '80% 100%',
+                        transform: `translateY(${bloomTranslateY}px) rotate(${swayAngle}deg) skewX(${swaySkew}deg) scaleY(${swayScaleY})`,
                         WebkitMaskImage:
                             bloomGrow < 100
                                 ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${bloomGrow}%, rgba(0,0,0,0) ${Math.min(100, bloomGrow + 15)}%)`
