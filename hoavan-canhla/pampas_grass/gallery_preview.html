@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bộ Sưu Tập Họa Tiết Cỏ Khô Pampas (3000px PNG Trong Suốt)</title>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --text: #3c3228;
+      --accent: #b08d57;
+      --border: #e8ded2;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 30px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+      color: #5c4328;
+      font-family: Georgia, serif;
+    }
+    p.subtitle {
+      font-size: 16px;
+      color: #887460;
+      margin-top: 0;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--accent);
+      background: white;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn:hover, .btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    h2 {
+      font-size: 22px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+      margin-top: 40px;
+      color: #634b32;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    .img-box {
+      width: 100%;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .img-box img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.08));
+    }
+    .name {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      word-break: break-word;
+    }
+    /* Background modes */
+    body.mode-checkered .img-box {
+      background-color: #eee;
+      background-image: linear-gradient(45deg, #ddd 25%, transparent 25%), linear-gradient(-45deg, #ddd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ddd 75%), linear-gradient(-45deg, transparent 75%, #ddd 75%);
+    }
+    body.mode-white .img-box {
+      background-color: #ffffff;
+      background-image: none;
+    }
+    body.mode-warm .img-box {
+      background-color: #f4eee5;
+      background-image: none;
+    }
+    body.mode-dark .img-box {
+      background-color: #242220;
+      background-image: none;
+    }
+  </style>
+</head>
+<body class="mode-warm">
+  <header>
+    <h1>Pampas &amp; Dried Florals Clipart Bundle</h1>
+    <p class="subtitle">Đã cào gốc 3000x3000px từ Etsy &amp; tách nền PNG trong suốt chuẩn 300 DPI</p>
+    <div class="controls">
+      <span>Đổi nền xem thử:</span>
+      <button class="btn active" onclick="setMode('mode-warm')">Nền Kem Cưới</button>
+      <button class="btn" onclick="setMode('mode-white')">Nền Trắng</button>
+      <button class="btn" onclick="setMode('mode-dark')">Nền Tối</button>
+      <button class="btn" onclick="setMode('mode-checkered')">Caro Trong Suốt</button>
+    </div>
+  </header>
+
+  <h2>1. Các Cụm Hoa Hero Cực Lớn (14 Mẫu Trưng Bày Chính)</h2>
+  <div class="grid" id="hero-grid"></div>
+
+  <h2>2. Bộ Sưu Tập 32 Chi Tiết Rời &amp; Khung Hình</h2>
+  <div class="grid" id="catalog-grid"></div>
+
+  <h2>3. Ảnh Gốc Từ Etsy CDN (3000x3000px)</h2>
+  <div class="grid" id="orig-grid"></div>
+
+  <script>
+    function setMode(mode) {
+      document.body.className = mode;
+      document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    const heroImages = [
+      "01_goc_trai_bong_co_lau.png",
+      "02_cum_hoa_ngang_nho_trai.png",
+      "03_cum_hoa_treo_dinh_giua.png",
+      "04_bo_hoa_dung_phai_eucalyptus.png",
+      "05_vom_hoa_lon_chinh_giua_tren.png",
+      "06_bo_hoa_hong_eucalyptus_trai.png",
+      "07_cum_hoa_tron_hinh_quat_phai.png",
+      "08_bo_hoa_dung_that_no_phai.png",
+      "09_cum_hoa_thac_do_trai.png",
+      "10_vom_hoa_ngang_dai_duoi.png",
+      "11_vong_nguyet_que_co_kho.png",
+      "12_cum_hoa_goc_duoi_trai.png",
+      "13_canh_hoa_ngang_thanh_manh_day.png",
+      "14_bo_hoa_dung_hoa_bong_gon_phai.png"
+    ];
+
+    const catalogImages = [
+      "elem_01_cum_hoa_tron.png",
+      "elem_02_khung_hoa_hinh_thoi.png",
+      "elem_03_bong_co_nghieng.png",
+      "elem_04_vong_nguyet_que_bau_duc.png",
+      "elem_05_vom_hoa_treo_dinh.png",
+      "elem_06_cum_hoa_mini_top.png",
+      "elem_07_khung_goc_chu_L_trai.png",
+      "elem_08_khung_hoa_vuong.png",
+      "elem_09_vom_hoa_hinh_cung.png",
+      "elem_10_bo_hoa_co_that_no.png",
+      "elem_11_khung_goc_chu_L_phai.png",
+      "elem_12_bo_hoa_hong_kem_co.png",
+      "elem_13_hoa_goc_uon_cong.png",
+      "elem_14_bo_hoa_dung_xoe.png",
+      "elem_15_bo_hoa_kem_hoa_bong_gon.png",
+      "elem_16_vong_hoa_hinh_trang_khuyet.png",
+      "elem_17_bo_hoa_kem_la_khuynh_diep.png",
+      "elem_18_cum_hoa_thac_do_dai.png",
+      "elem_19_cum_hoa_ngang_la_co.png",
+      "elem_20_vong_nguyet_que_bong_tron.png",
+      "elem_21_bo_hoa_dung_vuon_cao.png",
+      "elem_22_cum_hoa_xoe_hinh_quat.png",
+      "elem_23_bo_hoa_kem_bong_lua.png",
+      "elem_24_canh_co_lau_dung_1.png",
+      "elem_25_canh_co_lau_dung_2.png",
+      "elem_26_cum_hoa_goc_uon_luon.png",
+      "elem_27_cum_hoa_treo_mini.png",
+      "elem_28_vien_hoa_thanh_manh.png",
+      "elem_29_cum_hoa_goc_lon_duoi.png",
+      "elem_30_dai_co_dong_co_dai.png",
+      "elem_31_cum_hoa_day_cung_mini.png",
+      "elem_32_bo_cac_nhanh_co_roi.png"
+    ];
+
+    const origImages = [
+      "01_etsy_pampas_cover_3000px.jpg",
+      "02_etsy_pampas_all_elements_3000px.jpg",
+      "03_etsy_pampas_mockups_applications_3000px.jpg",
+      "04_etsy_pampas_thankyou_3000px.jpg"
+    ];
+
+    function renderGrid(containerId, list, folder) {
+      const container = document.getElementById(containerId);
+      list.forEach(name => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="img-box">
+            <img src="${folder}/${name}" alt="${name}" loading="lazy">
+          </div>
+          <div class="name">${name}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    renderGrid('hero-grid', heroImages, '01_Bo_hoa_Hero_3000px_PNG');
+    renderGrid('catalog-grid', catalogImages, '02_Bo_suu_tap_30_chi_tiet_PNG');
+    renderGrid('orig-grid', origImages, '00_Anh_goc_Etsy_3000px');
+  </script>
+</body>
+</html>
