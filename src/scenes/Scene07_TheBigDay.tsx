@@ -205,10 +205,10 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                             <PhotoFrame
                                 src={photoSrc}
                                 durationInFrames={durationInFrames}
-                                direction={idx === 0 ? 'zoom-in' : idx % 2 === 0 ? 'zoom-in' : 'pan-up'}
-                                initialScale={idx === 0 ? 1.16 : undefined}
-                                finalScale={idx === 0 ? 1.20 : undefined}
-                                imageOffsetY={idx === 0 ? 36 : 0}
+                                direction={idx === 0 ? 'zoom-out' : idx % 2 === 0 ? 'zoom-in' : 'pan-up'}
+                                initialScale={idx === 0 ? 1.15 : undefined}
+                                finalScale={idx === 0 ? 1.0 : undefined}
+                                imageOffsetY={0}
                                 width={560}
                                 height={840}
                                 variant="studio"
