@@ -381,14 +381,6 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                 opacity: entryOpacity,
                                 transformOrigin: '75% 100%',
                                 transform: `translateY(${entryTranslateY}px) scaleX(-1) rotate(${-fenceSwayAngle}deg) skewX(${-fenceSwaySkew}deg)`,
-                                WebkitMaskImage:
-                                    entryGrow < 100
-                                        ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${entryGrow}%, rgba(0,0,0,0) ${Math.min(100, entryGrow + 16)}%)`
-                                        : undefined,
-                                maskImage:
-                                    entryGrow < 100
-                                        ? `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${entryGrow}%, rgba(0,0,0,0) ${Math.min(100, entryGrow + 16)}%)`
-                                        : undefined,
                                 pointerEvents: 'none',
                                 willChange: 'transform, opacity',
                                 zIndex: 24,
