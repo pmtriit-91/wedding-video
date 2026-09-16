@@ -47,18 +47,18 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '50px 100px 90px 100px',
+                justifyContent: 'flex-start',
+                padding: '50px 100px 0 100px',
                 zIndex: 20,
             }}
         >
-            {/* Vùng góc trên bên trái: Ảnh nền nghệ thuật chuyển mờ (Soft Feathered Vignette) */}
+            {/* Vùng góc trái: Giàn hoa vàng nghệ thuật (ton-sur-ton với váy vàng cô dâu ở ảnh 1) */}
             <div
                 style={{
                     position: 'absolute',
                     top: -20,
                     left: -20,
-                    width: 920,
+                    width: 900,
                     height: 1220,
                     pointerEvents: 'none',
                     zIndex: 5,
@@ -83,6 +83,38 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 />
             </div>
 
+            {/* Vùng góc phải: Vòm cổng hoa hồng phấn nguyên bản (ton-sur-ton với áo dài hồng cô dâu ở ảnh 3) */}
+            <div
+                style={{
+                    position: 'absolute',
+                    top: -40,
+                    right: -70,
+                    width: 760,
+                    height: 1400,
+                    pointerEvents: 'none',
+                    zIndex: 5,
+                    overflow: 'hidden',
+                    WebkitMaskImage:
+                        'radial-gradient(ellipse 95% 85% at 95% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0) 100%)',
+                    maskImage:
+                        'radial-gradient(ellipse 95% 85% at 95% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0) 100%)',
+                }}
+            >
+                <Img
+                    src={staticFile('decor/scene06-bg-arch.jpg')}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        mixBlendMode: 'multiply',
+                        opacity: 0.85,
+                        transform: `scale(${interpolate(frame, [0, durationInFrames], [1, 1.04], { extrapolateRight: 'clamp' })})`,
+                        transformOrigin: 'top right',
+                        filter: 'contrast(1.04) saturate(1.06) brightness(1.02)',
+                    }}
+                />
+            </div>
+
             {/* Cụm thông điệp Kỷ niệm ở góc trên bên phải (đối xứng với Cảnh 7, căn thẳng mép phải với dải ảnh) */}
             <div
                 style={{
@@ -91,6 +123,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                     flexDirection: 'column',
                     alignItems: 'flex-end',
                     textAlign: 'right',
+                    paddingRight: 30,
                     transform: `translateX(${textX}px)`,
                     opacity: textOpacity,
                     zIndex: 16,
@@ -110,7 +143,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                             lineHeight: 1.2,
                         }}
                     >
-                        {cfg.intro || 'Những ngày đầu tìm hiểu,'}
+                        {cfg.intro || 'Những ngày đầu,'}
                     </span>
 
                     {/* Lớp ánh kim loáng sáng quét qua dòng tiêu đề chính */}
@@ -137,7 +170,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                                 willChange: 'background-position, opacity',
                             }}
                         >
-                            {cfg.intro || 'Những ngày đầu tìm hiểu,'}
+                            {cfg.intro || 'Những ngày đầu,'}
                         </div>
                     )}
                 </div>
@@ -152,8 +185,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                         color: '#221E1C',
                         marginTop: 12,
                         letterSpacing: '0.015em',
-                        textShadow:
-                            '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
+                        textShadow: '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
                     }}
                 >
                     {cfg.quote}
@@ -167,6 +199,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                     justifyContent: 'center',
                     alignItems: 'center',
                     gap: 36,
+                    marginTop: 155,
                     zIndex: 16,
                 }}
             >

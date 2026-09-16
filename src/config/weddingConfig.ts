@@ -183,7 +183,7 @@ export const weddingConfig: WeddingConfig = {
 
         // SCENE 6: Kỷ niệm tìm hiểu
         scene06_datingMemories: {
-            intro: 'Những ngày đầu tìm hiểu,',
+            intro: 'Những ngày đầu,',
             quote: 'Bọn con đã có quãng thời gian tìm hiểu và được sự đón nhận của Ba Mẹ hai bên.',
             photos: ['photos/5/1.JPG', 'photos/5/2.JPG', 'photos/5/3.JPG'],
         },
