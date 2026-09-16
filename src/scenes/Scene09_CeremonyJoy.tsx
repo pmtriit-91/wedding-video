@@ -37,6 +37,21 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
     config: { damping: 15, mass: 0.9 },
   });
 
+  // Hiệu ứng loáng sáng ánh kim vàng nhẹ nhàng quét qua chữ nội dung
+  let shimmerProgress = -1;
+  if (frame >= 60 && frame <= 120) {
+    shimmerProgress = interpolate(frame, [60, 120], [0, 1]);
+  } else if (frame >= 240 && frame <= 300) {
+    shimmerProgress = interpolate(frame, [240, 300], [0, 1]);
+  } else if (frame >= 380 && frame <= 440) {
+    shimmerProgress = interpolate(frame, [380, 440], [0, 1]);
+  }
+  const shineX = interpolate(shimmerProgress, [0, 1], [130, -30]);
+  const shineOpacity =
+    shimmerProgress >= 0
+      ? interpolate(shimmerProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+      : 0;
+
   return (
     <div
       style={{
@@ -105,33 +120,87 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           zIndex: 5,
         }}
       >
-        <div
-          style={{
-            fontFamily: "'Great Vibes', cursive",
-            fontSize: 60,
-            color: weddingConfig.colors.goldPrimary,
-            marginBottom: 18,
-            textShadow: "0 2px 14px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.8)",
-          }}
-        >
-          Special Moments
+        {/* Tiêu đề Special Moments có lớp loáng sáng */}
+        <div style={{ position: "relative", marginBottom: 18 }}>
+          <div
+            style={{
+              fontFamily: "'Great Vibes', cursive",
+              fontSize: 60,
+              color: weddingConfig.colors.goldPrimary,
+              textShadow:
+                "0 2px 14px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.8)",
+            }}
+          >
+            Special Moments
+          </div>
+
+          {shimmerProgress >= 0 && (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                fontFamily: "'Great Vibes', cursive",
+                fontSize: 60,
+                background:
+                  "linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)",
+                backgroundSize: "220% 100%",
+                backgroundPosition: `${shineX}% 0`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                pointerEvents: "none",
+                opacity: shineOpacity,
+                willChange: "background-position, opacity",
+              }}
+            >
+              Special Moments
+            </div>
+          )}
         </div>
 
-        <p
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: 56,
-            fontWeight: 600,
-            lineHeight: 1.45,
-            color: weddingConfig.colors.textDark,
-            letterSpacing: "0.02em",
-            margin: 0,
-            textShadow:
-              "0 2px 16px rgba(255, 255, 255, 0.95), 0 0 35px rgba(255, 255, 255, 0.9)",
-          }}
-        >
-          {cfg.quote}
-        </p>
+        {/* Trích dẫn nội dung có lớp loáng sáng quét qua */}
+        <div style={{ position: "relative" }}>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 56,
+              fontWeight: 600,
+              lineHeight: 1.45,
+              color: weddingConfig.colors.textDark,
+              letterSpacing: "0.02em",
+              margin: 0,
+              textShadow:
+                "0 2px 16px rgba(255, 255, 255, 0.95), 0 0 35px rgba(255, 255, 255, 0.9)",
+            }}
+          >
+            {cfg.quote}
+          </p>
+
+          {shimmerProgress >= 0 && (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: 56,
+                fontWeight: 600,
+                lineHeight: 1.45,
+                letterSpacing: "0.02em",
+                margin: 0,
+                background:
+                  "linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.85) 60%, transparent 80%)",
+                backgroundSize: "220% 100%",
+                backgroundPosition: `${shineX}% 0`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                pointerEvents: "none",
+                opacity: shineOpacity,
+                willChange: "background-position, opacity",
+              }}
+            >
+              {cfg.quote}
+            </div>
+          )}
+        </div>
 
         <div
           style={{
