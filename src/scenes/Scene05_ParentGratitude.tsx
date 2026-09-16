@@ -332,27 +332,30 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     zIndex: 5,
                 }}
             >
-                {/* Cột 1: 2 ảnh chi tiết xếp dọc (Chuẩn tỉ lệ ảnh dọc 2:3: 364 x 545) */}
+                {/* Cột 1: 2 ảnh chi tiết xếp dọc khổ rộng thoáng đạt (580 x 545) */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                    {/* Ảnh sổ thề nguyện To my husband / To my wife - dịch sang trái để lấy trọn vẹn thiệp cô dâu */}
+                    {/* Ảnh sổ thề nguyện To my husband / To my wife - trọn vẹn cả 2 cuốn sổ và nhẫn cưới */}
                     <PhotoFrame
                         src={cfg.vowBookPhoto}
                         durationInFrames={durationInFrames}
                         direction="zoom-in"
-                        initialScale={1.5}
-                        finalScale={1.25}
-                        transformOrigin="80% 28%"
-                        width={364}
+                        initialScale={1.02}
+                        finalScale={1.08}
+                        transformOrigin="50% 42%"
+                        width={580}
                         height={545}
                         variant="studio"
                     />
 
-                    {/* Ảnh ngoại cảnh chú rể & cô dâu ngắm hoa */}
+                    {/* Ảnh ngoại cảnh chú rể & cô dâu ngắm hoa - váy cưới xòe rộng thoáng */}
                     <PhotoFrame
                         src={cfg.outdoorPhotos[0]}
                         durationInFrames={durationInFrames}
-                        direction="pan-right"
-                        width={364}
+                        direction="zoom-in"
+                        initialScale={1.0}
+                        finalScale={1.06}
+                        transformOrigin="50% 62%"
+                        width={580}
                         height={545}
                         variant="studio"
                     />
