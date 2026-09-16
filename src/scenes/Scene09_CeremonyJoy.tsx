@@ -100,7 +100,7 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to right, rgba(247, 243, 235, 0.18) 0%, rgba(247, 243, 235, 0.35) 45%, rgba(247, 243, 235, 0.8) 75%, #F7F3EB 100%)",
+              "linear-gradient(to right, rgba(247, 243, 235, 0.32) 0%, rgba(247, 243, 235, 0.52) 40%, rgba(247, 243, 235, 0.86) 75%, #F7F3EB 100%)",
           }}
         />
       </div>
@@ -125,10 +125,11 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           <div
             style={{
               fontFamily: "'Great Vibes', cursive",
-              fontSize: 60,
-              color: weddingConfig.colors.goldPrimary,
+              fontSize: 66,
+              fontWeight: 600,
+              color: "#A87932",
               textShadow:
-                "0 2px 14px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.8)",
+                "0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)",
             }}
           >
             Special Moments
@@ -140,7 +141,8 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
                 position: "absolute",
                 inset: 0,
                 fontFamily: "'Great Vibes', cursive",
-                fontSize: 60,
+                fontSize: 66,
+                fontWeight: 600,
                 background:
                   "linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)",
                 backgroundSize: "220% 100%",
@@ -162,14 +164,14 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           <p
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 56,
-              fontWeight: 600,
-              lineHeight: 1.45,
-              color: weddingConfig.colors.textDark,
-              letterSpacing: "0.02em",
+              fontSize: 58,
+              fontWeight: 700,
+              lineHeight: 1.48,
+              color: "#161311",
+              letterSpacing: "0.015em",
               margin: 0,
               textShadow:
-                "0 2px 16px rgba(255, 255, 255, 0.95), 0 0 35px rgba(255, 255, 255, 0.9)",
+                "0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)",
             }}
           >
             {cfg.quote}
@@ -181,10 +183,10 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
                 position: "absolute",
                 inset: 0,
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 56,
-                fontWeight: 600,
-                lineHeight: 1.45,
-                letterSpacing: "0.02em",
+                fontSize: 58,
+                fontWeight: 700,
+                lineHeight: 1.48,
+                letterSpacing: "0.015em",
                 margin: 0,
                 background:
                   "linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.85) 60%, transparent 80%)",
@@ -206,9 +208,9 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           style={{
             marginTop: 35,
             width: 140,
-            height: 2,
-            backgroundColor: weddingConfig.colors.goldPrimary,
-            boxShadow: "0 0 12px rgba(198, 155, 86, 0.5)",
+            height: 2.5,
+            backgroundColor: "#A87932",
+            boxShadow: "0 0 12px rgba(168, 121, 50, 0.5)",
           }}
         />
       </div>
