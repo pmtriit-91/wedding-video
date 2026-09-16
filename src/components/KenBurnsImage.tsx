@@ -120,6 +120,10 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
     ? src
     : staticFile(src.startsWith("/") ? src.slice(1) : src);
 
+  const hasOffset = Boolean(imageOffsetX || imageOffsetY);
+  const bleedX = hasOffset ? Math.ceil(Math.abs(imageOffsetX) * 1.25 + 24) : 0;
+  const bleedY = hasOffset ? Math.ceil(Math.abs(imageOffsetY) * 1.25 + 24) : 0;
+
   return (
     <div
       style={{
@@ -134,8 +138,11 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
       <Img
         src={resolvedSrc}
         style={{
-          width: "100%",
-          height: "100%",
+          position: hasOffset ? "absolute" : "relative",
+          top: hasOffset ? -bleedY : 0,
+          left: hasOffset ? -bleedX : 0,
+          width: hasOffset ? `calc(100% + ${bleedX * 2}px)` : "100%",
+          height: hasOffset ? `calc(100% + ${bleedY * 2}px)` : "100%",
           objectFit: "cover",
           transformOrigin:
             transformOrigin ||

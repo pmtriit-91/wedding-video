@@ -262,8 +262,7 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                         lineHeight: 1.65,
                         color: '#1E1A17',
                         letterSpacing: '0.015em',
-                        textShadow:
-                            '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
+                        textShadow: '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
                     }}
                 >
                     {frame < 155 ? (
@@ -342,6 +341,8 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                         initialScale={1.02}
                         finalScale={1.08}
                         transformOrigin="50% 42%"
+                        imageOffsetX={-40}
+                        imageOffsetY={100}
                         width={580}
                         height={545}
                         variant="studio"
@@ -355,6 +356,7 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                         initialScale={1.0}
                         finalScale={1.06}
                         transformOrigin="50% 62%"
+                        imageOffsetY={-30}
                         width={580}
                         height={545}
                         variant="studio"
@@ -373,7 +375,6 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     variant="studio"
                 />
             </div>
-
 
             {/* Bụi sao vàng óng ánh tỏa sáng khi hoa đơm hoa kết trái */}
             {stardustOpacity > 0 && (
