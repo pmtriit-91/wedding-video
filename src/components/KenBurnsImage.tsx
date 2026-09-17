@@ -46,11 +46,17 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
   let translateX = 0;
   let translateY = 0;
 
+  const targetEndFrame =
+    durationInFrames > startFrame
+      ? durationInFrames
+      : startFrame + durationInFrames;
+  const safeEndFrame = Math.max(startFrame + 1, targetEndFrame);
+
   if (direction === "zoom-out-reveal") {
     const sFrame = startFrame;
     const hold = holdDuration;
     const zStart = sFrame + hold;
-    const zDuration = zoomDuration ?? Math.max(60, durationInFrames - zStart - 25);
+    const zDuration = zoomDuration ?? Math.max(60, safeEndFrame - zStart - 25);
     
     let progress = 0;
     if (frame < zStart) {
@@ -78,7 +84,7 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
     const endS = finalScale ?? 1.15;
     scale = interpolate(
       frame,
-      [startFrame, durationInFrames],
+      [startFrame, safeEndFrame],
       [startS, endS],
       {
         extrapolateLeft: "clamp",
@@ -91,7 +97,7 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
     const endS = finalScale ?? 1.0;
     scale = interpolate(
       frame,
-      [startFrame, durationInFrames],
+      [startFrame, safeEndFrame],
       [startS, endS],
       {
         extrapolateLeft: "clamp",
@@ -101,17 +107,17 @@ export const KenBurnsImage: React.FC<KenBurnsImageProps> = ({
     );
   } else if (direction === "pan-right") {
     scale = 1.05;
-    translateX = interpolate(frame, [0, durationInFrames], [-20, 20], {
+    translateX = interpolate(frame, [startFrame, safeEndFrame], [-20, 20], {
       extrapolateRight: "clamp",
     });
   } else if (direction === "pan-left") {
     scale = 1.05;
-    translateX = interpolate(frame, [0, durationInFrames], [20, -20], {
+    translateX = interpolate(frame, [startFrame, safeEndFrame], [20, -20], {
       extrapolateRight: "clamp",
     });
   } else if (direction === "pan-up") {
     scale = initialScale ?? 1.08;
-    translateY = interpolate(frame, [0, durationInFrames], [15, -15], {
+    translateY = interpolate(frame, [startFrame, safeEndFrame], [15, -15], {
       extrapolateRight: "clamp",
     });
   }

@@ -44,8 +44,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
     const shineX = interpolate(shimmerProgress, [0, 1], [130, -30]);
     const shineOpacity = shimmerProgress >= 0 ? interpolate(shimmerProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]) : 0;
 
-    // Giai đoạn 2 (Frames 350 -> 720 ~ 6s): Tri ân khách phương xa & 2 ảnh studio
-    const phase2Opacity = interpolate(frame, [350, 375, 695, 720], [0, 1, 1, 0], {
+    // Giai đoạn 2 (Frames 350 -> 700 ~ 6s): Tri ân khách phương xa & 2 ảnh studio
+    const phase2Opacity = interpolate(frame, [350, 375, 670, 700], [0, 1, 1, 0], {
         extrapolateRight: 'clamp',
         extrapolateLeft: 'clamp',
     });
@@ -87,28 +87,28 @@ export const Scene10_WishesAndFallInLove: React.FC<{
     const shineX2 = interpolate(shimmerProgress2, [0, 1], [130, -30]);
     const shineOpacity2 = shimmerProgress2 >= 0 ? interpolate(shimmerProgress2, [0, 0.2, 0.8, 1], [0, 1, 1, 0]) : 0;
 
-    // Giai đoạn 3 (Frames 710 -> Kết thúc ~ 6s): FALL IN LOVE & Bố cục Editorial Vogue So Le
-    const phase3Opacity = interpolate(frame, [710, 735, durationInFrames - 25, durationInFrames], [0, 1, 1, 0], {
+    // Giai đoạn 3 (Frames 705 -> Kết thúc ~ 6s): FALL IN LOVE & Bố cục Editorial Vogue So Le
+    const phase3Opacity = interpolate(frame, [705, 730, durationInFrames - 25, durationInFrames], [0, 1, 1, 0], {
         extrapolateRight: 'clamp',
         extrapolateLeft: 'clamp',
     });
 
     // Chuyển động thong thả, êm dịu cho cụm Editorial Vogue và các đường line
-    const phase3LineWidth = interpolate(frame, [715, 765], [0, 1], {
+    const phase3LineWidth = interpolate(frame, [710, 765], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.out(Easing.quad),
     });
-    const phase3PhotosY = interpolate(frame, [715, 785], [35, 0], {
+    const phase3PhotosY = interpolate(frame, [710, 780], [35, 0], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.out(Easing.quad),
     });
-    const phase3PhotosOpacity = interpolate(frame, [715, 750], [0, 1], {
+    const phase3PhotosOpacity = interpolate(frame, [710, 745], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
-    const phase3QuoteOpacity = interpolate(frame, [735, 770], [0, 1], {
+    const phase3QuoteOpacity = interpolate(frame, [730, 765], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
@@ -520,7 +520,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         >
                             <PhotoFrame
                                 src="photos/9/Untitled Session36551.jpg"
-                                durationInFrames={510}
+                                startFrame={350}
+                                durationInFrames={705}
                                 direction="zoom-in"
                                 width={880}
                                 height={1180}
@@ -543,7 +544,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         >
                             <PhotoFrame
                                 src="photos/9/Untitled Session36695.jpg"
-                                durationInFrames={510}
+                                startFrame={350}
+                                durationInFrames={705}
                                 direction="zoom-out"
                                 width={660}
                                 height={890}
@@ -640,7 +642,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         >
                             <PhotoFrame
                                 src={cfg.fallInLovePhotos[0]}
-                                durationInFrames={520}
+                                startFrame={705}
+                                durationInFrames={1080}
                                 direction="zoom-in"
                                 initialScale={1.02}
                                 finalScale={1.08}
@@ -711,7 +714,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         >
                             <PhotoFrame
                                 src={cfg.fallInLovePhotos[1]}
-                                durationInFrames={520}
+                                startFrame={705}
+                                durationInFrames={1080}
                                 direction="zoom-out"
                                 initialScale={1.08}
                                 finalScale={1.02}
