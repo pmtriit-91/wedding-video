@@ -22,10 +22,6 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({
     { extrapolateRight: "clamp" }
   );
 
-  // Tiến trình chạy của Story Instagram (0 -> 1)
-  const storyProgress = interpolate(frame, [0, durationInFrames], [0.2, 0.95], {
-    extrapolateRight: "clamp",
-  });
 
   // Hiệu ứng xuất hiện lời hứa tình yêu chậm rãi, tiếp nối sau cụm ảnh
   const textTranslateY = interpolate(frame, [110, 190], [30, 0], {
@@ -55,7 +51,7 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({
       <FloralDecor position="top-left" opacity={0.35} />
       <FloralDecor position="top-right" opacity={0.35} />
 
-      {/* 3 Khung Story mạng xã hội cách điệu - Kích thước lớn, xuất hiện lần lượt chậm rãi */}
+      {/* 3 Khung ảnh cưới Studio thanh lịch - Kích thước lớn, xuất hiện lần lượt chậm rãi */}
       <div
         style={{
           display: "flex",
@@ -94,11 +90,9 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({
                 src={photoSrc}
                 durationInFrames={durationInFrames}
                 direction={idx === 0 ? "zoom-out" : idx === 1 ? "pan-up" : "zoom-out"}
-                width={575}
-                height={990}
-                variant="story"
-                storyUsername={cfg.username}
-                storyProgress={storyProgress}
+                width={630}
+                height={945}
+                variant="studio"
               />
             </div>
           );

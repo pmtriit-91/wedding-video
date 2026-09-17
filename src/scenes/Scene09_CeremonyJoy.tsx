@@ -72,56 +72,27 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
         zIndex: 20,
       }}
     >
-      {/* Lớp nền phong cảnh mùa hè phủ full màn hình bên trái với mép chuyển nhòe mượt mà */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          bottom: 0,
-          width: 1450,
-          overflow: "hidden",
-          pointerEvents: "none",
-          zIndex: 1,
-          WebkitMaskImage:
-            "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)",
-          maskImage:
-            "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)",
-        }}
-      >
-
-        {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to right, rgba(247, 243, 235, 0.32) 0%, rgba(247, 243, 235, 0.52) 40%, rgba(247, 243, 235, 0.86) 75%, #F7F3EB 100%)",
-          }}
-        />
-      </div>
-
       <FloralDecor position="top-left" opacity={0.3} />
       <FloralDecor position="bottom-left" opacity={0.25} />
 
-      {/* Thông điệp bên trái nổi bật trên nền phong cảnh */}
+      {/* Thông điệp bên trái: Editorial Statement trang trọng */}
       <div
         style={{
           position: "relative",
           display: "flex",
           flexDirection: "column",
-          maxWidth: 820,
+          maxWidth: 960,
           transform: `translateX(${interpolate(textSpring, [0, 1], [-40, 0])}px)`,
           opacity: interpolate(textSpring, [0, 1], [0, 1]),
           zIndex: 5,
         }}
       >
         {/* Tiêu đề Special Moments có lớp loáng sáng đồng bộ chuẩn Cảnh 10 */}
-        <div style={{ position: "relative", marginBottom: 18 }}>
+        <div style={{ position: "relative", marginBottom: 22 }}>
           <div
             style={{
               fontFamily: "'Great Vibes', cursive",
-              fontSize: 72,
+              fontSize: 84,
               fontWeight: 600,
               color: "#A87932",
               letterSpacing: "0.02em",
@@ -138,7 +109,7 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
                 position: "absolute",
                 inset: 0,
                 fontFamily: "'Great Vibes', cursive",
-                fontSize: 72,
+                fontSize: 84,
                 fontWeight: 600,
                 letterSpacing: "0.02em",
                 background:
@@ -157,15 +128,15 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           )}
         </div>
 
-        {/* Trích dẫn nội dung theo font EB Garamond đồng bộ chuẩn Cảnh 10 */}
+        {/* Trích dẫn nội dung theo font EB Garamond khổ lớn 72px ấn tượng */}
         <div style={{ position: "relative" }}>
           <p
             style={{
               fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-              fontSize: 58,
+              fontSize: 72,
               fontWeight: 700,
-              lineHeight: 1.38,
-              color: "#38302A",
+              lineHeight: 1.32,
+              color: "#1A1614",
               letterSpacing: "0.01em",
               margin: 0,
               textShadow:
@@ -181,9 +152,9 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
                 position: "absolute",
                 inset: 0,
                 fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                fontSize: 58,
+                fontSize: 72,
                 fontWeight: 700,
-                lineHeight: 1.38,
+                lineHeight: 1.32,
                 letterSpacing: "0.01em",
                 margin: 0,
                 background:
@@ -205,16 +176,17 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
         {/* Thanh gạch dưới vàng tinh tế */}
         <div
           style={{
-            marginTop: 32,
-            width: 140,
-            height: 2.5,
+            marginTop: 36,
+            width: 180,
+            height: 3,
             backgroundColor: "#A87932",
-            boxShadow: "0 0 12px rgba(168, 121, 50, 0.5)",
+            boxShadow: "0 0 14px rgba(168, 121, 50, 0.5)",
+            borderRadius: 2,
           }}
         />
       </div>
 
-      {/* Ảnh studio lớn tình cảm bên phải */}
+      {/* Ảnh studio khổ lớn nổi bật bên phải chiếm ưu thế thị giác */}
       <div
         style={{
           transform: `translateX(${interpolate(photoSpring, [0, 1], [40, 0])}px)`,
@@ -225,8 +197,8 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           src={cfg.photo}
           durationInFrames={durationInFrames}
           direction="zoom-in"
-          width={980}
-          height={1200}
+          width={1120}
+          height={1280}
           variant="studio"
           initialScale={1.03}
           finalScale={1.12}

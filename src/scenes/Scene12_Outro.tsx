@@ -113,26 +113,6 @@ export const Scene12_Outro: React.FC<{ durationInFrames: number }> = ({ duration
             {/* Hạt bụi vàng lơ lửng cinematic */}
             <GoldenDust count={25} zIndex={22} />
 
-            {/* ========================================================================= */}
-            {/* HÌNH NỀN PHỤ VÒM HOA HỒNG TRÁI TIM BÊN PHẢI (ÔM TRỌN CỤM CHỮ) */}
-            {/* ========================================================================= */}
-            <div
-                style={{
-                    position: 'absolute',
-                    left: 950,
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    overflow: 'hidden',
-                    pointerEvents: 'none',
-                    zIndex: 4,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    WebkitMaskImage: 'linear-gradient(to left, black 75%, rgba(0, 0, 0, 0.4) 88%, transparent 100%)',
-                    maskImage: 'linear-gradient(to left, black 75%, rgba(0, 0, 0, 0.4) 88%, transparent 100%)',
-                }}
-            ></div>
 
             {/* ========================================================================= */}
             {/* CỤM LỜI CẢM ƠN KẾT THÚC BÊN PHẢI (NẰM TRỌN TRONG TRÁI TIM HOA HỒNG) */}

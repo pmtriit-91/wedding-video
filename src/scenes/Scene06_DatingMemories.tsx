@@ -52,43 +52,6 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 zIndex: 20,
             }}
         >
-            {/* Vùng góc trái: Giàn hoa vàng nghệ thuật (ton-sur-ton với váy vàng cô dâu ở ảnh 1) */}
-            <div
-                style={{
-                    position: 'absolute',
-                    top: -20,
-                    left: -20,
-                    width: 900,
-                    height: 1220,
-                    pointerEvents: 'none',
-                    zIndex: 5,
-                    overflow: 'hidden',
-                    WebkitMaskImage:
-                        'radial-gradient(ellipse 90% 85% at 10% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 100%)',
-                    maskImage:
-                        'radial-gradient(ellipse 90% 85% at 10% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 100%)',
-                }}
-            >
-            </div>
-
-            {/* Vùng góc phải: Vòm cổng hoa hồng phấn nguyên bản (ton-sur-ton với áo dài hồng cô dâu ở ảnh 3) */}
-            <div
-                style={{
-                    position: 'absolute',
-                    top: -40,
-                    right: -70,
-                    width: 760,
-                    height: 1400,
-                    pointerEvents: 'none',
-                    zIndex: 5,
-                    overflow: 'hidden',
-                    WebkitMaskImage:
-                        'radial-gradient(ellipse 95% 85% at 95% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0) 100%)',
-                    maskImage:
-                        'radial-gradient(ellipse 95% 85% at 95% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0) 100%)',
-                }}
-            >
-            </div>
 
             {/* Cụm thông điệp Kỷ niệm ở góc trên bên phải (đối xứng với Cảnh 7, căn thẳng mép phải với dải ảnh) */}
             <div

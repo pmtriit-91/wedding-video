@@ -159,13 +159,13 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     }}
                 />
 
-                {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung */}
+                {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung và làm rõ chữ */}
                 <div
                     style={{
                         position: 'absolute',
                         inset: 0,
                         background:
-                            'linear-gradient(to right, rgba(247, 243, 235, 0.35) 0%, rgba(247, 243, 235, 0.55) 40%, rgba(247, 243, 235, 0.88) 75%, #F7F3EB 100%)',
+                            'linear-gradient(to right, rgba(247, 243, 235, 0.58) 0%, rgba(247, 243, 235, 0.82) 45%, rgba(247, 243, 235, 0.95) 75%, #F7F3EB 100%)',
                     }}
                 />
             </div>
@@ -176,7 +176,7 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     position: 'relative',
                     display: 'flex',
                     flexDirection: 'column',
-                    maxWidth: 1040,
+                    maxWidth: 1120,
                     transform: `translateX(${textX}px)`,
                     opacity: textOpacity,
                     zIndex: 5,
@@ -193,7 +193,7 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     <div
                         style={{
                             fontFamily: "'Great Vibes', cursive",
-                            fontSize: 72,
+                            fontSize: 80,
                             fontWeight: 600,
                             color: '#A87932',
                             letterSpacing: '0.02em',
@@ -210,7 +210,7 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                                 position: 'absolute',
                                 inset: 0,
                                 fontFamily: "'Great Vibes', cursive",
-                                fontSize: 72,
+                                fontSize: 80,
                                 fontWeight: 600,
                                 letterSpacing: '0.02em',
                                 whiteSpace: 'nowrap',
@@ -230,13 +230,13 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     )}
                 </div>
 
-                {/* Tiêu đề gõ phím mượt mà - tuyệt đối không giật layout */}
+                {/* Tiêu đề gõ phím mượt mà - Kích thước lớn 76px rõ nét trên màn LED */}
                 <p
                     style={{
                         fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                        fontSize: 64,
+                        fontSize: 76,
                         fontWeight: 700,
-                        lineHeight: 1.35,
+                        lineHeight: 1.3,
                         color: '#161311',
                         marginBottom: 28,
                         letterSpacing: '0.01em',
@@ -282,13 +282,13 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     )}
                 </p>
 
-                {/* Lời nhắn tri ân gõ nối tiếp cho đến chữ 'vun đắp.' - tuyệt đối không giật layout */}
+                {/* Lời nhắn tri ân - Kích thước 44px rõ ràng, sắc nét */}
                 <p
                     style={{
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        fontSize: 38,
+                        fontSize: 44,
                         fontWeight: 600,
-                        lineHeight: 1.65,
+                        lineHeight: 1.55,
                         color: '#1E1A17',
                         letterSpacing: '0.015em',
                         textShadow: '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
@@ -348,17 +348,17 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                 </div>
             </div>
 
-            {/* Cụm ảnh bên phải: Bố cục 2 cột chuẩn tỉ lệ ảnh gốc 2:3 (giữ trọn vẹn 100% hình ảnh không bị cắt) */}
+            {/* Cụm ảnh bên phải: Bố cục 2 cột cân đối hoàn hảo */}
             <div
                 style={{
                     position: 'relative',
                     display: 'flex',
-                    gap: 24,
+                    gap: 20,
                     alignItems: 'center',
                     zIndex: 5,
                 }}
             >
-                {/* Cột 1: 2 ảnh chi tiết xếp dọc khổ rộng thoáng đạt (580 x 545) */}
+                {/* Cột 1: 2 ảnh chi tiết xếp dọc (510 x 480) */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                     {/* Ảnh 1: Sổ thề nguyện To my husband / To my wife - trượt từ trên top xuống */}
                     <div
@@ -377,8 +377,8 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                             transformOrigin="50% 42%"
                             imageOffsetX={-40}
                             imageOffsetY={100}
-                            width={580}
-                            height={545}
+                            width={510}
+                            height={480}
                             variant="studio"
                         />
                     </div>
@@ -399,14 +399,14 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                             finalScale={1.06}
                             transformOrigin="50% 62%"
                             imageOffsetY={-30}
-                            width={580}
-                            height={545}
+                            width={510}
+                            height={480}
                             variant="studio"
                         />
                     </div>
                 </div>
 
-                {/* Cột 2: Ảnh chân dung lớn trung tâm - trượt từ phải sang trái */}
+                {/* Cột 2: Ảnh chân dung lớn trung tâm (650 x 980) */}
                 <div
                     style={{
                         transform: `translateX(${photo3X}px)`,
@@ -420,8 +420,8 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                         direction="zoom-in"
                         initialScale={1.0}
                         finalScale={1.05}
-                        width={740}
-                        height={1110}
+                        width={650}
+                        height={980}
                         variant="studio"
                     />
                 </div>
