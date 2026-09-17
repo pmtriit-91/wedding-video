@@ -70,7 +70,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 }}
             >
                 <Img
-                    src={staticFile('decor/scene06-bg-flowers.jpg')}
+                    src={staticFile('decor/canh06-new.png')}
                     style={{
                         width: '100%',
                         height: '100%',
@@ -78,7 +78,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                         mixBlendMode: 'multiply',
                         opacity: 0.88,
                         transform: `scale(${interpolate(frame, [0, durationInFrames], [1, 1.04], { extrapolateRight: 'clamp' })})`,
-                        filter: 'contrast(1.03) saturate(1.05) brightness(1.02)',
+                        filter: 'contrast(1.03) saturate(1.05) brightness(0.88)',
                     }}
                 />
             </div>
