@@ -349,14 +349,6 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                             zIndex: cluster.zIndex,
                                         }}
                                     >
-                                        <Img
-                                            src={staticFile('decor/decor-rustic-pampas-grass.png')}
-                                            style={{
-                                                width: '100%',
-                                                height: 'auto',
-                                                filter: `${cluster.shadow} contrast(102%) brightness(101%)`,
-                                            }}
-                                        />
                                     </div>
                                 );
                             })}
@@ -415,16 +407,6 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                 zIndex: 24,
                             }}
                         >
-                            <Img
-                                src={staticFile('decor/decor-rustic-pampas-fence.png')}
-                                style={{
-                                    width: '100%',
-                                    height: 'auto',
-                                    filter: 'drop-shadow(0 14px 32px rgba(50, 35, 20, 0.28)) contrast(102%) brightness(101%)',
-                                    scale: 1.18,
-                                    translate: '137.6px -19.9px',
-                                }}
-                            />
                         </div>
                     )}
                 </>

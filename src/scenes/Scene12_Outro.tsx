@@ -132,20 +132,7 @@ export const Scene12_Outro: React.FC<{ durationInFrames: number }> = ({ duration
                     WebkitMaskImage: 'linear-gradient(to left, black 75%, rgba(0, 0, 0, 0.4) 88%, transparent 100%)',
                     maskImage: 'linear-gradient(to left, black 75%, rgba(0, 0, 0, 0.4) 88%, transparent 100%)',
                 }}
-            >
-                <Img
-                    src={staticFile('decor/traitim-hoahong.png')}
-                    style={{
-                        width: 2100,
-                        height: 3720,
-                        objectFit: 'contain',
-                        transform: `translate(90px, -180px) scale(${interpolate(frame, [0, durationInFrames], [1, 1.03], { extrapolateRight: 'clamp' })})`,
-                        mixBlendMode: 'multiply',
-                        opacity: 0.88,
-                        filter: 'contrast(1.05) brightness(1.02)',
-                    }}
-                />
-            </div>
+            ></div>
 
             {/* ========================================================================= */}
             {/* CỤM LỜI CẢM ƠN KẾT THÚC BÊN PHẢI (NẰM TRỌN TRONG TRÁI TIM HOA HỒNG) */}
@@ -155,7 +142,7 @@ export const Scene12_Outro: React.FC<{ durationInFrames: number }> = ({ duration
                     position: 'absolute',
                     left: 900,
                     right: 180,
-                    top: 190,
+                    top: 0,
                     bottom: 0,
                     display: 'flex',
                     flexDirection: 'column',

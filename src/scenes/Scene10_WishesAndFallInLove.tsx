@@ -165,20 +165,6 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
                         }}
                     >
-                        <Img
-                            src={staticFile('decor/pink-ukulele-wallpaper.jpeg')}
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'cover',
-                                objectPosition: '-180px center',
-                                transform: `scaleX(-1) scale(${ukuleleScale})`,
-                                transformOrigin: 'center center',
-                                willChange: 'transform',
-                                opacity: 0.72,
-                                filter: 'brightness(103%) contrast(102%)',
-                            }}
-                        />
 
                         {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung */}
                         <div
@@ -375,18 +361,6 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
                         }}
                     >
-                        <Img
-                            src={staticFile('decor/scene10-phase2-bg.png')}
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'cover',
-                                objectPosition: 'left center',
-                                mixBlendMode: 'multiply',
-                                opacity: 0.88,
-                                filter: 'brightness(102%) contrast(102%)',
-                            }}
-                        />
 
                         {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung */}
                         <div

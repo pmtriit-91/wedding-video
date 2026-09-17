@@ -89,20 +89,6 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
             "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)",
         }}
       >
-        <Img
-          src={staticFile("decor/summer-encounter-wallpaper.jpeg")}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "left center",
-            transform: `scale(${bgScale})`,
-            transformOrigin: "left 30%",
-            willChange: "transform",
-            opacity: 0.72,
-            filter: "brightness(102%) contrast(102%)",
-          }}
-        />
 
         {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung */}
         <div

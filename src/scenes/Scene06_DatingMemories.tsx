@@ -69,18 +69,6 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                         'radial-gradient(ellipse 90% 85% at 10% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 100%)',
                 }}
             >
-                <Img
-                    src={staticFile('decor/canh06-new.png')}
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        mixBlendMode: 'multiply',
-                        opacity: 0.88,
-                        transform: `scale(${interpolate(frame, [0, durationInFrames], [1, 1.04], { extrapolateRight: 'clamp' })})`,
-                        filter: 'contrast(1.03) saturate(1.05) brightness(0.88)',
-                    }}
-                />
             </div>
 
             {/* Vùng góc phải: Vòm cổng hoa hồng phấn nguyên bản (ton-sur-ton với áo dài hồng cô dâu ở ảnh 3) */}
@@ -100,19 +88,6 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                         'radial-gradient(ellipse 95% 85% at 95% 10%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0) 100%)',
                 }}
             >
-                <Img
-                    src={staticFile('decor/scene06-bg-arch.jpg')}
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        mixBlendMode: 'multiply',
-                        opacity: 0.85,
-                        transform: `scale(${interpolate(frame, [0, durationInFrames], [1, 1.04], { extrapolateRight: 'clamp' })})`,
-                        transformOrigin: 'top right',
-                        filter: 'contrast(1.04) saturate(1.06) brightness(1.02)',
-                    }}
-                />
             </div>
 
             {/* Cụm thông điệp Kỷ niệm ở góc trên bên phải (đối xứng với Cảnh 7, căn thẳng mép phải với dải ảnh) */}

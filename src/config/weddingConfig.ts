@@ -247,7 +247,7 @@ export const weddingConfig: WeddingConfig = {
         // SCENE 12: Lời kết
         scene12_outro: {
             thankYouText: 'CHÚNG CON XIN CẢM ƠN!',
-            photo: 'photos/12/Untitled Session36519.jpg',
+            photo: 'photos/12/Untitled Session36269.jpg',
         },
     },
 };

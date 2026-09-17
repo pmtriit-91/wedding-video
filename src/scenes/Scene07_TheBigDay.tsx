@@ -54,44 +54,10 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '50px 100px 100px 100px',
+                padding: '50px 100px 160px 100px',
                 zIndex: 20,
             }}
         >
-            {/* Ảnh hoa văn nền phụ nghệ thuật ở góc trên bên phải (thay thế cành lá cũ) */}
-            {bgArtOpacity > 0 && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: -30,
-                        right: -40,
-                        width: 820,
-                        height: 1150,
-                        pointerEvents: 'none',
-                        zIndex: 5,
-                        overflow: 'hidden',
-                        opacity: bgArtOpacity,
-                        WebkitMaskImage:
-                            'radial-gradient(ellipse 95% 85% at 85% 15%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.75) 65%, rgba(0,0,0,0) 100%)',
-                        maskImage:
-                            'radial-gradient(ellipse 95% 85% at 85% 15%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.75) 65%, rgba(0,0,0,0) 100%)',
-                    }}
-                >
-                    <Img
-                        src={staticFile('decor/scene07-bg-sub.jpeg')}
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            mixBlendMode: 'multiply',
-                            transform: `scale(${interpolate(frame, [0, durationInFrames], [1, 1.04], { extrapolateRight: 'clamp' })})`,
-                            transformOrigin: 'top right',
-                            filter: 'contrast(1.03) saturate(1.05) brightness(1.02)',
-                        }}
-                    />
-                </div>
-            )}
-
             {/* Cụm thông điệp Ngày trọng đại ở góc trên bên trái */}
             <div
                 style={{
@@ -103,7 +69,7 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                     transform: `translateX(${textX}px)`,
                     opacity: textOpacity,
                     zIndex: 16,
-                    marginTop: 10,
+                    marginTop: 40,
                 }}
             >
                 <div style={{ position: 'relative' }}>
