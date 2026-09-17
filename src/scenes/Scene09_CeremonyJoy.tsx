@@ -1,5 +1,5 @@
-import React from "react";
 import {
+  Easing,
   Img,
   interpolate,
   spring,
@@ -24,6 +24,13 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
     [0, 1, 1, 0],
     { extrapolateRight: "clamp" }
   );
+
+  // Hiệu ứng zoom-out điện ảnh nhẹ nhàng cho hình nền phụ phong cảnh mùa hè
+  const bgScale = interpolate(frame, [0, durationInFrames], [1.15, 1.0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.quad),
+  });
 
   const textSpring = spring({
     frame: frame - 10,
@@ -89,6 +96,9 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
             height: "100%",
             objectFit: "cover",
             objectPosition: "left center",
+            transform: `scale(${bgScale})`,
+            transformOrigin: "left 30%",
+            willChange: "transform",
             opacity: 0.72,
             filter: "brightness(102%) contrast(102%)",
           }}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { FloralDecor } from '../components/FloralDecor';
 import { PhotoFrame } from '../components/PhotoFrame';
 import { weddingConfig } from '../config/weddingConfig';
@@ -20,6 +20,13 @@ export const Scene10_WishesAndFallInLove: React.FC<{
     const phase1Opacity = interpolate(frame, [0, 20, 490, 520], [0, 1, 1, 0], {
         extrapolateRight: 'clamp',
         extrapolateLeft: 'clamp',
+    });
+
+    // Hiệu ứng zoom-out điện ảnh nhẹ nhàng cho hình nền phụ cây đàn ukulele
+    const ukuleleScale = interpolate(frame, [0, 520], [1.15, 1.0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.quad),
     });
 
     const textSpring = spring({
@@ -129,7 +136,9 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 height: '100%',
                                 objectFit: 'cover',
                                 objectPosition: '-180px center',
-                                transform: 'scaleX(-1)',
+                                transform: `scaleX(-1) scale(${ukuleleScale})`,
+                                transformOrigin: 'center center',
+                                willChange: 'transform',
                                 opacity: 0.72,
                                 filter: 'brightness(103%) contrast(102%)',
                             }}
