@@ -24,16 +24,45 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
     });
     const textX = interpolate(textSpring, [0, 1], [-30, 0]);
 
-    const photosSpring = spring({
-        frame: Math.max(0, frame - 2),
-        fps,
-        config: { damping: 18, mass: 0.9 },
+    // ========================================================
+    // Hiệu ứng di chuyển chậm rãi, tinh tế cho cụm 3 ảnh ghép:
+    // - Ảnh 1 (trên cùng cột trái): trượt từ trên top xuống (-140px -> 0px)
+    // - Ảnh 2 (dưới cùng cột trái): trượt từ dưới bottom lên (140px -> 0px)
+    // - Ảnh 3 (ảnh chính cột phải): trượt từ phải sang trái (170px -> 0px)
+    // Thời lượng 150 - 160 frames (~2.5s - 2.67s) êm dịu tương tự Cảnh 10
+    // ========================================================
+    // 1. Ảnh 1: Sổ thề nguyện (Top)
+    const photo1Y = interpolate(frame, [8, 158], [-140, 0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.quad),
     });
-    const photosOpacity = interpolate(frame, [0, 22], [0, 1], {
+    const photo1Opacity = interpolate(frame, [8, 45], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
-    const photosX = interpolate(photosSpring, [0, 1], [30, 0]);
+
+    // 2. Ảnh 2: Ngoại cảnh ngắm hoa (Bottom)
+    const photo2Y = interpolate(frame, [14, 164], [140, 0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.quad),
+    });
+    const photo2Opacity = interpolate(frame, [14, 51], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+    });
+
+    // 3. Ảnh 3: Ảnh chính lớn (Right)
+    const photo3X = interpolate(frame, [10, 170], [170, 0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.quad),
+    });
+    const photo3Opacity = interpolate(frame, [10, 48], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+    });
 
     // Hiệu ứng loáng sáng ánh kim quét qua chữ "Thank you Parents"
     let shimmerProgress = -1;
@@ -326,54 +355,76 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                     display: 'flex',
                     gap: 24,
                     alignItems: 'center',
-                    transform: `translateX(${photosX}px)`,
-                    opacity: photosOpacity,
                     zIndex: 5,
                 }}
             >
                 {/* Cột 1: 2 ảnh chi tiết xếp dọc khổ rộng thoáng đạt (580 x 545) */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                    {/* Ảnh sổ thề nguyện To my husband / To my wife - trọn vẹn cả 2 cuốn sổ và nhẫn cưới */}
-                    <PhotoFrame
-                        src={cfg.vowBookPhoto}
-                        durationInFrames={durationInFrames}
-                        direction="zoom-in"
-                        initialScale={1.02}
-                        finalScale={1.08}
-                        transformOrigin="50% 42%"
-                        imageOffsetX={-40}
-                        imageOffsetY={100}
-                        width={580}
-                        height={545}
-                        variant="studio"
-                    />
+                    {/* Ảnh 1: Sổ thề nguyện To my husband / To my wife - trượt từ trên top xuống */}
+                    <div
+                        style={{
+                            transform: `translateY(${photo1Y}px)`,
+                            opacity: photo1Opacity,
+                            willChange: 'transform, opacity',
+                        }}
+                    >
+                        <PhotoFrame
+                            src={cfg.vowBookPhoto}
+                            durationInFrames={durationInFrames}
+                            direction="zoom-in"
+                            initialScale={1.02}
+                            finalScale={1.08}
+                            transformOrigin="50% 42%"
+                            imageOffsetX={-40}
+                            imageOffsetY={100}
+                            width={580}
+                            height={545}
+                            variant="studio"
+                        />
+                    </div>
 
-                    {/* Ảnh ngoại cảnh chú rể & cô dâu ngắm hoa - váy cưới xòe rộng thoáng */}
+                    {/* Ảnh 2: Ảnh ngoại cảnh chú rể & cô dâu ngắm hoa - trượt từ dưới bottom lên */}
+                    <div
+                        style={{
+                            transform: `translateY(${photo2Y}px)`,
+                            opacity: photo2Opacity,
+                            willChange: 'transform, opacity',
+                        }}
+                    >
+                        <PhotoFrame
+                            src={cfg.outdoorPhotos[0]}
+                            durationInFrames={durationInFrames}
+                            direction="zoom-in"
+                            initialScale={1.0}
+                            finalScale={1.06}
+                            transformOrigin="50% 62%"
+                            imageOffsetY={-30}
+                            width={580}
+                            height={545}
+                            variant="studio"
+                        />
+                    </div>
+                </div>
+
+                {/* Cột 2: Ảnh chân dung lớn trung tâm - trượt từ phải sang trái */}
+                <div
+                    style={{
+                        transform: `translateX(${photo3X}px)`,
+                        opacity: photo3Opacity,
+                        willChange: 'transform, opacity',
+                    }}
+                >
                     <PhotoFrame
-                        src={cfg.outdoorPhotos[0]}
+                        src={cfg.outdoorPhotos[1]}
                         durationInFrames={durationInFrames}
                         direction="zoom-in"
                         initialScale={1.0}
-                        finalScale={1.06}
-                        transformOrigin="50% 62%"
-                        imageOffsetY={-30}
-                        width={580}
-                        height={545}
+                        finalScale={1.05}
+                        width={740}
+                        height={1110}
                         variant="studio"
                     />
                 </div>
-
-                {/* Cột 2: Ảnh chân dung lớn trung tâm (Chuẩn tỉ lệ ảnh dọc 2:3: 740 x 1110) */}
-                <PhotoFrame
-                    src={cfg.outdoorPhotos[1]}
-                    durationInFrames={durationInFrames}
-                    direction="zoom-in"
-                    initialScale={1.0}
-                    finalScale={1.05}
-                    width={740}
-                    height={1110}
-                    variant="studio"
-                />
             </div>
 
             {/* Bụi sao vàng óng ánh tỏa sáng khi hoa đơm hoa kết trái */}
