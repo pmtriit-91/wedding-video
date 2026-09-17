@@ -120,7 +120,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                 <div
                     style={{
                         width: 4,
-                        height: 145,
+                        height: 155,
                         backgroundColor: '#A87932',
                         borderRadius: 2,
                         marginRight: 24,
@@ -145,10 +145,10 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                         <div
                             style={{
                                 fontFamily: "'Great Vibes', cursive",
-                                fontSize: 55,
+                                fontSize: 56,
                                 fontWeight: 600,
                                 color: '#A87932',
-                                letterSpacing: '0.04em',
+                                letterSpacing: '0.02em',
                                 textShadow: '0 1px 12px rgba(255, 255, 255, 0.95), 0 0 16px rgba(255, 255, 255, 0.9)',
                             }}
                         >
@@ -162,9 +162,9 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                     position: 'absolute',
                                     inset: 0,
                                     fontFamily: "'Great Vibes', cursive",
-                                    fontSize: 55,
+                                    fontSize: 56,
                                     fontWeight: 600,
-                                    letterSpacing: '0.04em',
+                                    letterSpacing: '0.02em',
                                     background:
                                         'linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)',
                                     backgroundSize: '220% 100%',
@@ -185,15 +185,15 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                     <div style={{ position: 'relative' }}>
                         <p
                             style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontSize: 48,
+                                fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
+                                fontSize: 50,
                                 fontWeight: 700,
-                                fontStyle: 'italic',
-                                lineHeight: 1.4,
-                                color: '#161311',
-                                letterSpacing: '0.015em',
+                                lineHeight: 1.32,
+                                color: '#1A1614',
+                                letterSpacing: '0.01em',
                                 margin: 0,
-                                textShadow: '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
+                                textShadow:
+                                    '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)',
                             }}
                         >
                             Chúng con thật vui và hạnh phúc
@@ -207,12 +207,11 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                 style={{
                                     position: 'absolute',
                                     inset: 0,
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontSize: 48,
+                                    fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
+                                    fontSize: 50,
                                     fontWeight: 700,
-                                    fontStyle: 'italic',
-                                    lineHeight: 1.4,
-                                    letterSpacing: '0.015em',
+                                    lineHeight: 1.32,
+                                    letterSpacing: '0.01em',
                                     margin: 0,
                                     background:
                                         'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.85) 60%, transparent 80%)',

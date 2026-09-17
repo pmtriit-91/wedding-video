@@ -313,7 +313,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         position: 'absolute',
                                         inset: 0,
                                         fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                                        fontSize: 56,
+                                        fontSize: 64,
                                         fontWeight: 700,
                                         lineHeight: 1.38,
                                         letterSpacing: '0.01em',
