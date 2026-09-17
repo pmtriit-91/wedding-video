@@ -251,7 +251,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             <div
                                 style={{
                                     fontFamily: "'Great Vibes', cursive",
-                                    fontSize: 72,
+                                    fontSize: 84,
                                     fontWeight: 600,
                                     color: '#A87932',
                                     letterSpacing: '0.02em',
@@ -269,7 +269,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         position: 'absolute',
                                         inset: 0,
                                         fontFamily: "'Great Vibes', cursive",
-                                        fontSize: 72,
+                                        fontSize: 84,
                                         fontWeight: 600,
                                         letterSpacing: '0.02em',
                                         background:
@@ -294,7 +294,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             <p
                                 style={{
                                     fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                                    fontSize: 56,
+                                    fontSize: 64,
                                     fontWeight: 700,
                                     lineHeight: 1.38,
                                     color: '#38302A',
@@ -360,19 +360,19 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        padding: '0 80px 0 220px',
+                        padding: '0 60px 0 110px',
                     }}
                 >
                     <FloralDecor position="bottom-left" opacity={0.35} />
 
-                    {/* Lời cảm ơn đường xa bên trái - dời sang phải vào vùng tường sáng thoáng */}
+                    {/* Lời cảm ơn đường xa bên trái - bố trí dịch trái để nhường trọn không gian cho ảnh */}
                     <div
                         style={{
                             position: 'relative',
                             display: 'flex',
                             flexDirection: 'column',
-                            maxWidth: 880,
-                            marginLeft: 40,
+                            maxWidth: 820,
+                            marginLeft: 0,
                             transform: `translateX(${interpolate(textSpring2, [0, 1], [-40, 0])}px)`,
                             opacity: interpolate(textSpring2, [0, 1], [0, 1]),
                             zIndex: 5,
@@ -383,7 +383,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             <div
                                 style={{
                                     fontFamily: "'Great Vibes', cursive",
-                                    fontSize: 76,
+                                    fontSize: 84,
                                     fontWeight: 600,
                                     color: '#A87932',
                                     letterSpacing: '0.02em',
@@ -391,7 +391,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         '0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)',
                                 }}
                             >
-                                Heartfelt Thanks
+                                {/* Heartfelt Thanks */}
+                                Lời tri ân
                             </div>
 
                             {shimmerProgress2 >= 0 && (
@@ -400,7 +401,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         position: 'absolute',
                                         inset: 0,
                                         fontFamily: "'Great Vibes', cursive",
-                                        fontSize: 76,
+                                        fontSize: 84,
                                         fontWeight: 600,
                                         letterSpacing: '0.02em',
                                         background:
@@ -414,7 +415,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         willChange: 'background-position, opacity',
                                     }}
                                 >
-                                    Heartfelt Thanks
+                                    {/* Heartfelt Thanks */}
+                                    Lời tri ân
                                 </div>
                             )}
                         </div>
@@ -424,7 +426,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             <span
                                 style={{
                                     fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                                    fontSize: 60,
+                                    fontSize: 55,
                                     fontWeight: 700,
                                     color: '#A87932',
                                     letterSpacing: '0.05em',
@@ -520,8 +522,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 src="photos/9/Untitled Session36551.jpg"
                                 durationInFrames={510}
                                 direction="zoom-in"
-                                width={740}
-                                height={1000}
+                                width={880}
+                                height={1180}
                                 variant="studio"
                             />
                         </div>
@@ -529,8 +531,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Ảnh phụ (Inset): Khổ vừa lồng lệch góc phải, đi từ phải sang theo góc nghiêng 1deg */}
                         <div
                             style={{
-                                marginLeft: -35,
-                                marginTop: 140,
+                                marginLeft: -55,
+                                marginTop: 160,
                                 zIndex: 2,
                                 position: 'relative',
                                 opacity: insetOpacity,
@@ -543,8 +545,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 src="photos/9/Untitled Session36695.jpg"
                                 durationInFrames={510}
                                 direction="zoom-out"
-                                width={535}
-                                height={720}
+                                width={660}
+                                height={890}
                                 variant="studio"
                             />
                         </div>
