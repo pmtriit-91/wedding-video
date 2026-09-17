@@ -460,7 +460,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         </div>
                     </div>
 
-                    {/* 2 Khung ảnh cưới studio tri ân - CÁCH 2: CẶP KHUNG VÒM NGHỆ THUẬT (ARCHED STUDIO WINDOWS) */}
+                    {/* 2 Khung ảnh cưới studio tri ân - CÁCH 3: CHÍNH - PHỤ LỒNG GHÉP (HERO & DETAIL INSET) */}
                     <div
                         style={{
                             display: 'flex',
@@ -469,44 +469,45 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             transform: `translateX(${interpolate(photoSpring2, [0, 1], [40, 0])}px)`,
                             opacity: interpolate(photoSpring2, [0, 1], [0, 1]),
                             zIndex: 5,
-                            gap: 28,
                         }}
                     >
-                        {/* Cửa vòm 1: Trái - vươn nhẹ lên */}
+                        {/* Ảnh chính (Hero): Khổ lớn trang trọng, nghiêng về bên trái nhiều hơn xíu tạo thế ôm nhẹ */}
                         <div
                             style={{
-                                transform: 'translateY(-18px)',
-                                zIndex: 1,
                                 position: 'relative',
-                                filter: 'drop-shadow(0 22px 50px rgba(50, 35, 15, 0.25))',
+                                zIndex: 1,
+                                transform: 'rotate(-2.8deg)',
+                                filter: 'drop-shadow(0 28px 60px rgba(40, 25, 10, 0.25))',
                             }}
                         >
                             <PhotoFrame
                                 src="photos/9/Untitled Session36551.jpg"
                                 durationInFrames={510}
                                 direction="zoom-in"
-                                width={600}
-                                height={860}
-                                variant="arch"
+                                width={740}
+                                height={1000}
+                                variant="studio"
                             />
                         </div>
 
-                        {/* Cửa vòm 2: Phải - trầm xuống nhẹ nhàng tạo nhịp điệu kiến trúc */}
+                        {/* Ảnh phụ (Inset): Khổ vừa lồng lệch góc phải, độ nghiêng nhẹ nhàng (1 độ) gần như thẳng */}
                         <div
                             style={{
-                                transform: 'translateY(18px)',
+                                marginLeft: -90,
+                                marginTop: 140,
                                 zIndex: 2,
                                 position: 'relative',
-                                filter: 'drop-shadow(0 22px 50px rgba(50, 35, 15, 0.25))',
+                                transform: 'rotate(1deg)',
+                                filter: 'drop-shadow(0 35px 70px rgba(0, 0, 0, 0.40))',
                             }}
                         >
                             <PhotoFrame
                                 src="photos/9/Untitled Session36695.jpg"
                                 durationInFrames={510}
                                 direction="zoom-out"
-                                width={600}
-                                height={860}
-                                variant="arch"
+                                width={535}
+                                height={720}
+                                variant="studio"
                             />
                         </div>
                     </div>
