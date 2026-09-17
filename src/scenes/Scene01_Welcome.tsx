@@ -73,7 +73,7 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '50px 80px',
+                padding: '28px 50px 14px 50px',
                 zIndex: 20,
             }}
         >
@@ -86,20 +86,19 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
             {/* Hiệu ứng cánh hoa mẫu đơn nhung đỏ chao lượn điện ảnh (Depth of Field) */}
             <FallingPetals count={6} speed={0.9} zIndex={25} />
 
-            {/* 3 Khung ảnh Studio chính giữa - Xuất hiện lần lượt từ trái sang phải rất chậm rãi, quý phái */}
+            {/* 3 Khung ảnh Studio chính giữa - Phóng lớn bề thế, căn chỉnh trọn vẹn vóc dáng */}
             <div
                 style={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    gap: 46,
-                    marginTop: 10,
+                    gap: 34,
+                    marginTop: 0,
                     flex: 1,
                 }}
             >
                 {cfg.photos.map((photoSrc, idx) => {
                     // Xuất hiện lần lượt từ trái qua phải (idx 0: Trái, idx 1: Giữa, idx 2: Phải)
-                    // Mỗi ảnh cách nhau 36 frames (~0.60 giây), thời gian xuất hiện kéo dài tới 52 frames (~0.87 giây) cực kỳ êm dịu, không hề hối hả
                     const photoStart = 16 + idx * 36;
                     const photoProgress = interpolate(frame, [photoStart, photoStart + 52], [0, 1], {
                         extrapolateLeft: 'clamp',
@@ -134,13 +133,14 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                                 durationInFrames={durationInFrames}
                                 direction="zoom-out-reveal"
                                 startFrame={photoStart}
-                                initialScale={isCenter ? 1.6 : idx === 0 ? 1.58 : 1.55}
-                                finalScale={1.3}
-                                transformOrigin={isCenter ? 'center 28%' : 'center 30%'}
+                                initialScale={isCenter ? 1.45 : idx === 0 ? 1.38 : 1.36}
+                                finalScale={isCenter ? 1.15 : 1.08}
+                                transformOrigin={isCenter ? 'center 10%' : 'center 16%'}
+                                imageOffsetY={isCenter ? -120 : -70}
                                 holdDuration={32}
                                 zoomDuration={230}
-                                width={isCenter ? 720 : 600}
-                                height={isCenter ? 980 : 865}
+                                width={isCenter ? 860 : 730}
+                                height={isCenter ? 1100 : 970}
                                 variant="studio"
                             />
                         </div>
@@ -157,7 +157,7 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                     alignItems: 'center',
                     transform: `translate3d(0, ${titleY}px, 0)`,
                     opacity: titleOpacity,
-                    marginBottom: 30,
+                    marginBottom: 12,
                 }}
             >
                 {/* Tên Cô dâu & Chú rể với hiệu ứng loáng sáng hoàng gia */}
