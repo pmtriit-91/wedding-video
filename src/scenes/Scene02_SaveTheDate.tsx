@@ -148,7 +148,7 @@ export const Scene02_SaveTheDate: React.FC<{ durationInFrames: number }> = ({ du
                         const photoScale = interpolate(photoProgress, [0, 1], [0.97, 1]);
 
                         // Dữ liệu số ngày cưới to bản ở đáy ảnh
-                        const numText = idx === 0 ? '27' : idx === 1 ? '09' : '26';
+                        const numText = idx === 0 ? '29' : idx === 1 ? '09' : '26';
 
                         return (
                             <div

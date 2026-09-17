@@ -128,7 +128,7 @@ export const weddingConfig: WeddingConfig = {
     groomTitle: 'Chú rể',
     brideName: 'CẨM HƯƠNG',
     brideTitle: 'Cô dâu',
-    weddingDate: '27.09.2026',
+    weddingDate: '29.09.2026',
     welcomeText: 'WELCOME TO OUR WEDDING',
 
     colors: {
@@ -155,7 +155,7 @@ export const weddingConfig: WeddingConfig = {
         // SCENE 2: Save The Date
         scene02_saveTheDate: {
             badgeText: 'SAVE the DATE',
-            dateHighlight: '27 09 26',
+            dateHighlight: '29 09 26',
             photos: ['photos/2/DSC_0609.jpg', 'photos/2/DSC_0638.jpg', 'photos/2/MAY_0981.jpg'],
         },
 

@@ -253,7 +253,8 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                             const isVisible = index < titleChars;
                             const isCurrent = index === titleChars - 1;
                             const isCursorHere = (isCurrent || (titleChars === 0 && index === 0)) && isTitleTyping;
-                            const showCursor = isCursorHere && (titleChars >= titleCharsCount ? cursorBlink === 1 : true);
+                            const showCursor =
+                                isCursorHere && (titleChars >= titleCharsCount ? cursorBlink === 1 : true);
                             return (
                                 <span
                                     key={index}
