@@ -1,7 +1,7 @@
 import React from "react";
 import {
+  Easing,
   interpolate,
-  spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -13,7 +13,6 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({
   durationInFrames,
 }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
   const cfg = weddingConfig.scenes.scene11_foreverHappy;
 
   const opacity = interpolate(
@@ -23,14 +22,19 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({
     { extrapolateRight: "clamp" }
   );
 
-  const textSpring = spring({
-    frame: frame - 10,
-    fps,
-    config: { damping: 14, mass: 0.8 },
-  });
-
   // Tiến trình chạy của Story Instagram (0 -> 1)
   const storyProgress = interpolate(frame, [0, durationInFrames], [0.2, 0.95], {
+    extrapolateRight: "clamp",
+  });
+
+  // Hiệu ứng xuất hiện lời hứa tình yêu chậm rãi, tiếp nối sau cụm ảnh
+  const textTranslateY = interpolate(frame, [110, 190], [30, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.quad),
+  });
+  const textOpacity = interpolate(frame, [110, 170], [0, 1], {
+    extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
@@ -44,31 +48,37 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "50px 100px",
+        padding: "40px 80px 36px 80px",
         zIndex: 20,
       }}
     >
       <FloralDecor position="top-left" opacity={0.35} />
       <FloralDecor position="top-right" opacity={0.35} />
 
-      {/* 3 Khung Story mạng xã hội cách điệu */}
+      {/* 3 Khung Story mạng xã hội cách điệu - Kích thước lớn, xuất hiện lần lượt chậm rãi */}
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: 40,
+          gap: 48,
           flex: 1,
         }}
       >
         {cfg.photos.map((photoSrc, idx) => {
-          const photoSpring = spring({
-            frame: frame - 15 - idx * 10,
-            fps,
-            config: { damping: 15, mass: 0.9 },
+          // Xuất hiện lần lượt từng ảnh: mỗi ảnh cách nhau 45 frames (~0.75s)
+          const startFrame = 16 + idx * 45;
+          const endFrame = startFrame + 90; // Chuyển động lướt lên thong thả trong 1.5s
+
+          const photoY = interpolate(frame, [startFrame, endFrame], [85, 0], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+            easing: Easing.out(Easing.quad),
           });
-          const photoY = interpolate(photoSpring, [0, 1], [50, 0]);
-          const photoOpacity = interpolate(photoSpring, [0, 1], [0, 1]);
+          const photoOpacity = interpolate(frame, [startFrame, startFrame + 38], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          });
 
           return (
             <div
@@ -76,14 +86,16 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({
               style={{
                 transform: `translateY(${photoY}px)`,
                 opacity: photoOpacity,
+                willChange: "transform, opacity",
+                filter: "drop-shadow(0 26px 55px rgba(35, 20, 10, 0.22))",
               }}
             >
               <PhotoFrame
                 src={photoSrc}
                 durationInFrames={durationInFrames}
-                direction={idx === 0 ? "zoom-in" : idx === 1 ? "pan-up" : "zoom-out"}
-                width={480}
-                height={840}
+                direction={idx === 0 ? "zoom-out" : idx === 1 ? "pan-up" : "zoom-out"}
+                width={575}
+                height={990}
                 variant="story"
                 storyUsername={cfg.username}
                 storyProgress={storyProgress}
@@ -97,23 +109,37 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({
       <div
         style={{
           textAlign: "center",
-          transform: `translateY(${interpolate(textSpring, [0, 1], [30, 0])}px)`,
-          opacity: interpolate(textSpring, [0, 1], [0, 1]),
-          marginBottom: 20,
+          transform: `translateY(${textTranslateY}px)`,
+          opacity: textOpacity,
+          marginBottom: 16,
+          willChange: "transform, opacity",
         }}
       >
         <p
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontSize: 50,
+            fontSize: 52,
             fontWeight: 700,
             fontStyle: "italic",
             color: weddingConfig.colors.textDark,
             letterSpacing: "0.04em",
+            margin: 0,
+            textShadow: "0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 10px rgba(255, 255, 255, 0.8)",
           }}
         >
           “{cfg.quote}”
         </p>
+
+        {/* Thanh gạch dưới vàng tinh tế */}
+        <div
+          style={{
+            margin: "14px auto 0 auto",
+            width: 140,
+            height: 2.5,
+            backgroundColor: "#A87932",
+            boxShadow: "0 0 12px rgba(168, 121, 50, 0.5)",
+          }}
+        />
       </div>
     </div>
   );
