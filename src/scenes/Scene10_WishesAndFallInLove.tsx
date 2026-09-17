@@ -65,10 +65,26 @@ export const Scene10_WishesAndFallInLove: React.FC<{
         config: { damping: 14, mass: 0.8 },
     });
 
-    const photoSpring2 = spring({
-        frame: frame - 520,
-        fps,
-        config: { damping: 15, mass: 0.9 },
+    // Ảnh chính (Hero) trượt thong thả từ trái sang theo góc nghiêng -2.8deg (thời lượng 160 frames ~ 2.67 giây)
+    const heroTranslateX = interpolate(frame, [515, 675], [-180, 0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.quad),
+    });
+    const heroOpacity = interpolate(frame, [515, 555], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+    });
+
+    // Ảnh phụ (Inset) trượt thong thả từ phải sang theo góc nghiêng 1deg (thời lượng 160 frames ~ 2.67 giây)
+    const insetTranslateX = interpolate(frame, [525, 685], [180, 0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.quad),
+    });
+    const insetOpacity = interpolate(frame, [525, 565], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
     });
 
     let shimmerProgress2 = -1;
@@ -502,17 +518,17 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             display: 'flex',
                             alignItems: 'center',
                             position: 'relative',
-                            transform: `translateX(${interpolate(photoSpring2, [0, 1], [40, 0])}px)`,
-                            opacity: interpolate(photoSpring2, [0, 1], [0, 1]),
                             zIndex: 5,
                         }}
                     >
-                        {/* Ảnh chính (Hero): Khổ lớn trang trọng, nghiêng về bên trái nhiều hơn xíu tạo thế ôm nhẹ */}
+                        {/* Ảnh chính (Hero): Khổ lớn trang trọng, đi từ trái sang theo góc nghiêng -2.8deg */}
                         <div
                             style={{
                                 position: 'relative',
                                 zIndex: 1,
-                                transform: 'rotate(-2.8deg)',
+                                opacity: heroOpacity,
+                                transform: `rotate(-2.8deg) translateX(${heroTranslateX}px)`,
+                                willChange: 'transform, opacity',
                                 filter: 'drop-shadow(0 28px 60px rgba(40, 25, 10, 0.25))',
                             }}
                         >
@@ -526,14 +542,16 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             />
                         </div>
 
-                        {/* Ảnh phụ (Inset): Khổ vừa lồng lệch góc phải, độ nghiêng nhẹ nhàng (1 độ) gần như thẳng */}
+                        {/* Ảnh phụ (Inset): Khổ vừa lồng lệch góc phải, đi từ phải sang theo góc nghiêng 1deg */}
                         <div
                             style={{
                                 marginLeft: -90,
                                 marginTop: 140,
                                 zIndex: 2,
                                 position: 'relative',
-                                transform: 'rotate(1deg)',
+                                opacity: insetOpacity,
+                                transform: `rotate(1deg) translateX(${insetTranslateX}px)`,
+                                willChange: 'transform, opacity',
                                 filter: 'drop-shadow(0 35px 70px rgba(0, 0, 0, 0.40))',
                             }}
                         >
