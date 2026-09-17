@@ -460,7 +460,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         </div>
                     </div>
 
-                    {/* 2 Khung ảnh cưới studio tri ân - CÁCH 1: XẾP LỚP SO LE LỆCH TẦNG (LAYERED EDITORIAL) */}
+                    {/* 2 Khung ảnh cưới studio tri ân - CÁCH 2: CẶP KHUNG VÒM NGHỆ THUẬT (ARCHED STUDIO WINDOWS) */}
                     <div
                         style={{
                             display: 'flex',
@@ -469,43 +469,44 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             transform: `translateX(${interpolate(photoSpring2, [0, 1], [40, 0])}px)`,
                             opacity: interpolate(photoSpring2, [0, 1], [0, 1]),
                             zIndex: 5,
+                            gap: 28,
                         }}
                     >
-                        {/* Ảnh 1: Lệch lên trên nhẹ nhàng */}
+                        {/* Cửa vòm 1: Trái - vươn nhẹ lên */}
                         <div
                             style={{
-                                transform: 'translateY(-35px)',
+                                transform: 'translateY(-18px)',
                                 zIndex: 1,
                                 position: 'relative',
+                                filter: 'drop-shadow(0 22px 50px rgba(50, 35, 15, 0.25))',
                             }}
                         >
                             <PhotoFrame
                                 src="photos/9/Untitled Session36551.jpg"
                                 durationInFrames={510}
                                 direction="zoom-in"
-                                width={620}
-                                height={850}
-                                variant="studio"
+                                width={600}
+                                height={860}
+                                variant="arch"
                             />
                         </div>
 
-                        {/* Ảnh 2: Lệch xuống dưới, đè nhẹ qua mép ảnh 1 tạo chiều sâu 3D */}
+                        {/* Cửa vòm 2: Phải - trầm xuống nhẹ nhàng tạo nhịp điệu kiến trúc */}
                         <div
                             style={{
-                                transform: 'translateY(40px)',
-                                marginLeft: -55,
+                                transform: 'translateY(18px)',
                                 zIndex: 2,
                                 position: 'relative',
-                                filter: 'drop-shadow(0 22px 45px rgba(0, 0, 0, 0.32))',
+                                filter: 'drop-shadow(0 22px 50px rgba(50, 35, 15, 0.25))',
                             }}
                         >
                             <PhotoFrame
                                 src="photos/9/Untitled Session36695.jpg"
                                 durationInFrames={510}
                                 direction="zoom-out"
-                                width={620}
-                                height={850}
-                                variant="studio"
+                                width={600}
+                                height={860}
+                                variant="arch"
                             />
                         </div>
                     </div>
