@@ -183,7 +183,7 @@ export const weddingConfig: WeddingConfig = {
 
         // SCENE 6: Kỷ niệm tìm hiểu
         scene06_datingMemories: {
-            intro: 'Những ngày đầu,',
+            intro: '10 năm quen nhau,',
             quote: 'Bọn con đã có quãng thời gian tìm hiểu và được sự đón nhận của Ba Mẹ hai bên.',
             photos: ['photos/5/1.JPG', 'photos/5/2.JPG', 'photos/5/3.JPG'],
         },
@@ -246,8 +246,8 @@ export const weddingConfig: WeddingConfig = {
 
         // SCENE 12: Lời kết
         scene12_outro: {
-            thankYouText: 'CHÚNG CON XIN CẢM ƠN Ạ!!!',
-            photo: 'photos/12/DSC_1167.jpg',
+            thankYouText: 'CHÚNG CON XIN CẢM ƠN!',
+            photo: 'photos/12/Untitled Session36519.jpg',
         },
     },
 };

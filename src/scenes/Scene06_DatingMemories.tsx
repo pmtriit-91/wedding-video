@@ -170,7 +170,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                                 willChange: 'background-position, opacity',
                             }}
                         >
-                            {cfg.intro || 'Những ngày đầu,'}
+                            {cfg.intro || '10 năm quen nhau,'}
                         </div>
                     )}
                 </div>
