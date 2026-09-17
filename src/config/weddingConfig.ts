@@ -219,7 +219,7 @@ export const weddingConfig: WeddingConfig = {
             wishesQuote:
                 'Lời chúc phúc của mọi người là niềm tin để chúng con bước tiếp trên con đường phía trước của cả hai.',
             distanceThankQuote:
-                'Chúng con xin cảm ơn tất cả mọi người đã sắp xếp công việc và thời gian không ngại vượt xa xôi để tới đây.',
+                'Chúng con xin cảm ơn tất cả mọi người đã sắp xếp công việc và thời gian, không ngại đường sá xa xôi để đến chung vui và chúc phúc cho chúng con.',
             fallInLoveQuote: 'Hơn bao giờ hết chúng con muốn nói lời cảm ơn thật nhiều.',
             polaroidPhotos: {
                 groom: {

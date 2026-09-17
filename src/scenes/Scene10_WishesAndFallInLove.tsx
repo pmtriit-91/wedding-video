@@ -198,14 +198,15 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             zIndex: 5,
                         }}
                     >
-                        {/* Tiêu đề Blessings & Love có lớp loáng sáng */}
+                        {/* Tiêu đề Blessings & Love có lớp loáng sáng đồng bộ chuẩn Cảnh 5 */}
                         <div style={{ position: 'relative', marginBottom: 18 }}>
                             <div
                                 style={{
                                     fontFamily: "'Great Vibes', cursive",
-                                    fontSize: 66,
+                                    fontSize: 72,
                                     fontWeight: 600,
                                     color: '#A87932',
+                                    letterSpacing: '0.02em',
                                     textShadow:
                                         '0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)',
                                 }}
@@ -219,10 +220,11 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         position: 'absolute',
                                         inset: 0,
                                         fontFamily: "'Great Vibes', cursive",
-                                        fontSize: 66,
+                                        fontSize: 72,
                                         fontWeight: 600,
+                                        letterSpacing: '0.02em',
                                         background:
-                                            'linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)',
+                                            'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
                                         backgroundSize: '220% 100%',
                                         backgroundPosition: `${shineX}% 0`,
                                         WebkitBackgroundClip: 'text',
@@ -237,16 +239,16 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             )}
                         </div>
 
-                        {/* Trích dẫn nội dung có lớp loáng sáng quét qua */}
+                        {/* Trích dẫn nội dung theo font EB Garamond đồng bộ chuẩn Cảnh 5 */}
                         <div style={{ position: 'relative' }}>
                             <p
                                 style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontSize: 52,
+                                    fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
+                                    fontSize: 58,
                                     fontWeight: 700,
-                                    lineHeight: 1.48,
-                                    color: '#161311',
-                                    letterSpacing: '0.015em',
+                                    lineHeight: 1.38,
+                                    color: '#38302A',
+                                    letterSpacing: '0.01em',
                                     margin: 0,
                                     textShadow:
                                         '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)',
@@ -260,14 +262,14 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                     style={{
                                         position: 'absolute',
                                         inset: 0,
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        fontSize: 52,
+                                        fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
+                                        fontSize: 58,
                                         fontWeight: 700,
-                                        lineHeight: 1.48,
-                                        letterSpacing: '0.015em',
+                                        lineHeight: 1.38,
+                                        letterSpacing: '0.01em',
                                         margin: 0,
                                         background:
-                                            'linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)',
+                                            'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
                                         backgroundSize: '220% 100%',
                                         backgroundPosition: `${shineX}% 0`,
                                         WebkitBackgroundClip: 'text',
@@ -281,6 +283,17 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 </div>
                             )}
                         </div>
+
+                        {/* Thanh gạch dưới vàng tinh tế đồng bộ chuẩn Cảnh 9 */}
+                        <div
+                            style={{
+                                marginTop: 32,
+                                width: 140,
+                                height: 2.5,
+                                backgroundColor: '#A87932',
+                                boxShadow: '0 0 12px rgba(168, 121, 50, 0.5)',
+                            }}
+                        />
                     </div>
                 </div>
             )}
@@ -349,23 +362,24 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             position: 'relative',
                             display: 'flex',
                             flexDirection: 'column',
-                            maxWidth: 780,
+                            maxWidth: 820,
                             marginLeft: 40,
                             transform: `translateX(${interpolate(textSpring2, [0, 1], [-40, 0])}px)`,
                             opacity: interpolate(textSpring2, [0, 1], [0, 1]),
                             zIndex: 5,
                         }}
                     >
-                        {/* Tiêu đề Cảm Ơn viết tay Great Vibes có lớp loáng sáng */}
+                        {/* Tiêu đề Cảm Ơn viết tay Great Vibes theo chuẩn style Cảnh 5 */}
                         <div style={{ position: 'relative', marginBottom: 18 }}>
                             <div
                                 style={{
                                     fontFamily: "'Great Vibes', cursive",
-                                    fontSize: 70,
-                                    fontWeight: 700,
-                                    color: '#8A5818',
+                                    fontSize: 72,
+                                    fontWeight: 600,
+                                    color: '#A87932',
+                                    letterSpacing: '0.02em',
                                     textShadow:
-                                        '0 2px 6px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 35px rgba(255, 255, 255, 0.95)',
+                                        '0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)',
                                 }}
                             >
                                 Heartfelt Thanks
@@ -377,10 +391,11 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         position: 'absolute',
                                         inset: 0,
                                         fontFamily: "'Great Vibes', cursive",
-                                        fontSize: 70,
-                                        fontWeight: 700,
+                                        fontSize: 72,
+                                        fontWeight: 600,
+                                        letterSpacing: '0.02em',
                                         background:
-                                            'linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)',
+                                            'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
                                         backgroundSize: '220% 100%',
                                         backgroundPosition: `${shineX2}% 0`,
                                         WebkitBackgroundClip: 'text',
@@ -395,41 +410,41 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             )}
                         </div>
 
-                        {/* Tiêu đề chính Chúng Con Xin Cảm Ơn */}
+                        {/* Tiêu đề chính Chúng Con Xin Cảm Ơn theo font EB Garamond chuẩn Cảnh 5 */}
                         <div style={{ position: 'relative', marginBottom: 16 }}>
                             <span
                                 style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
                                     fontSize: 56,
-                                    fontWeight: 800,
-                                    color: '#8A5818',
+                                    fontWeight: 700,
+                                    color: '#A87932',
                                     letterSpacing: '0.05em',
                                     textTransform: 'uppercase',
                                     textShadow:
-                                        '0 2px 4px rgba(255, 255, 255, 1), 0 0 18px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.9)',
+                                        '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)',
                                 }}
                             >
                                 CHÚNG CON XIN CẢM ƠN
                             </span>
                         </div>
 
-                        {/* Trích dẫn nội dung có lớp loáng sáng quét qua */}
+                        {/* Trích dẫn nội dung theo font EB Garamond chuẩn Cảnh 5 */}
                         <div style={{ position: 'relative' }}>
                             <p
                                 style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontSize: 50,
+                                    fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
+                                    fontSize: 60,
                                     fontWeight: 700,
-                                    lineHeight: 1.48,
-                                    color: '#0F0C0A',
-                                    letterSpacing: '0.015em',
+                                    lineHeight: 1.38,
+                                    color: '#38302A',
+                                    letterSpacing: '0.01em',
                                     margin: 0,
                                     textShadow:
-                                        '0 2px 4px rgba(255, 255, 255, 1), 0 0 16px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.95)',
+                                        '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)',
                                 }}
                             >
-                                tất cả mọi người đã sắp xếp công việc và thời gian, không ngại vượt đường xa xôi để tới
-                                đây.
+                                tất cả mọi người đã sắp xếp công việc và thời gian, không ngại đường sá xa xôi để đến
+                                chung vui và chúc phúc cho chúng con.
                             </p>
 
                             {shimmerProgress2 >= 0 && (
@@ -437,14 +452,14 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                     style={{
                                         position: 'absolute',
                                         inset: 0,
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        fontSize: 50,
+                                        fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
+                                        fontSize: 60,
                                         fontWeight: 700,
-                                        lineHeight: 1.48,
-                                        letterSpacing: '0.015em',
+                                        lineHeight: 1.38,
+                                        letterSpacing: '0.01em',
                                         margin: 0,
                                         background:
-                                            'linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)',
+                                            'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
                                         backgroundSize: '220% 100%',
                                         backgroundPosition: `${shineX2}% 0`,
                                         WebkitBackgroundClip: 'text',
@@ -454,11 +469,22 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         willChange: 'background-position, opacity',
                                     }}
                                 >
-                                    tất cả mọi người đã sắp xếp công việc và thời gian, không ngại vượt đường xa xôi để
-                                    tới đây.
+                                    tất cả mọi người đã sắp xếp công việc và thời gian, không ngại đường sá xa xôi để
+                                    đến chung vui và chúc phúc cho chúng con.
                                 </div>
                             )}
                         </div>
+
+                        {/* Thanh gạch dưới vàng tinh tế đồng bộ chuẩn Cảnh 9 */}
+                        <div
+                            style={{
+                                marginTop: 32,
+                                width: 140,
+                                height: 2.5,
+                                backgroundColor: '#A87932',
+                                boxShadow: '0 0 12px rgba(168, 121, 50, 0.5)',
+                            }}
+                        />
                     </div>
 
                     {/* 2 Khung ảnh cưới studio tri ân - CÁCH 3: CHÍNH - PHỤ LỒNG GHÉP (HERO & DETAIL INSET) */}
@@ -551,12 +577,14 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         />
                         <span
                             style={{
-                                fontFamily: "'Cormorant Garamond', serif",
+                                fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
                                 fontSize: 64,
                                 fontWeight: 700,
-                                letterSpacing: '0.25em',
-                                color: weddingConfig.colors.textDark,
+                                letterSpacing: '0.22em',
+                                color: '#161311',
                                 textTransform: 'uppercase',
+                                textShadow:
+                                    '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)',
                             }}
                         >
                             FALL IN LOVE
@@ -593,20 +621,34 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         ))}
                     </div>
 
-                    {/* Lời tri ân ở dưới */}
+                    {/* Lời tri ân ở dưới theo chuẩn Plus Jakarta Sans của Cảnh 5 */}
                     <p
                         style={{
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
-                            fontSize: 30,
-                            fontWeight: 500,
-                            color: weddingConfig.colors.textMuted,
-                            letterSpacing: '0.06em',
+                            fontSize: 34,
+                            fontWeight: 600,
+                            lineHeight: 1.6,
+                            color: '#1E1A17',
+                            letterSpacing: '0.02em',
                             textAlign: 'center',
                             marginTop: 20,
+                            textShadow:
+                                '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
                         }}
                     >
                         {cfg.fallInLoveQuote}
                     </p>
+
+                    {/* Thanh gạch dưới vàng tinh tế đồng bộ chuẩn Cảnh 9 */}
+                    <div
+                        style={{
+                            marginTop: 18,
+                            width: 140,
+                            height: 2.5,
+                            backgroundColor: '#A87932',
+                            boxShadow: '0 0 12px rgba(168, 121, 50, 0.5)',
+                        }}
+                    />
                 </div>
             )}
         </div>

@@ -120,14 +120,15 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           zIndex: 5,
         }}
       >
-        {/* Tiêu đề Special Moments có lớp loáng sáng */}
+        {/* Tiêu đề Special Moments có lớp loáng sáng đồng bộ chuẩn Cảnh 10 */}
         <div style={{ position: "relative", marginBottom: 18 }}>
           <div
             style={{
               fontFamily: "'Great Vibes', cursive",
-              fontSize: 66,
+              fontSize: 72,
               fontWeight: 600,
               color: "#A87932",
+              letterSpacing: "0.02em",
               textShadow:
                 "0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)",
             }}
@@ -141,10 +142,11 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
                 position: "absolute",
                 inset: 0,
                 fontFamily: "'Great Vibes', cursive",
-                fontSize: 66,
+                fontSize: 72,
                 fontWeight: 600,
+                letterSpacing: "0.02em",
                 background:
-                  "linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)",
+                  "linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)",
                 backgroundSize: "220% 100%",
                 backgroundPosition: `${shineX}% 0`,
                 WebkitBackgroundClip: "text",
@@ -159,16 +161,16 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           )}
         </div>
 
-        {/* Trích dẫn nội dung có lớp loáng sáng quét qua */}
+        {/* Trích dẫn nội dung theo font EB Garamond đồng bộ chuẩn Cảnh 10 */}
         <div style={{ position: "relative" }}>
           <p
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
               fontSize: 58,
               fontWeight: 700,
-              lineHeight: 1.48,
-              color: "#161311",
-              letterSpacing: "0.015em",
+              lineHeight: 1.38,
+              color: "#38302A",
+              letterSpacing: "0.01em",
               margin: 0,
               textShadow:
                 "0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)",
@@ -182,14 +184,14 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
               style={{
                 position: "absolute",
                 inset: 0,
-                fontFamily: "'Cormorant Garamond', serif",
+                fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
                 fontSize: 58,
                 fontWeight: 700,
-                lineHeight: 1.48,
-                letterSpacing: "0.015em",
+                lineHeight: 1.38,
+                letterSpacing: "0.01em",
                 margin: 0,
                 background:
-                  "linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.85) 60%, transparent 80%)",
+                  "linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)",
                 backgroundSize: "220% 100%",
                 backgroundPosition: `${shineX}% 0`,
                 WebkitBackgroundClip: "text",
@@ -204,9 +206,10 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({
           )}
         </div>
 
+        {/* Thanh gạch dưới vàng tinh tế */}
         <div
           style={{
-            marginTop: 35,
+            marginTop: 32,
             width: 140,
             height: 2.5,
             backgroundColor: "#A87932",
