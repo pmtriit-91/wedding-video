@@ -17,7 +17,6 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
         extrapolateRight: 'clamp',
     });
 
-
     // Hiệu ứng cụm trích dẫn chào mừng bên dưới
     const textSpring = spring({
         frame: frame - 12,
@@ -146,14 +145,15 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                         <div
                             style={{
                                 fontFamily: "'Great Vibes', cursive",
-                                fontSize: 48,
+                                fontSize: 55,
                                 fontWeight: 600,
                                 color: '#A87932',
                                 letterSpacing: '0.04em',
                                 textShadow: '0 1px 12px rgba(255, 255, 255, 0.95), 0 0 16px rgba(255, 255, 255, 0.9)',
                             }}
                         >
-                            Welcome to Our Guests
+                            {/* Welcome to Our Guests */}
+                            Lời chào đến quý vị khách quý
                         </div>
 
                         {shimmerProgress >= 0 && (
@@ -162,7 +162,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                     position: 'absolute',
                                     inset: 0,
                                     fontFamily: "'Great Vibes', cursive",
-                                    fontSize: 48,
+                                    fontSize: 55,
                                     fontWeight: 600,
                                     letterSpacing: '0.04em',
                                     background:
@@ -176,7 +176,8 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                     willChange: 'background-position, opacity',
                                 }}
                             >
-                                Welcome to Our Guests
+                                {/* Welcome to Our Guests */}
+                                Lời chào đến quý vị khách quý
                             </div>
                         )}
                     </div>
@@ -232,7 +233,6 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                     </div>
                 </div>
             </div>
-
 
             {/* Bụi sao vàng óng ánh lơ lửng */}
             {stardustOpacity > 0 && (
