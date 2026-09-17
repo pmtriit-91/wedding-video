@@ -52,21 +52,22 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'flex-start',
-                paddingTop: 42,
+                paddingTop: 40,
                 zIndex: 20,
             }}
         >
-            {/* 3 Khung ảnh Ngoại cảnh đồi thông khổ lớn trung tâm (to rõ đẹp) */}
+            {/* 3 Khung ảnh Ngoại cảnh đồi thông khổ lớn: Xếp so le từ cao đến thấp (trái sang phải) */}
             <div
                 style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center',
+                    alignItems: 'flex-start',
                     gap: 32,
                     zIndex: 16,
                 }}
             >
                 {cfg.photos.map((photoSrc, idx) => {
+                    const stepY = [0, 160, 320][idx];
                     const photoSpring = spring({
                         frame: frame - 14 - idx * 20,
                         fps,
@@ -79,7 +80,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                         <div
                             key={idx}
                             style={{
-                                transform: `translateY(${photoY}px)`,
+                                transform: `translateY(${stepY + photoY}px)`,
                                 opacity: photoOpacity,
                             }}
                         >
@@ -103,7 +104,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                 })}
             </div>
 
-            {/* Cụm thông điệp bên dưới (hạ sát bottom, nhường trọn không gian cho ảnh) */}
+            {/* Cụm thông điệp bên dưới: Đứng cùng trục ngang đáy (bottom: 40) với ảnh thứ 3, căn gọn dưới ảnh 1 */}
             <div
                 style={{
                     position: 'absolute',
@@ -123,7 +124,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                         height: 155,
                         backgroundColor: '#A87932',
                         borderRadius: 2,
-                        marginRight: 24,
+                        marginRight: 20,
                         boxShadow: '0 0 14px rgba(168, 121, 50, 0.45)',
                     }}
                 />
@@ -133,11 +134,11 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                     style={{
                         background: 'rgba(255, 250, 243, 0.92)',
                         backdropFilter: 'blur(12px)',
-                        padding: '20px 36px',
+                        padding: '20px 32px',
                         borderRadius: 14,
                         border: '1px solid rgba(220, 185, 140, 0.5)',
                         boxShadow: '0 12px 35px rgba(140, 100, 60, 0.12)',
-                        maxWidth: 1100,
+                        maxWidth: 736,
                         position: 'relative',
                     }}
                 >
@@ -145,7 +146,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                         <div
                             style={{
                                 fontFamily: "'Great Vibes', cursive",
-                                fontSize: 56,
+                                fontSize: 52,
                                 fontWeight: 600,
                                 color: '#A87932',
                                 letterSpacing: '0.02em',
@@ -162,7 +163,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                     position: 'absolute',
                                     inset: 0,
                                     fontFamily: "'Great Vibes', cursive",
-                                    fontSize: 56,
+                                    fontSize: 52,
                                     fontWeight: 600,
                                     letterSpacing: '0.02em',
                                     background:
@@ -186,7 +187,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                         <p
                             style={{
                                 fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                                fontSize: 50,
+                                fontSize: 46,
                                 fontWeight: 700,
                                 lineHeight: 1.32,
                                 color: '#1A1614',
@@ -208,7 +209,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                     position: 'absolute',
                                     inset: 0,
                                     fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                                    fontSize: 50,
+                                    fontSize: 46,
                                     fontWeight: 700,
                                     lineHeight: 1.32,
                                     letterSpacing: '0.01em',
