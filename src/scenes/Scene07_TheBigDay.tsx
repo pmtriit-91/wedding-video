@@ -13,7 +13,6 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
         extrapolateRight: 'clamp',
     });
 
-
     // Hiệu ứng dòng chữ thông điệp xuất hiện từ bên trái
     const textSpring = spring({
         frame: frame - 10,
@@ -125,7 +124,7 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                             style={{
                                 display: 'block',
                                 fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                fontSize: 40,
+                                fontSize: 45,
                                 fontWeight: 600,
                                 color: '#1E1A17',
                                 marginTop: 14,
@@ -190,12 +189,12 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                         transform: `translateX(${interpolate(
                             spring({ frame: frame - 16, fps, config: { damping: 18, mass: 1.2 } }),
                             [0, 1],
-                            [60, 0]
+                            [60, 0],
                         )}px)`,
                         opacity: interpolate(
                             spring({ frame: frame - 16, fps, config: { damping: 18, mass: 1.2 } }),
                             [0, 1],
-                            [0, 1]
+                            [0, 1],
                         ),
                     }}
                 >

@@ -52,7 +52,6 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 zIndex: 20,
             }}
         >
-
             {/* Cụm thông điệp Kỷ niệm ở góc trên bên phải (đối xứng với Cảnh 7, căn thẳng mép phải với dải ảnh) */}
             <div
                 style={{
@@ -73,7 +72,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                     <span
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
-                            fontSize: 68,
+                            fontSize: 76,
                             fontWeight: 700,
                             fontStyle: 'italic',
                             color: weddingConfig.colors.textDark,
@@ -91,7 +90,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                                 position: 'absolute',
                                 inset: 0,
                                 fontFamily: "'Cormorant Garamond', serif",
-                                fontSize: 68,
+                                fontSize: 76,
                                 fontWeight: 700,
                                 fontStyle: 'italic',
                                 letterSpacing: '0.03em',
@@ -117,7 +116,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 <p
                     style={{
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        fontSize: 38,
+                        fontSize: 45,
                         fontWeight: 600,
                         lineHeight: 1.5,
                         color: '#221E1C',
