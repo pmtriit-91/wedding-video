@@ -212,17 +212,17 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: 16,
-                        margin: '10px 0 16px 0',
+                        gap: 18,
+                        margin: '12px 0 18px 0',
                     }}
                 >
                     {/* Ngôi sao lấp lánh bên trái */}
                     <span
                         style={{
-                            fontSize: 16,
-                            color: '#D4AF37',
-                            opacity: starPulse * 0.85,
-                            filter: 'drop-shadow(0 0 6px rgba(212, 175, 55, 0.7))',
+                            fontSize: 22,
+                            color: '#A87932',
+                            opacity: starPulse * 0.9 + 0.1,
+                            filter: 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.75))',
                             userSelect: 'none',
                         }}
                     >
@@ -230,15 +230,16 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                     </span>
 
                     <div style={{ position: 'relative', display: 'inline-block' }}>
-                        {/* Dòng chữ ngày tháng cơ bản - Tone vàng ánh kim sang trọng */}
+                        {/* Dòng chữ ngày tháng cơ bản - Tone vàng kim hoàng gia đậm đà, sắc nét */}
                         <div
                             style={{
                                 fontFamily: "'EB Garamond', 'Playfair Display', serif",
-                                fontSize: 32,
-                                fontWeight: 600,
+                                fontSize: 42,
+                                fontWeight: 800,
                                 letterSpacing: '0.26em',
-                                color: '#B48C50',
-                                textShadow: '0 1px 8px rgba(180, 140, 80, 0.25)',
+                                color: '#9E6D24',
+                                textShadow:
+                                    '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85), 0 0 12px rgba(180, 140, 80, 0.25)',
                             }}
                         >
                             {weddingConfig.weddingDate}
@@ -251,11 +252,11 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                                     position: 'absolute',
                                     inset: 0,
                                     fontFamily: "'EB Garamond', 'Playfair Display', serif",
-                                    fontSize: 32,
-                                    fontWeight: 600,
+                                    fontSize: 42,
+                                    fontWeight: 800,
                                     letterSpacing: '0.26em',
                                     background:
-                                        'linear-gradient(110deg, transparent 20%, rgba(245, 215, 145, 0.75) 42%, rgba(255, 255, 255, 1) 50%, rgba(245, 215, 145, 0.75) 58%, transparent 80%)',
+                                        'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.8) 42%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.8) 58%, transparent 80%)',
                                     backgroundSize: '220% 100%',
                                     backgroundPosition: `${dateShineX}% 0`,
                                     WebkitBackgroundClip: 'text',
@@ -283,11 +284,11 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                             >
                                 <div
                                     style={{
-                                        width: 22,
-                                        height: 22,
+                                        width: 24,
+                                        height: 24,
                                         background:
-                                            'radial-gradient(circle, #FFFFFF 20%, rgba(255, 225, 140, 0.8) 50%, transparent 80%)',
-                                        filter: 'drop-shadow(0 0 8px rgba(255, 240, 180, 0.9))',
+                                            'radial-gradient(circle, #FFFFFF 20%, rgba(255, 225, 140, 0.85) 50%, transparent 80%)',
+                                        filter: 'drop-shadow(0 0 10px rgba(255, 240, 180, 0.95))',
                                         borderRadius: '50%',
                                     }}
                                 />
@@ -298,10 +299,10 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                     {/* Ngôi sao lấp lánh bên phải */}
                     <span
                         style={{
-                            fontSize: 16,
-                            color: '#D4AF37',
-                            opacity: starPulse * 0.85,
-                            filter: 'drop-shadow(0 0 6px rgba(212, 175, 55, 0.7))',
+                            fontSize: 22,
+                            color: '#A87932',
+                            opacity: starPulse * 0.9 + 0.1,
+                            filter: 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.75))',
                             userSelect: 'none',
                         }}
                     >
@@ -314,35 +315,36 @@ export const Scene01_Welcome: React.FC<{ durationInFrames: number }> = ({ durati
                     style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 24,
+                        gap: 34,
                         width: '100%',
                         justifyContent: 'center',
                     }}
                 >
                     <div
                         style={{
-                            width: 120,
-                            height: 1.5,
-                            background: 'linear-gradient(to right, transparent, #C69B56)',
+                            width: 140,
+                            height: 2,
+                            background: 'linear-gradient(to right, transparent, #A87932)',
                         }}
                     />
                     <span
                         style={{
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
-                            fontSize: 18,
-                            fontWeight: 600,
+                            fontSize: 28,
+                            fontWeight: 800,
                             letterSpacing: '0.35em',
-                            color: weddingConfig.colors.textMuted,
+                            color: '#221E1C',
                             textTransform: 'uppercase',
+                            textShadow: '0 1px 2px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.8)',
                         }}
                     >
                         {cfg.subtitle}
                     </span>
                     <div
                         style={{
-                            width: 120,
-                            height: 1.5,
-                            background: 'linear-gradient(to left, transparent, #C69B56)',
+                            width: 140,
+                            height: 2,
+                            background: 'linear-gradient(to left, transparent, #A87932)',
                         }}
                     />
                 </div>
