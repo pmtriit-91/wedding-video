@@ -73,10 +73,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
         shimmerProgress2 = interpolate(frame, [880, 940], [0, 1]);
     }
     const shineX2 = interpolate(shimmerProgress2, [0, 1], [130, -30]);
-    const shineOpacity2 =
-        shimmerProgress2 >= 0
-            ? interpolate(shimmerProgress2, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
-            : 0;
+    const shineOpacity2 = shimmerProgress2 >= 0 ? interpolate(shimmerProgress2, [0, 0.2, 0.8, 1], [0, 1, 1, 0]) : 0;
 
     // Giai đoạn 3 (Frames 1010 -> Kết thúc): FALL IN LOVE & 2 ảnh nhí nhảnh
     const phase3Opacity = interpolate(frame, [1010, 1035, durationInFrames - 25, durationInFrames], [0, 1, 1, 0], {
@@ -430,7 +427,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         '0 2px 4px rgba(255, 255, 255, 1), 0 0 16px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.95)',
                                 }}
                             >
-                                tất cả mọi người đã sắp xếp công việc và thời gian, không ngại vượt đường xa xôi để tới đây.
+                                tất cả mọi người đã sắp xếp công việc và thời gian, không ngại vượt đường xa xôi để tới
+                                đây.
                             </p>
 
                             {shimmerProgress2 >= 0 && (
@@ -455,17 +453,17 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         willChange: 'background-position, opacity',
                                     }}
                                 >
-                                    tất cả mọi người đã sắp xếp công việc và thời gian, không ngại vượt đường xa xôi để tới đây.
+                                    tất cả mọi người đã sắp xếp công việc và thời gian, không ngại vượt đường xa xôi để
+                                    tới đây.
                                 </div>
                             )}
                         </div>
                     </div>
 
-                    {/* 2 Khung ảnh cưới studio tri ân phóng to nổi bật */}
+                    {/* 2 Khung ảnh cưới studio tri ân - CÁCH 1: XẾP LỚP SO LE LỆCH TẦNG (LAYERED EDITORIAL) */}
                     <div
                         style={{
                             display: 'flex',
-                            gap: 36,
                             alignItems: 'center',
                             position: 'relative',
                             transform: `translateX(${interpolate(photoSpring2, [0, 1], [40, 0])}px)`,
@@ -473,22 +471,43 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             zIndex: 5,
                         }}
                     >
-                        <PhotoFrame
-                            src="photos/9/Untitled Session36551.jpg"
-                            durationInFrames={510}
-                            direction="zoom-in"
-                            width={630}
-                            height={870}
-                            variant="studio"
-                        />
-                        <PhotoFrame
-                            src="photos/9/Untitled Session36695.jpg"
-                            durationInFrames={510}
-                            direction="zoom-out"
-                            width={630}
-                            height={870}
-                            variant="studio"
-                        />
+                        {/* Ảnh 1: Lệch lên trên nhẹ nhàng */}
+                        <div
+                            style={{
+                                transform: 'translateY(-35px)',
+                                zIndex: 1,
+                                position: 'relative',
+                            }}
+                        >
+                            <PhotoFrame
+                                src="photos/9/Untitled Session36551.jpg"
+                                durationInFrames={510}
+                                direction="zoom-in"
+                                width={620}
+                                height={850}
+                                variant="studio"
+                            />
+                        </div>
+
+                        {/* Ảnh 2: Lệch xuống dưới, đè nhẹ qua mép ảnh 1 tạo chiều sâu 3D */}
+                        <div
+                            style={{
+                                transform: 'translateY(40px)',
+                                marginLeft: -55,
+                                zIndex: 2,
+                                position: 'relative',
+                                filter: 'drop-shadow(0 22px 45px rgba(0, 0, 0, 0.32))',
+                            }}
+                        >
+                            <PhotoFrame
+                                src="photos/9/Untitled Session36695.jpg"
+                                durationInFrames={510}
+                                direction="zoom-out"
+                                width={620}
+                                height={850}
+                                variant="studio"
+                            />
+                        </div>
                     </div>
                 </div>
             )}
