@@ -76,7 +76,7 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({ du
                     <div
                         style={{
                             fontFamily: "'Great Vibes', cursive",
-                            fontSize: 90,
+                            fontSize: 84,
                             fontWeight: 600,
                             color: '#A87932',
                             letterSpacing: '0.02em',
@@ -93,7 +93,7 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({ du
                                 position: 'absolute',
                                 inset: 0,
                                 fontFamily: "'Great Vibes', cursive",
-                                fontSize: 90,
+                                fontSize: 84,
                                 fontWeight: 600,
                                 letterSpacing: '0.02em',
                                 background:
@@ -118,7 +118,7 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({ du
                     <p
                         style={{
                             fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                            fontSize: 72,
+                            fontSize: 64,
                             fontWeight: 700,
                             lineHeight: 1.32,
                             color: '#1A1614',
@@ -137,7 +137,7 @@ export const Scene09_CeremonyJoy: React.FC<{ durationInFrames: number }> = ({ du
                                 position: 'absolute',
                                 inset: 0,
                                 fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                                fontSize: 72,
+                                fontSize: 64,
                                 fontWeight: 700,
                                 lineHeight: 1.32,
                                 letterSpacing: '0.01em',

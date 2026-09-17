@@ -113,7 +113,6 @@ export const Scene12_Outro: React.FC<{ durationInFrames: number }> = ({ duration
             {/* Hạt bụi vàng lơ lửng cinematic */}
             <GoldenDust count={25} zIndex={22} />
 
-
             {/* ========================================================================= */}
             {/* CỤM LỜI CẢM ƠN KẾT THÚC BÊN PHẢI (NẰM TRỌN TRONG TRÁI TIM HOA HỒNG) */}
             {/* ========================================================================= */}
@@ -121,7 +120,7 @@ export const Scene12_Outro: React.FC<{ durationInFrames: number }> = ({ duration
                 style={{
                     position: 'absolute',
                     left: 900,
-                    right: 180,
+                    right: 0,
                     top: 0,
                     bottom: 0,
                     display: 'flex',
@@ -147,7 +146,8 @@ export const Scene12_Outro: React.FC<{ durationInFrames: number }> = ({ duration
                         textShadow: '0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)',
                     }}
                 >
-                    Thank you so much
+                    {/* Thank you so much */}
+                    Lời kết
                 </div>
 
                 {/* Tiêu đề chính Chúng Con Xin Cảm Ơn Ạ có lớp loáng sáng vàng */}
