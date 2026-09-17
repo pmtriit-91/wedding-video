@@ -1,5 +1,5 @@
 import React from 'react';
-import { Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { GoldenStardust } from '../components/GoldenStardust';
 import { PhotoFrame } from '../components/PhotoFrame';
 import { weddingConfig } from '../config/weddingConfig';
@@ -38,6 +38,16 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
         extrapolateRight: 'clamp',
     });
 
+    // 3 ảnh tiêu biểu ngày trọng đại: bố cục đối xứng hài hòa (chân dung 2 bên, cận cảnh lãng mạn ở giữa)
+    const displayPhotos = [
+        cfg.photos[1] || cfg.photos[0],
+        cfg.photos[0],
+        cfg.photos[2] || cfg.photos[1],
+    ];
+
+    // Đẩy ảnh xuống phía dưới (dương) để giữ nguyên trọn vẹn phần đầu tóc không bị crop
+    const photoOffsetsY = [80, 70, 80];
+
     return (
         <div
             style={{
@@ -47,168 +57,136 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '50px 100px 160px 100px',
+                justifyContent: 'flex-start',
+                padding: '40px 100px 0 100px',
                 zIndex: 20,
             }}
         >
-            {/* Bố cục Tạp chí Cưới Editorial Vogue: Nhịp LỚN - NHỎ tương phản hoàn hảo */}
+            {/* Cụm thông điệp Ngày trọng đại ở góc trên bên trái (căn thẳng mép trái với dải ảnh) */}
+            <div
+                style={{
+                    width: 2344,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    textAlign: 'left',
+                    paddingLeft: 10,
+                    transform: `translateX(${textX}px)`,
+                    opacity: textOpacity,
+                    zIndex: 16,
+                    marginTop: 0,
+                }}
+            >
+                {/* Dòng 1: Dẫn dắt cảm xúc (Cormorant Garamond nghiêng 76px) */}
+                <div style={{ position: 'relative' }}>
+                    <span
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            fontSize: 76,
+                            fontWeight: 700,
+                            fontStyle: 'italic',
+                            color: weddingConfig.colors.textDark,
+                            letterSpacing: '0.03em',
+                            lineHeight: 1.2,
+                        }}
+                    >
+                        {cfg.line1}
+                    </span>
+
+                    {/* Lớp ánh kim loáng sáng quét qua dòng tiêu đề chính */}
+                    {shimmerProgress >= 0 && (
+                        <div
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontSize: 76,
+                                fontWeight: 700,
+                                fontStyle: 'italic',
+                                letterSpacing: '0.03em',
+                                lineHeight: 1.2,
+                                whiteSpace: 'nowrap',
+                                background:
+                                    'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
+                                backgroundSize: '220% 100%',
+                                backgroundPosition: `${shineX}% 0`,
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                pointerEvents: 'none',
+                                opacity: shineOpacity,
+                                willChange: 'background-position, opacity',
+                            }}
+                        >
+                            {cfg.line1}
+                        </div>
+                    )}
+                </div>
+
+                {/* Dòng 2: Lời khẳng định quan trọng (Plus Jakarta Sans 45px) */}
+                <p
+                    style={{
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        fontSize: 45,
+                        fontWeight: 600,
+                        lineHeight: 1.5,
+                        color: '#1E1A17',
+                        marginTop: 12,
+                        letterSpacing: '0.015em',
+                        textShadow: '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
+                    }}
+                >
+                    {cfg.line2}
+                </p>
+            </div>
+
+            {/* 3 Khung ảnh ngày trọng đại khổ lớn (kích thước đồng nhất với Cảnh 6: 760x1040) */}
             <div
                 style={{
                     display: 'flex',
+                    justifyContent: 'center',
                     alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: '100%',
-                    height: '100%',
+                    gap: 32,
+                    marginTop: 50,
                     zIndex: 16,
                 }}
             >
-                {/* Cụm bên trái: Thông điệp Ngày trọng đại & 2 ảnh chi tiết cảm xúc */}
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        maxWidth: 1140,
-                        transform: `translateX(${textX}px)`,
-                        opacity: textOpacity,
-                    }}
-                >
-                    {/* Khối Text tiêu đề */}
-                    <div style={{ marginBottom: 36 }}>
-                        <div style={{ position: 'relative' }}>
-                            <span
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontSize: 76,
-                                    fontWeight: 700,
-                                    fontStyle: 'italic',
-                                    color: weddingConfig.colors.textDark,
-                                    letterSpacing: '0.03em',
-                                    lineHeight: 1.2,
-                                }}
-                            >
-                                {cfg.line1}
-                            </span>
+                {displayPhotos.map((photoSrc, idx) => {
+                    // Thời điểm xuất hiện lần lượt từng ảnh: mỗi ảnh cách nhau 45 frames (~0.75s)
+                    const startFrame = 16 + idx * 45;
+                    const endFrame = startFrame + 100; // Thời lượng chuyển động 100 frames (~1.67s)
 
-                            {/* Lớp ánh kim quét qua dòng tiêu đề chính */}
-                            {shimmerProgress >= 0 && (
-                                <div
-                                    style={{
-                                        position: 'absolute',
-                                        inset: 0,
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        fontSize: 76,
-                                        fontWeight: 700,
-                                        fontStyle: 'italic',
-                                        letterSpacing: '0.03em',
-                                        lineHeight: 1.2,
-                                        whiteSpace: 'nowrap',
-                                        background:
-                                            'linear-gradient(110deg, transparent 20%, rgba(255, 235, 180, 0.7) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 235, 180, 0.7) 60%, transparent 80%)',
-                                        backgroundSize: '220% 100%',
-                                        backgroundPosition: `${shineX}% 0`,
-                                        WebkitBackgroundClip: 'text',
-                                        WebkitTextFillColor: 'transparent',
-                                        pointerEvents: 'none',
-                                        opacity: shineOpacity,
-                                        willChange: 'background-position, opacity',
-                                    }}
-                                >
-                                    {cfg.line1}
-                                </div>
-                            )}
-                        </div>
+                    // Hiệu ứng trượt từ dưới lên chậm rãi, êm dịu
+                    const photoY = interpolate(frame, [startFrame, endFrame], [80, 0], {
+                        extrapolateLeft: 'clamp',
+                        extrapolateRight: 'clamp',
+                        easing: Easing.out(Easing.quad),
+                    });
+                    const photoOpacity = interpolate(frame, [startFrame, startFrame + 35], [0, 1], {
+                        extrapolateLeft: 'clamp',
+                        extrapolateRight: 'clamp',
+                    });
 
-                        <span
+                    return (
+                        <div
+                            key={idx}
                             style={{
-                                display: 'block',
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                fontSize: 45,
-                                fontWeight: 600,
-                                color: '#1E1A17',
-                                marginTop: 14,
-                                lineHeight: 1.5,
-                                letterSpacing: '0.015em',
-                                textShadow: '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
+                                transform: `translateY(${photoY}px)`,
+                                opacity: photoOpacity,
+                                willChange: 'transform, opacity',
                             }}
                         >
-                            {cfg.line2}
-                        </span>
-
-                        {/* Thanh chỉ vàng nối tiếp */}
-                        <div
-                            style={{
-                                marginTop: 24,
-                                width: 160,
-                                height: 3,
-                                background: 'linear-gradient(to right, #C69B56, rgba(198, 155, 86, 0.2))',
-                                borderRadius: 2,
-                            }}
-                        />
-                    </div>
-
-                    {/* 2 Ảnh chi tiết cảm xúc xếp song song cân đối */}
-                    <div style={{ display: 'flex', gap: 26, alignItems: 'center' }}>
-                        {[cfg.photos[1], cfg.photos[2] || cfg.photos[3]].map((photoSrc, idx) => {
-                            const subSpring = spring({
-                                frame: frame - 28 - idx * 24,
-                                fps,
-                                config: { damping: 18, mass: 1.1 },
-                            });
-                            const subY = interpolate(subSpring, [0, 1], [50, 0]);
-                            const subOpacity = interpolate(subSpring, [0, 1], [0, 1]);
-
-                            return (
-                                <div
-                                    key={idx}
-                                    style={{
-                                        transform: `translateY(${subY}px)`,
-                                        opacity: subOpacity,
-                                    }}
-                                >
-                                    <PhotoFrame
-                                        src={photoSrc}
-                                        durationInFrames={durationInFrames}
-                                        direction={idx === 0 ? 'zoom-in' : 'pan-up'}
-                                        initialScale={1.02}
-                                        finalScale={1.08}
-                                        width={540}
-                                        height={680}
-                                        variant="studio"
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* Cụm bên phải: 1 Ảnh HERO KHỔ LỚN tạo điểm nhấn thị giác hoành tráng */}
-                <div
-                    style={{
-                        transform: `translateX(${interpolate(
-                            spring({ frame: frame - 16, fps, config: { damping: 18, mass: 1.2 } }),
-                            [0, 1],
-                            [60, 0],
-                        )}px)`,
-                        opacity: interpolate(
-                            spring({ frame: frame - 16, fps, config: { damping: 18, mass: 1.2 } }),
-                            [0, 1],
-                            [0, 1],
-                        ),
-                    }}
-                >
-                    <PhotoFrame
-                        src={cfg.photos[0]}
-                        durationInFrames={durationInFrames}
-                        direction="zoom-out"
-                        initialScale={1.12}
-                        finalScale={1.02}
-                        width={1060}
-                        height={1220}
-                        variant="studio"
-                    />
-                </div>
+                            <PhotoFrame
+                                src={photoSrc}
+                                durationInFrames={durationInFrames}
+                                direction={idx === 0 ? 'pan-right' : idx === 1 ? 'zoom-out' : 'pan-left'}
+                                imageOffsetY={photoOffsetsY[idx]}
+                                width={760}
+                                height={1040}
+                                variant="studio"
+                            />
+                        </div>
+                    );
+                })}
             </div>
 
             {/* Bụi sao vàng óng ánh lơ lửng */}
