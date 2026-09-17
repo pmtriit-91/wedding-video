@@ -241,7 +241,7 @@ export const weddingConfig: WeddingConfig = {
         scene11_foreverHappy: {
             quote: 'Mãi mãi bắt đầu từ hôm nay, chúng con sẽ luôn luôn hạnh phúc.',
             username: 'camhuong_minhtri',
-            photos: ['photos/11/DSC_0638.jpg', 'photos/11/DSC_0553.jpg', 'photos/11/DSC_1167.jpg'],
+            photos: ['photos/11/DSC_1167.jpg', 'photos/11/DSC_0949.jpg', 'photos/11/DSC_0760.jpg'],
         },
 
         // SCENE 12: Lời kết

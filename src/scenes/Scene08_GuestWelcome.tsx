@@ -235,9 +235,9 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
             </div>
 
             {/* Bụi sao vàng óng ánh lơ lửng */}
-            {stardustOpacity > 0 && (
+            {/* {stardustOpacity > 0 && (
                 <GoldenStardust starCount={16} grainCount={24} opacity={stardustOpacity} zIndex={18} />
-            )}
+            )} */}
         </div>
     );
 };

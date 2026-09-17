@@ -39,11 +39,7 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
     });
 
     // 3 ảnh tiêu biểu ngày trọng đại: bố cục đối xứng hài hòa (chân dung 2 bên, cận cảnh lãng mạn ở giữa)
-    const displayPhotos = [
-        cfg.photos[1] || cfg.photos[0],
-        cfg.photos[0],
-        cfg.photos[2] || cfg.photos[1],
-    ];
+    const displayPhotos = [cfg.photos[1] || cfg.photos[0], cfg.photos[0], cfg.photos[2] || cfg.photos[1]];
 
     // Đẩy ảnh xuống phía dưới (dương) để giữ nguyên trọn vẹn phần đầu tóc không bị crop
     const photoOffsetsY = [80, 70, 80];
@@ -190,9 +186,9 @@ export const Scene07_TheBigDay: React.FC<{ durationInFrames: number }> = ({ dura
             </div>
 
             {/* Bụi sao vàng óng ánh lơ lửng */}
-            {stardustOpacity > 0 && (
+            {/* {stardustOpacity > 0 && (
                 <GoldenStardust starCount={16} grainCount={24} opacity={stardustOpacity} zIndex={18} />
-            )}
+            )} */}
         </div>
     );
 };

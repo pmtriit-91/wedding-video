@@ -78,10 +78,13 @@ export const Scene11_ForeverHappy: React.FC<{ durationInFrames: number }> = ({ d
                             <PhotoFrame
                                 src={photoSrc}
                                 durationInFrames={durationInFrames}
-                                direction={idx === 0 ? 'zoom-out' : idx === 1 ? 'pan-up' : 'zoom-out'}
+                                direction={idx === 1 ? 'zoom-in' : 'zoom-out'}
                                 width={630}
                                 height={945}
                                 variant="studio"
+                                initialScale={idx === 1 ? 1.38 : 1.08}
+                                finalScale={idx === 1 ? 1.48 : 1.0}
+                                transformOrigin={idx === 1 ? '54% 100%' : 'center center'}
                             />
                         </div>
                     );
