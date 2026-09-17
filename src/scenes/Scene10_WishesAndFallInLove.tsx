@@ -168,9 +168,9 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 <div
                                     style={{
                                         fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
-                                        fontSize: 33,
-                                        fontWeight: 700,
-                                        letterSpacing: '0.12em',
+                                        fontSize: 44,
+                                        fontWeight: 800,
+                                        letterSpacing: '0.08em',
                                         color: '#161311',
                                     }}
                                 >
@@ -179,12 +179,12 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 <div
                                     style={{
                                         fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                        fontSize: 16,
-                                        fontWeight: 700,
-                                        letterSpacing: '0.2em',
+                                        fontSize: 22,
+                                        fontWeight: 800,
+                                        letterSpacing: '0.18em',
                                         color: '#9E6D24',
                                         textTransform: 'uppercase',
-                                        marginTop: 4,
+                                        marginTop: 6,
                                     }}
                                 >
                                     {cfg.polaroidPhotos.groom.title}
@@ -209,9 +209,9 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 <div
                                     style={{
                                         fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
-                                        fontSize: 33,
+                                        fontSize: 44,
                                         fontWeight: 700,
-                                        letterSpacing: '0.12em',
+                                        letterSpacing: '0.08em',
                                         color: '#161311',
                                     }}
                                 >
@@ -220,12 +220,12 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 <div
                                     style={{
                                         fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                        fontSize: 16,
+                                        fontSize: 22,
                                         fontWeight: 700,
-                                        letterSpacing: '0.2em',
+                                        letterSpacing: '0.18em',
                                         color: '#9E6D24',
                                         textTransform: 'uppercase',
-                                        marginTop: 4,
+                                        marginTop: 6,
                                     }}
                                 >
                                     {cfg.polaroidPhotos.bride.title}
