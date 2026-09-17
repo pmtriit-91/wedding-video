@@ -48,23 +48,23 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'flex-start',
-                padding: '50px 100px 0 100px',
+                padding: '40px 100px 0 100px',
                 zIndex: 20,
             }}
         >
             {/* Cụm thông điệp Kỷ niệm ở góc trên bên phải (đối xứng với Cảnh 7, căn thẳng mép phải với dải ảnh) */}
             <div
                 style={{
-                    width: 1992,
+                    width: 2344,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-end',
                     textAlign: 'right',
-                    paddingRight: 30,
+                    paddingRight: 10,
                     transform: `translateX(${textX}px)`,
                     opacity: textOpacity,
                     zIndex: 16,
-                    marginTop: 10,
+                    marginTop: 0,
                 }}
             >
                 {/* Dòng 1: Dẫn dắt bay bổng (Cormorant Garamond nghiêng 68px) */}
@@ -135,8 +135,8 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    gap: 36,
-                    marginTop: 155,
+                    gap: 32,
+                    marginTop: 50,
                     zIndex: 16,
                 }}
             >
@@ -157,7 +157,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                     });
 
                     // Độ dịch vị trí ảnh lên phía trên (top) trong khung chứa của từng ảnh
-                    const photoOffsetsY = [-60, -105, -60];
+                    const photoOffsetsY = [-75, -120, -75];
 
                     return (
                         <div
@@ -173,8 +173,8 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                                 durationInFrames={durationInFrames}
                                 direction={idx === 0 ? 'pan-right' : idx === 1 ? 'zoom-out' : 'pan-left'}
                                 imageOffsetY={photoOffsetsY[idx]}
-                                width={640}
-                                height={870}
+                                width={760}
+                                height={1040}
                                 variant="studio"
                             />
                         </div>
