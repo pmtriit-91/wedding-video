@@ -99,9 +99,9 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
       <div
         style={{
           width,
-          height: height + 90,
+          height: height + 105,
           backgroundColor: "#FFFFFF",
-          padding: "16px 16px 20px 16px",
+          padding: "16px 16px 22px 16px",
           borderRadius: 8,
           boxShadow: "0 25px 55px rgba(60, 45, 20, 0.18), 0 4px 12px rgba(0,0,0,0.06)",
           display: "flex",
@@ -139,7 +139,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           />
         </div>
 
-        {/* Tên & chức danh dưới khung Polaroid */}
+        {/* Tên & chức danh dưới khung Polaroid - Rõ nét, đậm đà sang trọng */}
         <div
           style={{
             marginTop: 18,
@@ -152,11 +152,13 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
           {captionName && (
             <span
               style={{
-                fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
-                fontSize: 28,
+                fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
+                fontSize: 34,
                 fontWeight: 700,
-                letterSpacing: "0.12em",
-                color: "#2A2520",
+                letterSpacing: "0.14em",
+                color: "#0F0C0A",
+                WebkitTextStroke: "0.4px #0F0C0A",
+                textShadow: "0 1px 2px rgba(0,0,0,0.08)",
               }}
             >
               {captionName}
@@ -166,10 +168,10 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
             <span
               style={{
                 fontFamily: "'Plus Jakarta Sans', 'Montserrat', sans-serif",
-                fontSize: 16,
-                fontWeight: 500,
-                letterSpacing: "0.2em",
-                color: "#C69B56",
+                fontSize: 18,
+                fontWeight: 700,
+                letterSpacing: "0.22em",
+                color: "#9E6D24",
                 textTransform: "uppercase",
               }}
             >

@@ -91,7 +91,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
             }}
         >
             {/* ========================================================
-          GIAI ĐOẠN 1: 2 ẢNH POLAROID & LỜI CHÚC PHÚC
+          GIAI ĐOẠN 1: LỜI CHÚC PHÚC & 2 ẢNH POLAROID DÂU RỂ
       ======================================================== */}
             {phase1Opacity > 0 && (
                 <div
@@ -102,24 +102,24 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        padding: '0 130px 0 85px',
+                        padding: '0 85px 0 110px',
                     }}
                 >
-                    {/* Lớp nền phong cảnh hoa hồng leo phủ full màn hình bên trái với mép chuyển nhòe mượt mà */}
+                    {/* Lớp nền phong cảnh hoa hồng leo phủ bên phải với mép chuyển nhòe mượt mà, lật ngang */}
                     <div
                         style={{
                             position: 'absolute',
                             top: 0,
-                            left: 0,
+                            right: 0,
                             bottom: 0,
                             width: 1400,
                             overflow: 'hidden',
                             pointerEvents: 'none',
                             zIndex: 1,
                             WebkitMaskImage:
-                                'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
+                                'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
                             maskImage:
-                                'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
+                                'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
                         }}
                     >
                         <Img
@@ -129,6 +129,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 height: '100%',
                                 objectFit: 'cover',
                                 objectPosition: '-180px center',
+                                transform: 'scaleX(-1)',
                                 opacity: 0.72,
                                 filter: 'brightness(103%) contrast(102%)',
                             }}
@@ -140,21 +141,59 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 position: 'absolute',
                                 inset: 0,
                                 background:
-                                    'linear-gradient(to right, rgba(247, 243, 235, 0.35) 0%, rgba(247, 243, 235, 0.55) 40%, rgba(247, 243, 235, 0.88) 75%, #F7F3EB 100%)',
+                                    'linear-gradient(to left, rgba(247, 243, 235, 0.35) 0%, rgba(247, 243, 235, 0.55) 40%, rgba(247, 243, 235, 0.88) 75%, #F7F3EB 100%)',
                             }}
                         />
                     </div>
 
-                    <FloralDecor position="top-left" opacity={0.35} />
+                    <FloralDecor position="top-right" opacity={0.35} />
 
-                    {/* Lời chúc phúc bên trái */}
+                    {/* 2 Khung ảnh Polaroid Chú rể & Cô dâu - BÊN TRÁI */}
+                    <div
+                        style={{
+                            display: 'flex',
+                            gap: 36,
+                            alignItems: 'center',
+                            position: 'relative',
+                            transform: `translateX(${interpolate(photoSpring, [0, 1], [-40, 0])}px)`,
+                            opacity: interpolate(photoSpring, [0, 1], [0, 1]),
+                            zIndex: 5,
+                        }}
+                    >
+                        <PhotoFrame
+                            src={cfg.polaroidPhotos.groom.photo}
+                            durationInFrames={520}
+                            initialScale={1.3}
+                            finalScale={1.5}
+                            direction="zoom-in"
+                            width={585}
+                            height={755}
+                            variant="polaroid"
+                            captionName={cfg.polaroidPhotos.groom.name}
+                            captionTitle={cfg.polaroidPhotos.groom.title}
+                            style={{ transform: 'rotate(-1.8deg)' }}
+                        />
+                        <PhotoFrame
+                            src={cfg.polaroidPhotos.bride.photo}
+                            durationInFrames={520}
+                            direction="zoom-out"
+                            width={585}
+                            height={755}
+                            variant="polaroid"
+                            captionName={cfg.polaroidPhotos.bride.name}
+                            captionTitle={cfg.polaroidPhotos.bride.title}
+                            style={{ transform: 'rotate(1.8deg)' }}
+                        />
+                    </div>
+
+                    {/* Lời chúc phúc BÊN PHẢI */}
                     <div
                         style={{
                             position: 'relative',
                             display: 'flex',
                             flexDirection: 'column',
                             maxWidth: 880,
-                            transform: `translateX(${interpolate(textSpring, [0, 1], [-40, 0])}px)`,
+                            transform: `translateX(${interpolate(textSpring, [0, 1], [40, 0])}px)`,
                             opacity: interpolate(textSpring, [0, 1], [0, 1]),
                             zIndex: 5,
                         }}
@@ -242,44 +281,6 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 </div>
                             )}
                         </div>
-                    </div>
-
-                    {/* 2 Khung ảnh Polaroid Chú rể & Cô dâu */}
-                    <div
-                        style={{
-                            display: 'flex',
-                            gap: 36,
-                            alignItems: 'center',
-                            position: 'relative',
-                            transform: `translateX(${interpolate(photoSpring, [0, 1], [40, 0])}px)`,
-                            opacity: interpolate(photoSpring, [0, 1], [0, 1]),
-                            zIndex: 5,
-                        }}
-                    >
-                        <PhotoFrame
-                            src={cfg.polaroidPhotos.groom.photo}
-                            durationInFrames={520}
-                            initialScale={1.3}
-                            finalScale={1.5}
-                            direction="zoom-in"
-                            width={585}
-                            height={755}
-                            variant="polaroid"
-                            captionName={cfg.polaroidPhotos.groom.name}
-                            captionTitle={cfg.polaroidPhotos.groom.title}
-                            style={{ transform: 'rotate(-1.8deg)' }}
-                        />
-                        <PhotoFrame
-                            src={cfg.polaroidPhotos.bride.photo}
-                            durationInFrames={520}
-                            direction="zoom-out"
-                            width={585}
-                            height={755}
-                            variant="polaroid"
-                            captionName={cfg.polaroidPhotos.bride.name}
-                            captionTitle={cfg.polaroidPhotos.bride.title}
-                            style={{ transform: 'rotate(1.8deg)' }}
-                        />
                     </div>
                 </div>
             )}
