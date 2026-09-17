@@ -364,6 +364,8 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
   }
 
   // 4. Mặc định: Dạng Studio sang trọng (Gold border + shadow)
+  const innerRadius = style?.borderRadius ? Math.max(4, Number(style.borderRadius) - 4) : 12;
+
   return (
     <div
       style={{
@@ -384,7 +386,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
         style={{
           width: "100%",
           height: "100%",
-          borderRadius: 12,
+          borderRadius: innerRadius,
           overflow: "hidden",
           backgroundColor: "#F7F3EB",
         }}

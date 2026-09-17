@@ -98,10 +98,30 @@ export const Scene10_WishesAndFallInLove: React.FC<{
     const shineX2 = interpolate(shimmerProgress2, [0, 1], [130, -30]);
     const shineOpacity2 = shimmerProgress2 >= 0 ? interpolate(shimmerProgress2, [0, 0.2, 0.8, 1], [0, 1, 1, 0]) : 0;
 
-    // Giai đoạn 3 (Frames 1010 -> Kết thúc): FALL IN LOVE & 2 ảnh nhí nhảnh
+    // Giai đoạn 3 (Frames 1010 -> Kết thúc): FALL IN LOVE & Bố cục Diptych nghệ thuật
     const phase3Opacity = interpolate(frame, [1010, 1035, durationInFrames - 25, durationInFrames], [0, 1, 1, 0], {
         extrapolateRight: 'clamp',
         extrapolateLeft: 'clamp',
+    });
+
+    // Chuyển động thong thả, êm dịu cho cụm Diptych và các đường line
+    const phase3LineWidth = interpolate(frame, [1015, 1075], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.quad),
+    });
+    const phase3PhotosY = interpolate(frame, [1015, 1095], [40, 0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.quad),
+    });
+    const phase3PhotosOpacity = interpolate(frame, [1015, 1055], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+    });
+    const phase3QuoteOpacity = interpolate(frame, [1040, 1080], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
     });
 
     return (
@@ -569,7 +589,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
             )}
 
             {/* ========================================================
-          GIAI ĐOẠN 3: FALL IN LOVE & 2 ẢNH VÁY CƯỚI TƯƠI TẮN
+          GIAI ĐOẠN 3: FALL IN LOVE & BỐ CỤC DIPTYCH NGHỆ THUẬT (CÁCH 3)
       ======================================================== */}
             {phase3Opacity > 0 && (
                 <div
@@ -580,102 +600,200 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        padding: '50px 140px',
+                        justifyContent: 'center',
+                        zIndex: 10,
                     }}
                 >
                     <FloralDecor position="top-right" opacity={0.4} />
 
-                    {/* Tiêu đề FALL IN LOVE nghệ thuật */}
+                    {/* Cụm Diptych nghệ thuật kết hợp trục chỉ vàng & chữ dọc FALL IN LOVE */}
                     <div
                         style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: 24,
-                            marginBottom: 10,
+                            justifyContent: 'center',
+                            transform: `translateY(${phase3PhotosY}px)`,
+                            opacity: phase3PhotosOpacity,
+                            willChange: 'transform, opacity',
                         }}
                     >
+                        {/* Đường chỉ vàng ngoài cùng bên trái */}
                         <div
                             style={{
-                                width: 140,
-                                height: 1.5,
+                                width: 140 * phase3LineWidth,
+                                height: 2.5,
                                 background: 'linear-gradient(to right, transparent, #C69B56)',
                             }}
                         />
-                        <span
-                            style={{
-                                fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
-                                fontSize: 64,
-                                fontWeight: 700,
-                                letterSpacing: '0.22em',
-                                color: '#161311',
-                                textTransform: 'uppercase',
-                                textShadow:
-                                    '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8)',
-                            }}
-                        >
-                            FALL IN LOVE
-                        </span>
+
+                        {/* Chữ dọc FALL IN LOVE bên trái */}
                         <div
                             style={{
-                                width: 140,
-                                height: 1.5,
+                                width: 70,
+                                height: 560,
+                                position: 'relative',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <span
+                                style={{
+                                    position: 'absolute',
+                                    transform: 'rotate(-90deg)',
+                                    whiteSpace: 'nowrap',
+                                    fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
+                                    fontSize: 56,
+                                    fontWeight: 700,
+                                    letterSpacing: '0.22em',
+                                    color: '#161311',
+                                    textTransform: 'uppercase',
+                                    textShadow:
+                                        '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.8)',
+                                }}
+                            >
+                                FALL IN LOVE
+                            </span>
+                        </div>
+
+                        {/* Đường chỉ vàng nối chữ sang Ảnh 1 */}
+                        <div
+                            style={{
+                                width: 80 * phase3LineWidth,
+                                height: 2.5,
+                                backgroundColor: '#C69B56',
+                            }}
+                        />
+
+                        {/* Ảnh 1: Cô dâu giơ cao hoa đỏ (36155.jpg) */}
+                        <PhotoFrame
+                            src={cfg.fallInLovePhotos[0]}
+                            durationInFrames={520}
+                            direction="zoom-in"
+                            initialScale={1.02}
+                            finalScale={1.08}
+                            width={620}
+                            height={930}
+                            variant="studio"
+                            style={{
+                                borderRadius: 28,
+                                boxShadow: '0 28px 65px rgba(40, 25, 10, 0.24), 0 10px 25px rgba(0, 0, 0, 0.08)',
+                            }}
+                        />
+
+                        {/* Đường chỉ vàng nối từ Ảnh 1 sang Chữ giữa */}
+                        <div
+                            style={{
+                                width: 75 * phase3LineWidth,
+                                height: 2.5,
+                                backgroundColor: '#C69B56',
+                            }}
+                        />
+
+                        {/* Chữ dọc FALL IN LOVE ở giữa */}
+                        <div
+                            style={{
+                                width: 70,
+                                height: 560,
+                                position: 'relative',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <span
+                                style={{
+                                    position: 'absolute',
+                                    transform: 'rotate(-90deg)',
+                                    whiteSpace: 'nowrap',
+                                    fontFamily: "'EB Garamond', 'Cormorant Garamond', serif",
+                                    fontSize: 56,
+                                    fontWeight: 700,
+                                    letterSpacing: '0.22em',
+                                    color: '#161311',
+                                    textTransform: 'uppercase',
+                                    textShadow:
+                                        '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.8)',
+                                }}
+                            >
+                                FALL IN LOVE
+                            </span>
+                        </div>
+
+                        {/* Đường chỉ vàng nối từ Chữ giữa sang Ảnh 2 */}
+                        <div
+                            style={{
+                                width: 75 * phase3LineWidth,
+                                height: 2.5,
+                                backgroundColor: '#C69B56',
+                            }}
+                        />
+
+                        {/* Ảnh 2: Chú rể ôm cô dâu giữa vườn hoa đỏ (36331.jpg) */}
+                        <PhotoFrame
+                            src={cfg.fallInLovePhotos[1]}
+                            durationInFrames={520}
+                            direction="zoom-out"
+                            initialScale={1.08}
+                            finalScale={1.02}
+                            width={620}
+                            height={930}
+                            variant="studio"
+                            style={{
+                                borderRadius: 28,
+                                boxShadow: '0 28px 65px rgba(40, 25, 10, 0.24), 0 10px 25px rgba(0, 0, 0, 0.08)',
+                            }}
+                        />
+
+                        {/* Đường chỉ vàng ngoài cùng bên phải */}
+                        <div
+                            style={{
+                                width: 140 * phase3LineWidth,
+                                height: 2.5,
                                 background: 'linear-gradient(to left, transparent, #C69B56)',
                             }}
                         />
                     </div>
 
-                    {/* 2 Khung ảnh cưới studio nhí nhảnh giơ hoa */}
+                    {/* Lời tri ân ở dưới theo chuẩn Plus Jakarta Sans của Cảnh 5 */}
                     <div
                         style={{
                             display: 'flex',
-                            justifyContent: 'center',
+                            flexDirection: 'column',
                             alignItems: 'center',
-                            gap: 50,
-                            flex: 1,
+                            marginTop: 32,
+                            opacity: phase3QuoteOpacity,
+                            willChange: 'opacity',
                         }}
                     >
-                        {cfg.fallInLovePhotos.map((photoSrc, idx) => (
-                            <PhotoFrame
-                                key={idx}
-                                src={photoSrc}
-                                durationInFrames={520}
-                                direction={idx === 0 ? 'zoom-in' : 'pan-up'}
-                                width={560}
-                                height={800}
-                                variant="studio"
-                            />
-                        ))}
+                        <p
+                            style={{
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                fontSize: 36,
+                                fontWeight: 600,
+                                lineHeight: 1.5,
+                                color: '#221D1A',
+                                letterSpacing: '0.02em',
+                                textAlign: 'center',
+                                margin: 0,
+                                textShadow:
+                                    '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
+                            }}
+                        >
+                            {cfg.fallInLoveQuote}
+                        </p>
+
+                        {/* Thanh gạch dưới vàng tinh tế đồng bộ chuẩn Cảnh 9 */}
+                        <div
+                            style={{
+                                marginTop: 18,
+                                width: 140,
+                                height: 2.5,
+                                backgroundColor: '#A87932',
+                                boxShadow: '0 0 12px rgba(168, 121, 50, 0.5)',
+                            }}
+                        />
                     </div>
-
-                    {/* Lời tri ân ở dưới theo chuẩn Plus Jakarta Sans của Cảnh 5 */}
-                    <p
-                        style={{
-                            fontFamily: "'Plus Jakarta Sans', sans-serif",
-                            fontSize: 34,
-                            fontWeight: 600,
-                            lineHeight: 1.6,
-                            color: '#1E1A17',
-                            letterSpacing: '0.02em',
-                            textAlign: 'center',
-                            marginTop: 20,
-                            textShadow:
-                                '0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(255, 255, 255, 0.85)',
-                        }}
-                    >
-                        {cfg.fallInLoveQuote}
-                    </p>
-
-                    {/* Thanh gạch dưới vàng tinh tế đồng bộ chuẩn Cảnh 9 */}
-                    <div
-                        style={{
-                            marginTop: 18,
-                            width: 140,
-                            height: 2.5,
-                            backgroundColor: '#A87932',
-                            boxShadow: '0 0 12px rgba(168, 121, 50, 0.5)',
-                        }}
-                    />
                 </div>
             )}
         </div>

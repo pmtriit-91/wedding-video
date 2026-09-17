@@ -234,7 +234,7 @@ export const weddingConfig: WeddingConfig = {
                 },
             },
             foreheadPhoto: 'photos/10/Untitled Session36155.jpg',
-            fallInLovePhotos: ['photos/8/Untitled Session36318.jpg', 'photos/8/Untitled Session36491.jpg'],
+            fallInLovePhotos: ['photos/10/Untitled Session36155.jpg', 'photos/10/Untitled Session36331.jpg'],
         },
 
         // SCENE 11: Mãi mãi bắt đầu từ hôm nay
