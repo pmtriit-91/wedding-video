@@ -46,11 +46,37 @@ export const Scene10_WishesAndFallInLove: React.FC<{
     const shineX = interpolate(shimmerProgress, [0, 1], [130, -30]);
     const shineOpacity = shimmerProgress >= 0 ? interpolate(shimmerProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]) : 0;
 
-    // Giai đoạn 2 (Frames 510 -> 1020): Tri ân khách phương xa & Ảnh chạm trán tình cảm
+    // Giai đoạn 2 (Frames 510 -> 1020): Tri ân khách phương xa & 2 ảnh studio
     const phase2Opacity = interpolate(frame, [510, 535, 990, 1020], [0, 1, 1, 0], {
         extrapolateRight: 'clamp',
         extrapolateLeft: 'clamp',
     });
+
+    const textSpring2 = spring({
+        frame: frame - 515,
+        fps,
+        config: { damping: 14, mass: 0.8 },
+    });
+
+    const photoSpring2 = spring({
+        frame: frame - 520,
+        fps,
+        config: { damping: 15, mass: 0.9 },
+    });
+
+    let shimmerProgress2 = -1;
+    if (frame >= 560 && frame <= 620) {
+        shimmerProgress2 = interpolate(frame, [560, 620], [0, 1]);
+    } else if (frame >= 720 && frame <= 780) {
+        shimmerProgress2 = interpolate(frame, [720, 780], [0, 1]);
+    } else if (frame >= 880 && frame <= 940) {
+        shimmerProgress2 = interpolate(frame, [880, 940], [0, 1]);
+    }
+    const shineX2 = interpolate(shimmerProgress2, [0, 1], [130, -30]);
+    const shineOpacity2 =
+        shimmerProgress2 >= 0
+            ? interpolate(shimmerProgress2, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+            : 0;
 
     // Giai đoạn 3 (Frames 1010 -> Kết thúc): FALL IN LOVE & 2 ảnh nhí nhảnh
     const phase3Opacity = interpolate(frame, [1010, 1035, durationInFrames - 25, durationInFrames], [0, 1, 1, 0], {
@@ -130,7 +156,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             position: 'relative',
                             display: 'flex',
                             flexDirection: 'column',
-                            maxWidth: 620,
+                            maxWidth: 880,
                             transform: `translateX(${interpolate(textSpring, [0, 1], [-40, 0])}px)`,
                             opacity: interpolate(textSpring, [0, 1], [0, 1]),
                             zIndex: 5,
@@ -262,7 +288,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
             )}
 
             {/* ========================================================
-          GIAI ĐOẠN 2: TRI ÂN KHÁCH ĐƯỜNG XA & ẢNH CHẠM TRÁN
+          GIAI ĐOẠN 2: TRI ÂN KHÁCH ĐƯỜNG XA & 2 ẢNH STUDIO
       ======================================================== */}
             {phase2Opacity > 0 && (
                 <div
@@ -273,55 +299,197 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        padding: '0 180px',
+                        padding: '0 80px 0 220px',
                     }}
                 >
+                    {/* Lớp nền hoa lá nghệ thuật phủ mờ bên trái */}
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            bottom: 0,
+                            width: 1400,
+                            overflow: 'hidden',
+                            pointerEvents: 'none',
+                            zIndex: 1,
+                            WebkitMaskImage:
+                                'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
+                            maskImage:
+                                'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)',
+                        }}
+                    >
+                        <Img
+                            src={staticFile('decor/scene10-phase2-bg.png')}
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                objectPosition: 'left center',
+                                mixBlendMode: 'multiply',
+                                opacity: 0.88,
+                                filter: 'brightness(102%) contrast(102%)',
+                            }}
+                        />
+
+                        {/* Lớp phủ chuyển tiếp lụa ấm áp để hòa quyện êm dịu với tone màu satin chung */}
+                        <div
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                background:
+                                    'linear-gradient(to right, rgba(247, 243, 235, 0.25) 0%, rgba(247, 243, 235, 0.5) 40%, rgba(247, 243, 235, 0.88) 75%, #F7F3EB 100%)',
+                            }}
+                        />
+                    </div>
+
                     <FloralDecor position="bottom-left" opacity={0.35} />
 
-                    {/* Lời cảm ơn đường xa */}
+                    {/* Lời cảm ơn đường xa bên trái - dời sang phải vào vùng tường sáng thoáng */}
+                    <div
+                        style={{
+                            position: 'relative',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            maxWidth: 780,
+                            marginLeft: 40,
+                            transform: `translateX(${interpolate(textSpring2, [0, 1], [-40, 0])}px)`,
+                            opacity: interpolate(textSpring2, [0, 1], [0, 1]),
+                            zIndex: 5,
+                        }}
+                    >
+                        {/* Tiêu đề Cảm Ơn viết tay Great Vibes có lớp loáng sáng */}
+                        <div style={{ position: 'relative', marginBottom: 18 }}>
+                            <div
+                                style={{
+                                    fontFamily: "'Great Vibes', cursive",
+                                    fontSize: 70,
+                                    fontWeight: 700,
+                                    color: '#8A5818',
+                                    textShadow:
+                                        '0 2px 6px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 35px rgba(255, 255, 255, 0.95)',
+                                }}
+                            >
+                                Heartfelt Thanks
+                            </div>
+
+                            {shimmerProgress2 >= 0 && (
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        inset: 0,
+                                        fontFamily: "'Great Vibes', cursive",
+                                        fontSize: 70,
+                                        fontWeight: 700,
+                                        background:
+                                            'linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)',
+                                        backgroundSize: '220% 100%',
+                                        backgroundPosition: `${shineX2}% 0`,
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        pointerEvents: 'none',
+                                        opacity: shineOpacity2,
+                                        willChange: 'background-position, opacity',
+                                    }}
+                                >
+                                    Heartfelt Thanks
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Tiêu đề chính Chúng Con Xin Cảm Ơn */}
+                        <div style={{ position: 'relative', marginBottom: 16 }}>
+                            <span
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontSize: 56,
+                                    fontWeight: 800,
+                                    color: '#8A5818',
+                                    letterSpacing: '0.05em',
+                                    textTransform: 'uppercase',
+                                    textShadow:
+                                        '0 2px 4px rgba(255, 255, 255, 1), 0 0 18px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.9)',
+                                }}
+                            >
+                                CHÚNG CON XIN CẢM ƠN
+                            </span>
+                        </div>
+
+                        {/* Trích dẫn nội dung có lớp loáng sáng quét qua */}
+                        <div style={{ position: 'relative' }}>
+                            <p
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontSize: 50,
+                                    fontWeight: 700,
+                                    lineHeight: 1.48,
+                                    color: '#0F0C0A',
+                                    letterSpacing: '0.015em',
+                                    margin: 0,
+                                    textShadow:
+                                        '0 2px 4px rgba(255, 255, 255, 1), 0 0 16px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.95)',
+                                }}
+                            >
+                                tất cả mọi người đã sắp xếp công việc và thời gian, không ngại vượt đường xa xôi để tới đây.
+                            </p>
+
+                            {shimmerProgress2 >= 0 && (
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        inset: 0,
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontSize: 50,
+                                        fontWeight: 700,
+                                        lineHeight: 1.48,
+                                        letterSpacing: '0.015em',
+                                        margin: 0,
+                                        background:
+                                            'linear-gradient(110deg, transparent 20%, rgba(255, 245, 200, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 245, 200, 0.85) 60%, transparent 80%)',
+                                        backgroundSize: '220% 100%',
+                                        backgroundPosition: `${shineX2}% 0`,
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        pointerEvents: 'none',
+                                        opacity: shineOpacity2,
+                                        willChange: 'background-position, opacity',
+                                    }}
+                                >
+                                    tất cả mọi người đã sắp xếp công việc và thời gian, không ngại vượt đường xa xôi để tới đây.
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* 2 Khung ảnh cưới studio tri ân phóng to nổi bật */}
                     <div
                         style={{
                             display: 'flex',
-                            flexDirection: 'column',
-                            maxWidth: 820,
+                            gap: 36,
+                            alignItems: 'center',
+                            position: 'relative',
+                            transform: `translateX(${interpolate(photoSpring2, [0, 1], [40, 0])}px)`,
+                            opacity: interpolate(photoSpring2, [0, 1], [0, 1]),
+                            zIndex: 5,
                         }}
                     >
-                        <span
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontSize: 60,
-                                fontWeight: 700,
-                                color: weddingConfig.colors.goldPrimary,
-                                letterSpacing: '0.1em',
-                                marginBottom: 20,
-                                textTransform: 'uppercase',
-                            }}
-                        >
-                            CHÚNG CON XIN CẢM ƠN
-                        </span>
-                        <p
-                            style={{
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                fontSize: 32,
-                                fontWeight: 400,
-                                lineHeight: 1.6,
-                                color: weddingConfig.colors.textDark,
-                                letterSpacing: '0.02em',
-                            }}
-                        >
-                            tất cả mọi người đã sắp xếp công việc và thời gian không ngại vượt xa xôi để tới đây.
-                        </p>
+                        <PhotoFrame
+                            src="photos/9/Untitled Session36551.jpg"
+                            durationInFrames={510}
+                            direction="zoom-in"
+                            width={630}
+                            height={870}
+                            variant="studio"
+                        />
+                        <PhotoFrame
+                            src="photos/9/Untitled Session36695.jpg"
+                            durationInFrames={510}
+                            direction="zoom-out"
+                            width={630}
+                            height={870}
+                            variant="studio"
+                        />
                     </div>
-
-                    {/* Ảnh studio chạm trán tình cảm */}
-                    <PhotoFrame
-                        src={cfg.foreheadPhoto}
-                        durationInFrames={510}
-                        direction="zoom-in"
-                        width={820}
-                        height={960}
-                        variant="studio"
-                    />
                 </div>
             )}
 
