@@ -175,7 +175,7 @@ export const weddingConfig: WeddingConfig = {
 
         // SCENE 5: Tri ân Bố Mẹ
         scene05_parentGratitude: {
-            title: 'Gửi hàng triệu lời cảm ơn và tất cả yêu thương từ sâu thẳm trái tim.',
+            title: 'Từ sâu thẳm trái tim, xin gửi trọn lòng biết ơn và yêu thương.',
             message: 'Chúng con cảm ơn Ba Mẹ hai bên đã chấp thuận và vun đắp.',
             vowBookPhoto: 'photos/4/DSC_0605.jpg',
             outdoorPhotos: ['photos/4/MAY_0534.jpg', 'photos/4/MAY_0559.jpg'],
@@ -217,7 +217,7 @@ export const weddingConfig: WeddingConfig = {
         // SCENE 10: Lời chúc phúc & Fall in Love
         scene10_wishesAndFallInLove: {
             wishesQuote:
-                'Lời chúc phúc của mọi người là niềm tin để chúng con bước tiếp trên con đường phía trước của cả hai.',
+                'Lời chúc phúc của mọi người là niềm tin và hành trang để chúng con bước tiếp trên hành trình phía trước.',
             distanceThankQuote:
                 'Chúng con xin cảm ơn tất cả mọi người đã sắp xếp công việc và thời gian, không ngại đường sá xa xôi để đến chung vui và chúc phúc cho chúng con.',
             fallInLoveQuote: 'Hơn bao giờ hết chúng con muốn nói lời cảm ơn thật nhiều.',

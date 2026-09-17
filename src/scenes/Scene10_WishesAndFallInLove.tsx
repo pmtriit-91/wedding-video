@@ -259,7 +259,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         '0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)',
                                 }}
                             >
-                                Blessings & Love
+                                {/* Blessings & Love */}
+                                Gửi lời yêu thương
                             </div>
 
                             {shimmerProgress >= 0 && (
@@ -282,7 +283,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                         willChange: 'background-position, opacity',
                                     }}
                                 >
-                                    Blessings & Love
+                                    {/* Blessings & Love */}
+                                    Gửi lời yêu thương
                                 </div>
                             )}
                         </div>
