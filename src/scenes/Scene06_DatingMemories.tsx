@@ -204,13 +204,20 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                 }}
             >
                 {cfg.photos.map((photoSrc, idx) => {
-                    const photoSpring = spring({
-                        frame: frame - 16 - idx * 8,
-                        fps,
-                        config: { damping: 16, mass: 0.9 },
+                    // Thời điểm xuất hiện lần lượt từng ảnh: mỗi ảnh cách nhau 45 frames (~0.75s)
+                    const startFrame = 16 + idx * 45;
+                    const endFrame = startFrame + 100; // Thời lượng chuyển động 100 frames (~1.67s)
+
+                    // Hiệu ứng trượt từ dưới lên chậm rãi, êm dịu
+                    const photoY = interpolate(frame, [startFrame, endFrame], [80, 0], {
+                        extrapolateLeft: 'clamp',
+                        extrapolateRight: 'clamp',
+                        easing: Easing.out(Easing.quad),
                     });
-                    const photoY = interpolate(photoSpring, [0, 1], [35, 0]);
-                    const photoOpacity = interpolate(photoSpring, [0, 1], [0, 1]);
+                    const photoOpacity = interpolate(frame, [startFrame, startFrame + 35], [0, 1], {
+                        extrapolateLeft: 'clamp',
+                        extrapolateRight: 'clamp',
+                    });
 
                     // Độ dịch vị trí ảnh lên phía trên (top) trong khung chứa của từng ảnh
                     const photoOffsetsY = [-60, -105, -60];
@@ -221,6 +228,7 @@ export const Scene06_DatingMemories: React.FC<{ durationInFrames: number }> = ({
                             style={{
                                 transform: `translateY(${photoY}px)`,
                                 opacity: photoOpacity,
+                                willChange: 'transform, opacity',
                             }}
                         >
                             <PhotoFrame
