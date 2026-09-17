@@ -98,19 +98,19 @@ export const Scene10_WishesAndFallInLove: React.FC<{
     const shineX2 = interpolate(shimmerProgress2, [0, 1], [130, -30]);
     const shineOpacity2 = shimmerProgress2 >= 0 ? interpolate(shimmerProgress2, [0, 0.2, 0.8, 1], [0, 1, 1, 0]) : 0;
 
-    // Giai đoạn 3 (Frames 1010 -> Kết thúc): FALL IN LOVE & Bố cục Diptych nghệ thuật
+    // Giai đoạn 3 (Frames 1010 -> Kết thúc): FALL IN LOVE & Bố cục Editorial Vogue So Le (Cách 1)
     const phase3Opacity = interpolate(frame, [1010, 1035, durationInFrames - 25, durationInFrames], [0, 1, 1, 0], {
         extrapolateRight: 'clamp',
         extrapolateLeft: 'clamp',
     });
 
-    // Chuyển động thong thả, êm dịu cho cụm Diptych và các đường line
+    // Chuyển động thong thả, êm dịu cho cụm Editorial Vogue và các đường line
     const phase3LineWidth = interpolate(frame, [1015, 1075], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.out(Easing.quad),
     });
-    const phase3PhotosY = interpolate(frame, [1015, 1095], [40, 0], {
+    const phase3PhotosY = interpolate(frame, [1015, 1095], [35, 0], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.out(Easing.quad),
@@ -589,7 +589,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
             )}
 
             {/* ========================================================
-          GIAI ĐOẠN 3: FALL IN LOVE & BỐ CỤC DIPTYCH NGHỆ THUẬT (CÁCH 3)
+          GIAI ĐOẠN 3: FALL IN LOVE & BỐ CỤC EDITORIAL VOGUE SO LE (CÁCH 1)
       ======================================================== */}
             {phase3Opacity > 0 && (
                 <div
@@ -606,7 +606,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                 >
                     <FloralDecor position="top-right" opacity={0.4} />
 
-                    {/* Cụm Diptych nghệ thuật kết hợp trục chỉ vàng & chữ dọc FALL IN LOVE */}
+                    {/* Cụm Editorial Vogue: Trục chỉ vàng kết nối 2 ảnh so le lệch tầng chuẩn clip gốc */}
                     <div
                         style={{
                             display: 'flex',
@@ -665,21 +665,29 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             }}
                         />
 
-                        {/* Ảnh 1: Cô dâu giơ cao hoa đỏ (36155.jpg) */}
-                        <PhotoFrame
-                            src={cfg.fallInLovePhotos[0]}
-                            durationInFrames={520}
-                            direction="zoom-in"
-                            initialScale={1.02}
-                            finalScale={1.08}
-                            width={620}
-                            height={930}
-                            variant="studio"
+                        {/* Ảnh 1: Cô dâu giơ cao hoa đỏ (So le lệch cao lên trên) */}
+                        <div
                             style={{
-                                borderRadius: 28,
-                                boxShadow: '0 28px 65px rgba(40, 25, 10, 0.24), 0 10px 25px rgba(0, 0, 0, 0.08)',
+                                marginTop: -45,
+                                zIndex: 1,
                             }}
-                        />
+                        >
+                            <PhotoFrame
+                                src={cfg.fallInLovePhotos[0]}
+                                durationInFrames={520}
+                                direction="zoom-in"
+                                initialScale={1.02}
+                                finalScale={1.08}
+                                width={610}
+                                height={915}
+                                variant="studio"
+                                style={{
+                                    borderRadius: 28,
+                                    boxShadow:
+                                        '0 28px 65px rgba(40, 25, 10, 0.24), 0 10px 25px rgba(0, 0, 0, 0.08)',
+                                }}
+                            />
+                        </div>
 
                         {/* Đường chỉ vàng nối từ Ảnh 1 sang Chữ giữa */}
                         <div
@@ -729,21 +737,29 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             }}
                         />
 
-                        {/* Ảnh 2: Chú rể ôm cô dâu giữa vườn hoa đỏ (36331.jpg) */}
-                        <PhotoFrame
-                            src={cfg.fallInLovePhotos[1]}
-                            durationInFrames={520}
-                            direction="zoom-out"
-                            initialScale={1.08}
-                            finalScale={1.02}
-                            width={620}
-                            height={930}
-                            variant="studio"
+                        {/* Ảnh 2: Chú rể ôm cô dâu giữa vườn hoa đỏ (So le lệch thấp xuống dưới) */}
+                        <div
                             style={{
-                                borderRadius: 28,
-                                boxShadow: '0 28px 65px rgba(40, 25, 10, 0.24), 0 10px 25px rgba(0, 0, 0, 0.08)',
+                                marginTop: 45,
+                                zIndex: 1,
                             }}
-                        />
+                        >
+                            <PhotoFrame
+                                src={cfg.fallInLovePhotos[1]}
+                                durationInFrames={520}
+                                direction="zoom-out"
+                                initialScale={1.08}
+                                finalScale={1.02}
+                                width={610}
+                                height={915}
+                                variant="studio"
+                                style={{
+                                    borderRadius: 28,
+                                    boxShadow:
+                                        '0 28px 65px rgba(40, 25, 10, 0.24), 0 10px 25px rgba(0, 0, 0, 0.08)',
+                                }}
+                            />
+                        </div>
 
                         {/* Đường chỉ vàng ngoài cùng bên phải */}
                         <div
