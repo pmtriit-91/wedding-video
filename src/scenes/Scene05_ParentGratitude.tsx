@@ -200,7 +200,8 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                             textShadow: '0 2px 14px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9)',
                         }}
                     >
-                        Thank you Parents
+                        {/* Thank you Parents */}
+                        Cám ơn Ba Mẹ
                     </div>
 
                     {/* Lớp loáng sáng ánh kim vàng quét qua chữ Thank you Parents */}
@@ -225,7 +226,8 @@ export const Scene05_ParentGratitude: React.FC<{ durationInFrames: number }> = (
                                 willChange: 'background-position, opacity',
                             }}
                         >
-                            Thank you Parents
+                            {/* Thank you Parents */}
+                            Cám ơn Ba Mẹ
                         </div>
                     )}
                 </div>
