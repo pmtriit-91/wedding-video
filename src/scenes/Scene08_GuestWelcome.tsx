@@ -53,7 +53,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'flex-start',
-                paddingTop: 65,
+                paddingTop: 42,
                 zIndex: 20,
             }}
         >
@@ -63,7 +63,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    gap: 36,
+                    gap: 32,
                     zIndex: 16,
                 }}
             >
@@ -88,8 +88,8 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                                 src={photoSrc}
                                 durationInFrames={durationInFrames}
                                 direction={idx === 2 ? 'zoom-out' : 'pan-up'}
-                                width={660}
-                                height={900}
+                                width={760}
+                                height={1040}
                                 variant="studio"
                                 initialScale={idx === 2 ? 1.1 : 1.08}
                                 finalScale={idx === 2 ? 1.0 : undefined}
@@ -104,27 +104,27 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                 })}
             </div>
 
-            {/* Cụm thông điệp bên dưới (bố cục theo reference ảnh 2) */}
+            {/* Cụm thông điệp bên dưới (hạ sát bottom, nhường trọn không gian cho ảnh) */}
             <div
                 style={{
                     position: 'absolute',
-                    bottom: 100,
-                    left: 240,
+                    bottom: 40,
+                    left: 108,
                     display: 'flex',
                     alignItems: 'center',
                     transform: `translateX(${textX}px)`,
                     opacity: textOpacity,
-                    zIndex: 16,
+                    zIndex: 25,
                 }}
             >
-                {/* Vạch đứng vàng kim sang trọng (kiểu kiến trúc hiện đại như clip gốc) */}
+                {/* Vạch đứng vàng kim sang trọng */}
                 <div
                     style={{
                         width: 4,
-                        height: 165,
+                        height: 145,
                         backgroundColor: '#A87932',
                         borderRadius: 2,
-                        marginRight: 28,
+                        marginRight: 24,
                         boxShadow: '0 0 14px rgba(168, 121, 50, 0.45)',
                     }}
                 />
@@ -134,7 +134,7 @@ export const Scene08_GuestWelcome: React.FC<{ durationInFrames: number }> = ({ d
                     style={{
                         background: 'rgba(255, 250, 243, 0.92)',
                         backdropFilter: 'blur(12px)',
-                        padding: '26px 40px',
+                        padding: '20px 36px',
                         borderRadius: 14,
                         border: '1px solid rgba(220, 185, 140, 0.5)',
                         boxShadow: '0 12px 35px rgba(140, 100, 60, 0.12)',
