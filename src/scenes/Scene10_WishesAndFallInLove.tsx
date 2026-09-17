@@ -586,7 +586,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Đường chỉ vàng ngoài cùng bên trái */}
                         <div
                             style={{
-                                width: 140 * phase3LineWidth,
+                                width: 130 * phase3LineWidth,
                                 height: 2.5,
                                 background: 'linear-gradient(to right, transparent, #C69B56)',
                             }}
@@ -596,7 +596,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         <div
                             style={{
                                 width: 70,
-                                height: 560,
+                                height: 600,
                                 position: 'relative',
                                 display: 'flex',
                                 alignItems: 'center',
@@ -625,7 +625,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Đường chỉ vàng nối chữ sang Ảnh 1 */}
                         <div
                             style={{
-                                width: 80 * phase3LineWidth,
+                                width: 70 * phase3LineWidth,
                                 height: 2.5,
                                 backgroundColor: '#C69B56',
                             }}
@@ -634,7 +634,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Ảnh 1: Cô dâu giơ cao hoa đỏ (So le lệch cao lên trên) */}
                         <div
                             style={{
-                                marginTop: -45,
+                                marginTop: -40,
                                 zIndex: 1,
                             }}
                         >
@@ -644,8 +644,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 direction="zoom-in"
                                 initialScale={1.02}
                                 finalScale={1.08}
-                                width={610}
-                                height={915}
+                                width={750}
+                                height={1060}
                                 variant="studio"
                                 style={{
                                     borderRadius: 28,
@@ -657,7 +657,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Đường chỉ vàng nối từ Ảnh 1 sang Chữ giữa */}
                         <div
                             style={{
-                                width: 75 * phase3LineWidth,
+                                width: 65 * phase3LineWidth,
                                 height: 2.5,
                                 backgroundColor: '#C69B56',
                             }}
@@ -667,7 +667,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         <div
                             style={{
                                 width: 70,
-                                height: 560,
+                                height: 600,
                                 position: 'relative',
                                 display: 'flex',
                                 alignItems: 'center',
@@ -696,7 +696,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Đường chỉ vàng nối từ Chữ giữa sang Ảnh 2 */}
                         <div
                             style={{
-                                width: 75 * phase3LineWidth,
+                                width: 65 * phase3LineWidth,
                                 height: 2.5,
                                 backgroundColor: '#C69B56',
                             }}
@@ -705,7 +705,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Ảnh 2: Chú rể ôm cô dâu giữa vườn hoa đỏ (So le lệch thấp xuống dưới) */}
                         <div
                             style={{
-                                marginTop: 45,
+                                marginTop: 40,
                                 zIndex: 1,
                             }}
                         >
@@ -715,8 +715,8 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                                 direction="zoom-out"
                                 initialScale={1.08}
                                 finalScale={1.02}
-                                width={610}
-                                height={915}
+                                width={750}
+                                height={1060}
                                 variant="studio"
                                 style={{
                                     borderRadius: 28,
@@ -728,7 +728,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Đường chỉ vàng ngoài cùng bên phải */}
                         <div
                             style={{
-                                width: 140 * phase3LineWidth,
+                                width: 130 * phase3LineWidth,
                                 height: 2.5,
                                 background: 'linear-gradient(to left, transparent, #C69B56)',
                             }}
@@ -741,7 +741,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            marginTop: 32,
+                            marginTop: 22,
                             opacity: phase3QuoteOpacity,
                             willChange: 'opacity',
                         }}
@@ -749,7 +749,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         <p
                             style={{
                                 fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                fontSize: 36,
+                                fontSize: 38,
                                 fontWeight: 600,
                                 lineHeight: 1.5,
                                 color: '#221D1A',
@@ -765,7 +765,7 @@ export const Scene10_WishesAndFallInLove: React.FC<{
                         {/* Thanh gạch dưới vàng tinh tế đồng bộ chuẩn Cảnh 9 */}
                         <div
                             style={{
-                                marginTop: 18,
+                                marginTop: 14,
                                 width: 140,
                                 height: 2.5,
                                 backgroundColor: '#A87932',
